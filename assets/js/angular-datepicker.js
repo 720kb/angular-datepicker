@@ -29,7 +29,6 @@ angular.module('720kb.datepicker', [])
 
 			//create the calendar holder
 			thisInput.after($compile(angular.element(
-
 				'<div class="datepicker-calendar">'
 				//year header
 				+'<div class="datepicker-calendar-header">'
@@ -70,6 +69,11 @@ angular.module('720kb.datepicker', [])
 
 				$scope.showCalendar();
 			});
+			//input should not be changed by hand
+			thisInput.bind('keypress keydown keyup', function (e) {
+
+				e.preventDefault();
+			});
 
 			//calendar mouse leave
 			angular.element(theCalendar).bind('mouseleave', function () {
@@ -77,7 +81,7 @@ angular.module('720kb.datepicker', [])
 				mouseLeaveTimer = $timeout(function () {
 
 					$scope.hideCalendar();
-				},400);
+				},380);
 			});
 
 			//calendar mouse leave
@@ -141,6 +145,7 @@ angular.module('720kb.datepicker', [])
 
 			$scope.showCalendar = function () {
 
+				$scope.hideCalendar();
 				theCalendar.classList.add('datepicker-open');
 			};
 
@@ -166,35 +171,7 @@ angular.module('720kb.datepicker', [])
 				$scope.hideCalendar();
 			};
 
-			$scope.setCalendarStyle = function () {
-
-				theCalendar.style.width = inputWidth + 'px';
-				theCalendar.style.zindex = '9999';
-				theCalendar.style.position = 'absolute';
-			};
-
-			//set the calendar style
-			$scope.setCalendarPosition = function () {
-
-				theCalendar.style.left = inputOffsetLeft;
-				theCalendar.style.top = inputOffsetTop;
-			}
-
-			//ON resize
-			$window.onresize = function () {
-
-				inputWidth = thisInput[0].offsetWidth;
-			  inputOffsetLeft = thisInput[0].offsetLeft 
-			  inputOffsetRight = thisInput[0].offsetRight 
-			  inputOffsetTop = thisInput[0].offsetTop;
-
-			  $scope.setCalendarPosition();
-			  $scope.setCalendarStyle();
-			};
-
 			$scope.setDaysInMonth($scope.monthNumber, $scope.year);
-			$scope.setCalendarPosition();
-			$scope.setCalendarStyle();
 		}
 	}
 }]);

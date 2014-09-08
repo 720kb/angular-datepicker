@@ -9,13 +9,17 @@ datepicker,.datepicker-calendar-header,.datepicker-calendar-body {
 	 margin:0 auto;
 	 float:left;
 	 clear:right;
+	 position:relative;
 }
 .datepicker-calendar{
 	background: white;
-	float:left;
-	clear:right;
 	color:#333;
+	position:absolute;
+	z-index:999;
+	width:inherit;
 	min-width: 220px;
+	margin: 0 auto;
+	width:100%;
 	-webkit-box-shadow:0 0 0 1px solid rgba(0,0,0,0.15);
 	-moz-box-shadow:0 0 0 1px solid rgba(0,0,0,0.15);
 	-ms-box-shadow:0 0 0 1px solid rgba(0,0,0,0.15);
@@ -23,11 +27,13 @@ datepicker,.datepicker-calendar-header,.datepicker-calendar-body {
 	box-shadow:0 0 0 1px solid rgba(0,0,0,0.15);
 	margin-top:-4px;
 	visibility:hidden;
-	overflow: hidden;
+	overflow:scroll;
+	float:left;
+	clear:right;
 	padding:0 0 2% 0;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	border-radius:5px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
 }
 .datepicker-calendar.datepicker-open{
 	visibility:visible;
@@ -62,11 +68,13 @@ width:20%;
 }
 .datepicker-calendar-day{
 	cursor:pointer;
-	width:16.66667%;
+	width:14.2%;
 	padding:1.8% 0;
 	float: left;
 	text-align: center;
-	transition: all 0.15s;
+	-webkit-border-radius:1px;
+	-moz-border-radius:1px;
+	border-radius:1px;
 }
 .datepicker-calendar-day.datepicker-active{
 	background:rgba(0,0,0,0.05);
