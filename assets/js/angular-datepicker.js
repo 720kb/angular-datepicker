@@ -69,11 +69,6 @@ angular.module('720kb.datepicker', [])
 
 				$scope.showCalendar();
 			});
-			//input should not be changed by hand
-			thisInput.bind('keypress keydown keyup', function (e) {
-
-				e.preventDefault();
-			});
 
 			//calendar mouse leave
 			angular.element(theCalendar).bind('mouseleave', function () {
@@ -81,7 +76,7 @@ angular.module('720kb.datepicker', [])
 				mouseLeaveTimer = $timeout(function () {
 
 					$scope.hideCalendar();
-				},380);
+				},180);
 			});
 
 			//calendar mouse leave
@@ -108,6 +103,7 @@ angular.module('720kb.datepicker', [])
 				$scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day), 'MMMM');
 				//reinit days
 			  $scope.setDaysInMonth($scope.monthNumber, $scope.year);
+				$scope.setInputValue();
 			};
 
 			$scope.prevMonth = function () {
@@ -125,16 +121,19 @@ angular.module('720kb.datepicker', [])
 				$scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day), 'MMMM');
 				//reinit days
 			  $scope.setDaysInMonth($scope.monthNumber, $scope.year);
+				$scope.setInputValue();
 			};
 
 			$scope.nextYear = function () {
 	
 				$scope.year = Number($scope.year) + 1; 
+				$scope.setInputValue();
 			};
 
 			$scope.prevYear = function () {
 	
-				$scope.year = Number($scope.year) - 1; 
+				$scope.year = Number($scope.year) - 1;
+				$scope.setInputValue();
 			};
 
 			$scope.setInputValue = function () {
