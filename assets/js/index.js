@@ -1,10 +1,10 @@
-/*global window angular*/
+/*global angular*/
 
-(function (window, angular) {
+(function (angular) {
   'use strict';
 
   angular.module('720kb', [
     'ngRoute',
     '720kb.datepicker'
   ]);
-  }(window, angular));
+}(angular));

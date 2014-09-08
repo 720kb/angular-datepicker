@@ -1,0 +1,24 @@
+{
+  "name": "angular-datepicker",
+  "version": "0.1.1",
+  "description": "A datepicker directive for angularjs.",
+  "authors": [
+    "Filippo Oretti <filippo.oretti@gmail.com",
+    "Dario Andrei <wouldgo84@gmail.com>"
+  ],
+  "keywords": [
+    "date",
+    "datepicker",
+    "input"
+  ],
+  "license": "MIT",
+  "homepage": "none-atm",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
