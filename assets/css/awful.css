@@ -1,0 +1,14 @@
+body{
+	margin: 0 auto;
+	padding:0;
+	background: #333;
+}
+input{
+	width: 100%;
+	max-width: 400px;
+}
+.wrapper{
+	color:white;
+	margin: 150px 150px;
+	background: #000;
+}
