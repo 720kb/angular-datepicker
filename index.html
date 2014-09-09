@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="720kb">
   <head>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/awful.css">
     <link rel="stylesheet" type="text/css" href="src/css/angular-datepicker.css">
     <title>Angularjs Datepicker</title>
@@ -8,7 +9,9 @@
   <body>
     <div class="wrapper">
       <div>
-        <datepicker>
+        <datepicker 
+        button-prev='<i class="fa fa-arrow-circle-left"></i>' 
+        button-next='<i class="fa fa-arrow-circle-right"></i>'>
           <input ng-model="date1" type="text" class="angular-datepicker-input"/>
         </datepicker>
         Date 1 is: {{date1}}
