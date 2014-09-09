@@ -8,7 +8,7 @@
     return {
       'restrict': 'E',
       'scope': {},
-      'link': function linkingFunction($scope, element/*, attrs*/) {
+      'link': function linkingFunction($scope, element, attr) {
         //get child input
         var thisInput = angular.element(element[0].children[0])
           , theCalendar
@@ -16,6 +16,10 @@
           //, inputOffsetLeft = thisInput[0].offsetLeft
           //, inputOffsetRight = thisInput[0].offsetRight
           //, inputOffsetTop = thisInput[0].offsetTop
+          , defaultPrevButton = 'Prev'
+          , defaultNextButton = 'Next'
+          , prevButton = attr.buttonPrev || defaultPrevButton
+          , nextButton = attr.buttonNext || defaultNextButton
           , date = new Date()
           , mouseLeaveTimer
           , datetime = $locale.DATETIME_FORMATS;
@@ -31,25 +35,25 @@
           //year header
           '<div class="datepicker-calendar-header">' +
           '<div class="datepicker-calendar-header-left">' +
-          '<button ng-click="prevMonth()">prev</button>' +
+          '<a href="javascript:void(0)" ng-click="prevMonth()">' + prevButton + '</a>' +
           '</div>' +
-          '<div class="datepicker-calendar-header-middle">' +
+          '<div class="datepicker-calendar-header-middle datepicker-calendar-month">' +
           '{{month}}' +
           '</div>' +
           '<div class="datepicker-calendar-header-right">' +
-          '<button ng-click="nextMonth()">next</button>' +
+          '<a href="javascript:void(0)" ng-click="nextMonth()">' + nextButton + '</a>' +
           '</div>' +
           '</div>' +
           //month header
           '<div class="datepicker-calendar-header">' +
           '<div class="datepicker-calendar-header-left">' +
-          '<button ng-click="prevYear()">prev</button>' +
+          '<a href="javascript:void(0)" ng-click="prevYear()">' + prevButton + '</a>' +
           '</div>' +
           '<div class="datepicker-calendar-header-middle">' +
           '{{year}}' +
           '</div>' +
           '<div class="datepicker-calendar-header-right">' +
-          '<button ng-click="nextYear()">next</button>' +
+          '<a href="javascript:void(0)" ng-click="nextYear()">' + nextButton + '</a>' +
           '</div>' +
           '</div>' +
           //days

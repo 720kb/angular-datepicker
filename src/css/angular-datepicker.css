@@ -16,7 +16,6 @@ datepicker,.datepicker-calendar-header,.datepicker-calendar-body {
   color: #333;
   position: absolute;
   z-index: 999;
-  width: inherit;
   min-width: 220px;
   margin: 0 auto;
   width: 100%;
@@ -40,10 +39,10 @@ datepicker,.datepicker-calendar-header,.datepicker-calendar-body {
 .datepicker-calendar-header{
   text-align: center;
   font-size: 15px;
-  line-height: 30px;
+  line-height: 40px;
 }
 .datepicker-calendar-header:nth-child(odd){
-background: #27D6F1;
+background: #26BAF0;
 }
 .datepicker-calendar-header:nth-child(even){
   background: rgba(0,0,0,0.05);
@@ -81,4 +80,22 @@ background: #27D6F1;
 }
 .datepicker-calendar-day:hover{
   background: rgba(0,0,0,0.05);
+}
+.datepicker-calendar-header a,.datepicker-calendar-header a:hover {
+  text-decoration:none;
+  padding:5px 10px;
+  font-size: 13.5px;
+  color:rgba(0,0,0,0.55);
+  font-weight: bold;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-align:center;
+}
+.datepicker-calendar-header a:hover{
+  color:rgba(0,0,0,0.9);
+  background: rgba(255,255,255,0.45);
+}
+.datepicker-calendar-month{
+  color:#fff;
 }
