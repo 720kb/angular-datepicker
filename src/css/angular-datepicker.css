@@ -104,6 +104,10 @@ datepicker, .datepicker-calendar-header, .datepicker-calendar-body {
   margin-left:1%;
   color:rgba(0, 0, 0, 0.4);
 }
+.datepicker-calendar-month a span  i {
+  font-style: normal;
+  font-size:15px;
+}
 .datepicker-calendar-month a, .datepicker-calendar-month a:hover {
   padding: 3px;
   margin-left:1%;
@@ -112,6 +116,7 @@ datepicker, .datepicker-calendar-header, .datepicker-calendar-body {
   font-size:12px;
   padding:3px 7px;
   font-weight: normal;
+  margin:0 2px;
 }
 .datepicker-calendar-years-pagination a.datepicker-active {
   color:rgba(0, 0, 0, 0.9);
