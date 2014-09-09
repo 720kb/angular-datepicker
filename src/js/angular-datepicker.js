@@ -20,6 +20,7 @@
           , defaultNextButton = 'Next'
           , prevButton = attr.buttonPrev || defaultPrevButton
           , nextButton = attr.buttonNext || defaultNextButton
+          , dateFormat = attr.dateFormat || 'mediumDate'
           , date = new Date()
           , mouseLeaveTimer
           , datetime = $locale.DATETIME_FORMATS;
@@ -140,7 +141,7 @@
 
         $scope.setInputValue = function manageInputValue() {
 
-          thisInput.val($filter('date')(new Date($scope.year + ' ' + $scope.month + ' ' + $scope.day )))
+          thisInput.val($filter('date')(new Date($scope.year + ' ' + $scope.month + ' ' + $scope.day ), dateFormat))
           .triggerHandler('input').triggerHandler('change');//just to be sure;
         };
 
