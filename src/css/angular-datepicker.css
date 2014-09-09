@@ -1,17 +1,17 @@
-datepicker,.datepicker-calendar-header,.datepicker-calendar-body {
+datepicker, .datepicker-calendar-header, .datepicker-calendar-body {
   font-family: Helvetica Neue;
   font-size: 13.5px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-   width: 100%;
-   margin: 0 auto;
-   float: left;
-   clear: right;
-   position: relative;
+  width: 100%;
+  margin: 0 auto;
+  float: left;
+  clear: right;
+  position: relative;
 }
-.datepicker-calendar{
+.datepicker-calendar {
   background: white;
   color: #333;
   position: absolute;
@@ -19,9 +19,9 @@ datepicker,.datepicker-calendar-header,.datepicker-calendar-body {
   min-width: 220px;
   margin: 0 auto;
   width: 100%;
-  -webkit-box-shadow: 0 0 0 1px  rgba(0,0,0,0.15) inset;
-  -moz-box-shadow: 0 0 0 1px  rgba(0,0,0,0.15) inset;
-  box-shadow: 0 0 0 1px  rgba(0,0,0,0.15) inset;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset;
+  -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset;
   margin-top: 1px;
   visibility: hidden;
   float: left;
@@ -31,75 +31,89 @@ datepicker,.datepicker-calendar-header,.datepicker-calendar-body {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-.datepicker-calendar.datepicker-open{
+.datepicker-calendar.datepicker-open {
   visibility: visible;
 }
-.datepicker-calendar-header{
+.datepicker-calendar-header {
   text-align: center;
   font-size: 15px;
   line-height: 40px;
   overflow: hidden;
 }
-.datepicker-calendar-header:nth-child(odd){
-background: #26BAF0;
+.datepicker-calendar-header:nth-child(odd) {
+  background: #26BAF0;
 }
-.datepicker-calendar-header:nth-child(even){
-  background: rgba(0,0,0,0.05);
+.datepicker-calendar-header:nth-child(even) {
+  background: rgba(0, 0, 0, 0.05);
 }
-.datepicker-calendar-header-left{
- width: 20%;
- float: left;
-}
-.datepicker-calendar-header-middle{
-  width: 60%;
+.datepicker-calendar-header-left {
+  width: 15%;
   float: left;
 }
-.datepicker-calendar-header-right{
- width: 20%;
- float: left;
+.datepicker-calendar-header-middle {
+  width: 70%;
+  float: left;
 }
-.datepicker-calendar-body{
+.datepicker-calendar-header-right {
+  width: 15%;
+  float: left;
+}
+.datepicker-calendar-body {
   width: 96%;
   margin: 2%;
   text-align: center;
 }
-.datepicker-calendar-day{
+.datepicker-calendar-day {
   cursor: pointer;
-  width: 14.2%;
-  padding: 1.8% 0;
+  width: 12.2%;
+  margin:5px 1%;
+  padding: 1.5% 0;
   float: left;
   text-align: center;
   -webkit-border-radius: 1px;
   -moz-border-radius: 1px;
   border-radius: 1px;
 }
-.datepicker-calendar-day.datepicker-active{
-  background: rgba(0,0,0,0.05);
-  color: rgba(0,0,0,0.3);
+.datepicker-calendar-day.datepicker-active {
+  background: rgba(3, 0, 0, 0.03);
+  color: rgba(0, 0, 0, 0.3);
 }
-.datepicker-calendar-day:hover{
-  background: rgba(0,0,0,0.05);
+.datepicker-calendar-day:hover {
+  background: rgba(0, 0, 0, 0.03);
 }
-.datepicker-calendar-header a,.datepicker-calendar-header a:hover {
+.datepicker-calendar-header a, .datepicker-calendar-header a:hover {
   text-decoration:none;
   padding:5px 10px;
   font-size: 13.5px;
-  color:rgba(0,0,0,0.55);
+  color:rgba(0, 0, 0, 0.55);
   font-weight: bold;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   text-align:center;
 }
-.datepicker-calendar-header a:hover{
-  color:rgba(0,0,0,0.9);
-  background: rgba(255,255,255,0.45);
+.datepicker-calendar-header a:hover {
+  color:rgba(0, 0, 0, 0.9);
+  background: rgba(255, 255, 255, 0.45);
 }
-.datepicker-calendar-month{
+.datepicker-calendar-month {
   color:#fff;
 }
-.datepicker-calendar-month i{
+.datepicker-calendar-month span {
   font-size: 13px;
   margin-left:1%;
-  color:rgba(0,0,0,0.4);
+  color:rgba(0, 0, 0, 0.4);
+}
+.datepicker-calendar-month a, .datepicker-calendar-month a:hover {
+  padding: 3px;
+  margin-left:1%;
+}
+.datepicker-calendar-years-pagination a, .datepicker-calendar-years-pagination a:hover {
+  font-size:12px;
+  padding:3px 7px;
+  font-weight: normal;
+}
+.datepicker-calendar-years-pagination a.datepicker-active {
+  color:rgba(0, 0, 0, 0.9);
+  background: rgba(255, 255, 255, 0.45);
 }
