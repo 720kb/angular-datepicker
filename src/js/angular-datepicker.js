@@ -33,28 +33,16 @@
 
         //create the calendar holder
         thisInput.after($compile(angular.element('<div class="datepicker-calendar">' +
-          //year header
+          //motnh+year header
           '<div class="datepicker-calendar-header">' +
           '<div class="datepicker-calendar-header-left">' +
           '<a href="javascript:void(0)" ng-click="prevMonth()">' + prevButton + '</a>' +
           '</div>' +
           '<div class="datepicker-calendar-header-middle datepicker-calendar-month">' +
-          '{{month}}' +
+          '{{month}} <i>{{year}}</i>' +
           '</div>' +
           '<div class="datepicker-calendar-header-right">' +
           '<a href="javascript:void(0)" ng-click="nextMonth()">' + nextButton + '</a>' +
-          '</div>' +
-          '</div>' +
-          //month header
-          '<div class="datepicker-calendar-header">' +
-          '<div class="datepicker-calendar-header-left">' +
-          '<a href="javascript:void(0)" ng-click="prevYear()">' + prevButton + '</a>' +
-          '</div>' +
-          '<div class="datepicker-calendar-header-middle">' +
-          '{{year}}' +
-          '</div>' +
-          '<div class="datepicker-calendar-header-right">' +
-          '<a href="javascript:void(0)" ng-click="nextYear()">' + nextButton + '</a>' +
           '</div>' +
           '</div>' +
           //days
