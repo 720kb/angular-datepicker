@@ -45,8 +45,13 @@
           '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[paginationYears.length -1 ])">' + nextButton + '</a>' +
           '</div>' +
           '</div>' +
+          //days column
+          '<div class="datepicker-calendar-days-header">' + 
+          '<div ng-repeat="d in daysInString"> {{d}} </div> ' +
+          '</div>' +
           //days
           '<div class="datepicker-calendar-body">' +
+          '<a ng-repeat="item in prevMonthDays" class="datepicker-calendar-day datepicker-disabled">{{item}}</a>' + 
           '<a ng-repeat="item in days" ng-click="setDatepickerDay(item)" ng-class="{\'datepicker-active\': day === item}" class="datepicker-calendar-day">{{item}}</a>' +
           '</div>' +
           '</div>' +
@@ -55,8 +60,9 @@
         $scope.month = $filter('date')(date, 'MMMM');//December-November like
         $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
         $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
-        $scope.year = $filter('date')(date,'yyyy');//2014 like
+        $scope.year = Number($filter('date')(date,'yyyy'));//2014 like
         $scope.months = datetime.MONTH;
+        $scope.daysInString = [0,1,2,3,4,5,6].map(function(el) { return $filter('date')((new Date(new Date('06/08/2014').valueOf()+(86400000*el))), 'EEE'); });
 
         //create the calendar holder
         thisInput.after($compile(angular.element(htmlTemplate))($scope));
@@ -144,7 +150,7 @@
 
         $scope.setInputValue = function manageInputValue() {
 
-          thisInput.val($filter('date')(new Date($scope.year + ' ' + $scope.month + ' ' + $scope.day ), dateFormat))
+          thisInput.val($filter('date')(new Date($scope.year + '/' + $scope.month + '/' + $scope.day ), dateFormat))
           .triggerHandler('input').triggerHandler('change');//just to be sure;
         };
 
@@ -160,12 +166,40 @@
         };
 
         $scope.setDaysInMonth = function setDaysInMonth(month, year) {
+          
+          var i
+            , limitDate = new Date(year, month, 0).getDate()
+            , firstDayMonthNumber = Number($filter('date')(new Date($scope.year + '/' + $scope.month + '/' + 1),'d'))
+            , prevMonthDays = []
+            , howManyPreviousDays;
 
           $scope.days = [];
 
-          for (var i = 1, limitDate = new Date(year, month, 0).getDate(); i <= limitDate; i += 1) {
+          for (i = 1; i <= limitDate; i += 1) {
 
             $scope.days.push(i);
+          }
+
+          //get previous month days is first day in month is not Sunday
+          if (firstDayMonthNumber !== 7) {
+
+            howManyPreviousDays =  7 - firstDayMonthNumber;
+            //get previous month
+            if (Number(month) <= 1) {
+
+              month = 12;
+            } else {
+
+              month -= 1;
+            }
+            //return previous month days
+            for (i = 1; i <= limitDate; i += 1) {
+
+              prevMonthDays.push(i);
+            }
+            //attach previous month days
+            $scope.prevMonthDays = prevMonthDays.slice(-howManyPreviousDays);
+
           }
         };
 
