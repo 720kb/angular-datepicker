@@ -12,8 +12,8 @@
         //get child input
         var thisInput = angular.element(element[0].children[0])
           , theCalendar
-          , defaultPrevButton = 'Prev'
-          , defaultNextButton = 'Next'
+          , defaultPrevButton = '<b class="datepicker-default-button">&lang;</b>'
+          , defaultNextButton = '<b class="datepicker-default-button">&rang;</b>'
           , prevButton = attr.buttonPrev || defaultPrevButton
           , nextButton = attr.buttonNext || defaultNextButton
           , dateFormat = attr.dateFormat || 'mediumDate'
@@ -63,7 +63,10 @@
         $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
         $scope.year = Number($filter('date')(date,'yyyy'));//2014 like
         $scope.months = datetime.MONTH;
-        $scope.daysInString = [0,1,2,3,4,5,6].map(function(el) { return $filter('date')((new Date(new Date('06/08/2014').valueOf()+(86400000*el))), 'EEE'); });
+        $scope.daysInString = ['0','1','2','3','4','5','6'].map(function(el) {
+
+          return $filter('date')((new Date(new Date('06/08/2014').valueOf() + (86400000 * el))), 'EEE'); 
+        });
 
         //create the calendar holder
         thisInput.after($compile(angular.element(htmlTemplate))($scope));
@@ -162,8 +165,8 @@
         };
 
         $scope.showCalendar = function manageShowCalendar() {
-
-          $scope.hideCalendar();
+          //hide years pagination by default
+          $scope.showYearsPagination = false;
           theCalendar.classList.add('datepicker-open');
         };
 
