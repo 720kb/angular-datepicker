@@ -18,9 +18,10 @@
           , nextButton = attr.buttonNext || defaultNextButton
           , dateFormat = attr.dateFormat || 'mediumDate'
           , date = new Date()
-          , mouseLeaveTimer
+          , isMouseOn = false
+          , isMouseOnInput = false
           , datetime = $locale.DATETIME_FORMATS
-          , htmlTemplate = '<div class="datepicker-calendar">' +
+          , htmlTemplate = '<div class="datepicker-calendar" tabindex="0" ng-blur="hideCalendar()">' +
           //motnh+year header
           '<div class="datepicker-calendar-header">' +
           '<div class="datepicker-calendar-header-left">' +
@@ -69,16 +70,34 @@
 
         //get the calendar as element
         theCalendar = element[0].children[1];
-        //show  calendar
+        //some tricky dirty events to fire if click is outside of the calendar and show/hide calendar when needed
         thisInput.bind('focus click', function bindingFunction() {
 
+          isMouseOnInput = true;
           $scope.showCalendar();
-          angular.element(theCalendar).triggerHandler('mouseenter').triggerHandler('focusin').triggerHandler('focus');
         });
 
-        angular.element(theCalendar).bind('blur', function () {
+        thisInput.bind('blur focusout', function bindingFunction() {
+
+          isMouseOnInput = false;
+        });
+
+        angular.element(theCalendar).bind('mouseenter', function () {
+          
+          isMouseOn = true;
+        });
+        
+        angular.element(theCalendar).bind('mouseleave', function () {
+          
+          isMouseOn = false;
+        });
+
+        angular.element($window).bind('click', function () {
+
+          if (!isMouseOn && !isMouseOnInput) {
 
             $scope.hideCalendar();
+          }
         });
 
         $scope.nextMonth = function manageNextMonth() {
@@ -187,7 +206,6 @@
             }
             //attach previous month days
             $scope.prevMonthDays = prevMonthDays.slice(-howManyPreviousDays);
-
           }
         };
 
