@@ -73,24 +73,12 @@
         thisInput.bind('focus click', function bindingFunction() {
 
           $scope.showCalendar();
+          angular.element(theCalendar).triggerHandler('mouseenter').triggerHandler('focusin').triggerHandler('focus');
         });
 
-        //calendar mouse leave
-        angular.element(theCalendar).bind('mouseleave', function onMouseLeave() {
-
-          mouseLeaveTimer = $timeout(function doAfterTimeout() {
+        angular.element(theCalendar).bind('blur', function () {
 
             $scope.hideCalendar();
-          },180);
-        });
-
-        //calendar mouse leave
-        angular.element(theCalendar).bind('mouseover', function onMouseOver() {
-
-          if (mouseLeaveTimer) {
-
-            $timeout.cancel(mouseLeaveTimer);
-          }
         });
 
         $scope.nextMonth = function manageNextMonth() {
