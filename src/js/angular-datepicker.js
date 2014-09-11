@@ -3,7 +3,7 @@
 (function withAngular(angular) {
 
   angular.module('720kb.datepicker', [])
-  .directive('datepicker',['$window', '$compile', '$locale', '$timeout', '$filter', function manageDirective($window, $compile, $locale, $timeout, $filter) {
+  .directive('datepicker',['$window', '$compile', '$locale', '$filter', function manageDirective($window, $compile, $locale, $filter) {
 
     return {
       'restrict': 'E',
