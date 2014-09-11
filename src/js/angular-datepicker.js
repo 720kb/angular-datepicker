@@ -50,8 +50,9 @@
           '</div>' +
           //days
           '<div class="datepicker-calendar-body">' +
-          '<a ng-repeat="item in prevMonthDays" class="datepicker-calendar-day datepicker-disabled">{{item}}</a>' + 
+          '<a ng-repeat="px in prevMonthDays" class="datepicker-calendar-day datepicker-disabled">{{px}}</a>' + 
           '<a ng-repeat="item in days" ng-click="setDatepickerDay(item)" ng-class="{\'datepicker-active\': day === item}" class="datepicker-calendar-day">{{item}}</a>' +
+          '<a ng-repeat="nx in nextMonthDays" class="datepicker-calendar-day datepicker-disabled">{{nx}}</a>' + 
           '</div>' +
           '</div>' +
           '</div>';
@@ -176,9 +177,13 @@
           
           var i
             , limitDate = new Date(year, month, 0).getDate()
-            , firstDayMonthNumber = Number($filter('date')(new Date($scope.year + '/' + $scope.month + '/' + 1),'d'))
+            , firstDayMonthNumber = new Date($scope.year + '/' + $scope.month + '/' + 1).getDay()
+            , lastDayMonthNumber = new Date($scope.year + '/' + $scope.month + '/' + limitDate).getDay()
             , prevMonthDays = []
-            , howManyPreviousDays;
+            , nextMonthDays = []
+            , howManyNextDays
+            , howManyPreviousDays
+            , monthAlias
 
           $scope.days = [];
 
@@ -186,26 +191,47 @@
 
             $scope.days.push(i);
           }
-
           //get previous month days is first day in month is not Sunday
-          if (firstDayMonthNumber !== 7) {
-
-            howManyPreviousDays =  7 - firstDayMonthNumber;
+          if (firstDayMonthNumber !== 0) {
+            
+            howManyPreviousDays =  firstDayMonthNumber;
+            
             //get previous month
-            if (Number(month) <= 1) {
+            if (Number(month) === 1) {
 
-              month = 12;
+              monthAlias = 12;
             } else {
 
-              month -= 1;
+              monthAlias = month - 1;
             }
             //return previous month days
-            for (i = 1; i <= limitDate; i += 1) {
+            for (i = 1; i <= new Date(year, monthAlias, 0).getDate(); i += 1) {
 
               prevMonthDays.push(i);
             }
             //attach previous month days
             $scope.prevMonthDays = prevMonthDays.slice(-howManyPreviousDays);
+          } else {
+            //no need for it
+            $scope.prevMonthDays = [];
+          }
+
+          //get next month days is first day in month is not Sunday
+          if (lastDayMonthNumber < 6) {
+           
+            howManyNextDays =  6 - lastDayMonthNumber;
+            //get previous month
+
+            //return next month days
+            for (i = 1; i <= howManyNextDays; i += 1) {
+              
+              nextMonthDays.push(i);
+            }
+            //attach previous month days
+            $scope.nextMonthDays = nextMonthDays;
+          } else {
+            //no need for it
+            $scope.nextMonthDays = [];
           }
         };
 
