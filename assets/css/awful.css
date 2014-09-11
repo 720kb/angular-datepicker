@@ -1,25 +1,36 @@
-body{
-  margin: 0 auto;
-  padding:0;
+@font-face {
+  font-family:'Avenir';
+  src: url('../fonts/avenir-medium.eot');
+  src: url('../fonts/avenir-medium.eot') format('embedded-opentype'), url('../fonts/avenir-medium.woff2') format('woff2'), url('../fonts/avenir-medium.woff') format('woff'), url('../fonts/avenir-medium.ttf') format('truetype'), url('../fonts/avenir-medium.svg#AvenirMedium') format('svg');
 }
-input{
-  width: 100%;
-  max-width: 700px;
-  margin:0;
-  padding:5px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
+body {
+  font-family:'Avenir', Arial;
+  background: #eff4f6;
 }
-.wrapper{
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  color:white;
-  max-width: 700px;
-  margin: 0 auto;
-  margin-top :150px;
-  background: #000;
+/*Fonts*/
+.font-fontawesome{
+  font-family: 'FontAwesome';
+}
+.font-xx-large{
+  font-size:35px;
+}
+.font-small{
+	font-size: 12px;
+}
+/*Layout*/
+.line-max{
+  float:none;
+  margin:0 auto;
+  max-width: 600px;
+}
+/*Colors*/
+.color-azure{
+  color:#239CE7;
+}
+/*Extra*/
+code.hljs{
+	border-radius:5px;
+	padding-bottom:0;
+	padding-top:15px;
+	background: rgba(255,255,255,0.7);
 }

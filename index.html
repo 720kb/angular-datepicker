@@ -1,33 +1,100 @@
 <!doctype html>
 <html ng-app="720kb">
-  <head>
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="http://720kb.github.io/csshelper/assets/ext/src/helper.css">
-    <link rel="stylesheet" type="text/css" href="src/css/angular-datepicker.css">
-    <title>Angularjs Datepicker</title>
-  </head>
-  <body>
-    <div class="separator50"></div>
-    <div class="col6 offset-left2">
-      <div>
-        <datepicker 
-        date-format="MMMM d, y"
-        button-prev='<i class="fa fa-arrow-circle-left"></i>' 
-        button-next='<i class="fa fa-arrow-circle-right"></i>'>
-          <input ng-model="date1" type="text" class="angular-datepicker-input"/>
-        </datepicker>
-        Date 1 is: {{date1}}
+<head>
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="//720kb.github.io/csshelper/assets/ext/src/helper.css">
+  <link rel="stylesheet" type="text/css" href="//yastatic.net/highlightjs/8.2/styles/vs.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/awful.css">
+  <link rel="stylesheet" type="text/css" href="src/css/angular-datepicker.css">
+  <title>Angularjs Datepicker</title>
+</head>
+<body>
+  <div class="separator100"></div>
+  <h1 class="center-content color-azure font-xx-large">Angularjs Datepicker</h1>
+  <div class="separator10"></div>
+  <h5 class="center-content font-light color-muted">
+    A simple pure angularjs directive <br>that generates a responsive datepicker around your input
+  </h5>
+  <div class="separator50"></div>
+  <div class="line-compress line-max">
+    <div class="line">
+      <div class="separator10"></div>
+      <div class="line-compress  center-content radius20">
+        Choosen date is 
+        <span ng-if="date1" class="color-muted">{{date1}}</span> 
+        <span ng-if="!date1" class="color-muted">...</span>
       </div>
-      <div>
-        <datepicker>
-          <input ng-model="date2" type="text" class="angular-datepicker-input"/>
-        </datepicker>
-        Date 2 is: {{date2}}
-      </div>
-    </div>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular.min.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular-route.min.js"></script>
-    <script type="text/javascript" src="src/js/angular-datepicker.js"></script>
-    <script type="text/javascript" src="assets/js/index.js"></script>
-  </body>
+      <div class="separator10"></div>
+
+      <datepicker 
+      date-format="MMMM d, y"
+      button-prev='<i class="fa fa-arrow-circle-left"></i>' 
+      button-next='<i class="fa fa-arrow-circle-right"></i>'>
+      <input ng-model="date1" type="text" class="font-fontawesome font-light radius3" placeholder="&#xf073; Choose a date"/>
+    </datepicker>
+
+    <div class="separator30"></div>
+    <h2>Usage</h2>
+    <div class="separator15"></div>
+    <h4>Html</h4>
+    <small class="font-medium font-small color-muted">
+      Wrap your input into the datepicker element
+    </small>
+    <div class="separator10"></div>
+    <code hljs="">
+<datepicker> 
+<input ng-model="date" type="text"/>
+</datepicker>
+    </code>
+    <div class="separator15"></div>
+    <h4>Javascript</h4>
+    <small class="font-medium font-small color-muted">
+      Add the datepicker module dependency
+    </small>
+    <div class="separator10"></div>
+    <code hljs="">
+ angular.module('app', [
+  '720kb.datepicker'
+ ]);
+    </code>
+    <div class="separator30"></div>
+    <h2>Options</h2>
+    <div class="separator15"></div>
+    <h4>Date format</h4>
+    <small class=" font-small color-muted">
+      All the accepted date formats can be found  
+      <a class="font-small" href="https://docs.angularjs.org/api/ng/filter/date" target="_blank">
+        here
+      </a>
+    </small>
+    <div class="separator15"></div>
+    <code hljs="">
+date-format="{{pattern}}"
+    </code>
+    <div class="separator15"></div>
+    <h4>
+      Customize buttons
+    </h4>
+    <small class="font-small color-muted">
+      Just a FontAwesome buttons example
+    </small>
+    <code hljs="">
+button-prev="<i class='fa fa-arrow-left'></i>"
+button-next="<i class='fa fa-arrow-right'></i>"
+    </code>
+  </div>
+</div>
+<!--footer-->
+  <div class="separator100"></div>
+  <div class="hr"></div>
+  <div class="separator15"></div>
+  <div class="center-content">Brought to you by <a href="//720kb.net">720kb</a></div>
+  <div class="separator50"></div>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular-route.min.js"></script>
+<script type="text/javascript" src="src/js/angular-datepicker.js"></script>
+<script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script>
+<script type="text/javascript" src="//pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script>
+<script type="text/javascript" src="assets/js/index.js"></script>
+</body>
 </html>
