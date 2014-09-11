@@ -5,6 +5,7 @@
   angular.module('720kb.datepicker', [])
   .directive('datepicker',['$window', '$compile', '$locale', '$filter', function manageDirective($window, $compile, $locale, $filter) {
 
+    var A_DAY_IN_MILLISECONDS = 86400000;
     return {
       'restrict': 'E',
       'scope': {},
@@ -45,14 +46,14 @@
           '</div>' +
           '</div>' +
           //days column
-          '<div class="datepicker-calendar-days-header">' + 
+          '<div class="datepicker-calendar-days-header">' +
           '<div ng-repeat="d in daysInString"> {{d}} </div> ' +
           '</div>' +
           //days
           '<div class="datepicker-calendar-body">' +
-          '<a ng-repeat="px in prevMonthDays" class="datepicker-calendar-day datepicker-disabled">{{px}}</a>' + 
+          '<a ng-repeat="px in prevMonthDays" class="datepicker-calendar-day datepicker-disabled">{{px}}</a>' +
           '<a ng-repeat="item in days" ng-click="setDatepickerDay(item)" ng-class="{\'datepicker-active\': day === item}" class="datepicker-calendar-day">{{item}}</a>' +
-          '<a ng-repeat="nx in nextMonthDays" class="datepicker-calendar-day datepicker-disabled">{{nx}}</a>' + 
+          '<a ng-repeat="nx in nextMonthDays" class="datepicker-calendar-day datepicker-disabled">{{nx}}</a>' +
           '</div>' +
           '</div>' +
           '</div>';
@@ -62,9 +63,9 @@
         $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
         $scope.year = Number($filter('date')(date,'yyyy'));//2014 like
         $scope.months = datetime.MONTH;
-        $scope.daysInString = ['0','1','2','3','4','5','6'].map(function(el) {
+        $scope.daysInString = ['0','1','2','3','4','5','6'].map(function mappingFunc(el) {
 
-          return $filter('date')((new Date(new Date('06/08/2014').valueOf() + (86400000 * el))), 'EEE'); 
+          return $filter('date')(new Date(new Date('06/08/2014').valueOf() + A_DAY_IN_MILLISECONDS * el), 'EEE');
         });
 
         //create the calendar holder
@@ -73,30 +74,31 @@
         //get the calendar as element
         theCalendar = element[0].children[1];
         //some tricky dirty events to fire if click is outside of the calendar and show/hide calendar when needed
-        thisInput.bind('focus click', function bindingFunction() {
+        thisInput.bind('focus click', function onFocusAndClick() {
 
           isMouseOnInput = true;
           $scope.showCalendar();
         });
 
-        thisInput.bind('blur focusout', function bindingFunction() {
+        thisInput.bind('blur focusout', function onBlurAndFocusOut() {
 
           isMouseOnInput = false;
         });
 
-        angular.element(theCalendar).bind('mouseenter', function () {
-          
+        angular.element(theCalendar).bind('mouseenter', function onMouseEnter() {
+
           isMouseOn = true;
         });
-        
-        angular.element(theCalendar).bind('mouseleave', function () {
-          
+
+        angular.element(theCalendar).bind('mouseleave', function onMouseLeave() {
+
           isMouseOn = false;
         });
 
-        angular.element($window).bind('click', function () {
+        angular.element($window).bind('click', function onClickOnWindow() {
 
-          if (!isMouseOn && !isMouseOnInput) {
+          if (!isMouseOn &&
+            !isMouseOnInput) {
 
             $scope.hideCalendar();
           }
@@ -126,7 +128,7 @@
           $scope.paginateYears(year);
           $scope.setInputValue();
         };
-        
+
         $scope.prevMonth = function managePrevMonth() {
 
           if ($scope.monthNumber === 1) {
@@ -164,7 +166,7 @@
         };
 
         $scope.showCalendar = function manageShowCalendar() {
-    
+
           theCalendar.classList.add('datepicker-open');
         };
 
@@ -174,7 +176,7 @@
         };
 
         $scope.setDaysInMonth = function setDaysInMonth(month, year) {
-          
+
           var i
             , limitDate = new Date(year, month, 0).getDate()
             , firstDayMonthNumber = new Date($scope.year + '/' + $scope.month + '/' + 1).getDay()
@@ -183,7 +185,7 @@
             , nextMonthDays = []
             , howManyNextDays
             , howManyPreviousDays
-            , monthAlias
+            , monthAlias;
 
           $scope.days = [];
 
@@ -193,9 +195,9 @@
           }
           //get previous month days is first day in month is not Sunday
           if (firstDayMonthNumber !== 0) {
-            
+
             howManyPreviousDays =  firstDayMonthNumber;
-            
+
             //get previous month
             if (Number(month) === 1) {
 
@@ -218,13 +220,13 @@
 
           //get next month days is first day in month is not Sunday
           if (lastDayMonthNumber < 6) {
-           
+
             howManyNextDays =  6 - lastDayMonthNumber;
             //get previous month
 
             //return next month days
             for (i = 1; i <= howManyNextDays; i += 1) {
-              
+
               nextMonthDays.push(i);
             }
             //attach previous month days
@@ -243,12 +245,21 @@
         };
 
         $scope.paginateYears = function paginateYears (startingYear) {
-          
-          $scope.paginationYears = [Number(startingYear)];
 
-          $scope.paginationYears.splice(0,-9, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++);
-          $scope.paginationYears.splice(0,-10, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--);
-          $scope.paginationYears.sort();
+          $scope.paginationYears = [];
+          var i;
+          for (i = 10/* Years */; i > 0; i -= 1) {
+
+            $scope.paginationYears.push(startingYear - i);
+          }
+
+          for (i = 0; i < 10/* Years */; i += 1) {
+
+            $scope.paginationYears.push(startingYear + i);
+          }
+          //$scope.paginationYears.splice(0,-9, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++);
+          //$scope.paginationYears.splice(0,-10, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--);
+          //$scope.paginationYears.sort();
         };
 
         $scope.paginateYears($scope.year);
