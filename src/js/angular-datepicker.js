@@ -162,7 +162,7 @@
 
         $scope.setInputValue = function manageInputValue() {
 
-          thisInput.val($filter('date')(new Date($scope.year + '/' + $scope.month + '/' + $scope.day ), dateFormat))
+          thisInput.val($filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day ), dateFormat))
           .triggerHandler('input').triggerHandler('change');//just to be sure;
         };
 
@@ -180,8 +180,8 @@
 
           var i
             , limitDate = new Date(year, month, 0).getDate()
-            , firstDayMonthNumber = new Date($scope.year + '/' + $scope.month + '/' + 1).getDay()
-            , lastDayMonthNumber = new Date($scope.year + '/' + $scope.month + '/' + limitDate).getDay()
+            , firstDayMonthNumber = new Date(year + '/' + month + '/' + 1).getDay()
+            , lastDayMonthNumber = new Date(year + '/' + month + '/' + limitDate).getDay()
             , prevMonthDays = []
             , nextMonthDays = []
             , howManyNextDays
@@ -197,7 +197,7 @@
           //get previous month days is first day in month is not Sunday
           if (firstDayMonthNumber !== 0) {
 
-            howManyPreviousDays =  firstDayMonthNumber;
+            howManyPreviousDays = firstDayMonthNumber;
 
             //get previous month
             if (Number(month) === 1) {
