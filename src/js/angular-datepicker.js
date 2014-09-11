@@ -163,8 +163,7 @@
         };
 
         $scope.showCalendar = function manageShowCalendar() {
-          //hide years pagination by default
-          $scope.showYearsPagination = false;
+    
           theCalendar.classList.add('datepicker-open');
         };
 
