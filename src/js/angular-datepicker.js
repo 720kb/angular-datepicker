@@ -125,6 +125,7 @@
         $scope.setNewYear = function setNewYear (year) {
 
           $scope.year = Number(year);
+          $scope.setDaysInMonth($scope.monthNumber, $scope.year);
           $scope.paginateYears(year);
           $scope.setInputValue();
         };
