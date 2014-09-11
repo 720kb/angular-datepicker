@@ -36,13 +36,11 @@
           '</div>' +
           //years pagination header
           '<div class="datepicker-calendar-header" ng-show="showYearsPagination">' +
-          '<div class="datepicker-calendar-header-left">' +
-          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[0])">' + prevButton + '</a>' +
-          '</div>' +
-          '<div class="datepicker-calendar-header-middle datepicker-calendar-years-pagination">' +
+          '<div class="datepicker-calendar-years-pagination">' +
           '<a ng-class="{\'datepicker-active\': y === year}" href="javascript:void(0)" ng-click="setNewYear(y)" ng-repeat="y in paginationYears">{{y}}</a>' +
           '</div>' +
-          '<div class="datepicker-calendar-header-right">' +
+          '<div class="datepicker-calendar-years-pagination-pages">' +
+          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[0])">' + prevButton + '</a>' +
           '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[paginationYears.length -1 ])">' + nextButton + '</a>' +
           '</div>' +
           '</div>' +
@@ -223,8 +221,8 @@
           
           $scope.paginationYears = [Number(startingYear)];
 
-          $scope.paginationYears.splice(0,-2, $scope.paginationYears[0]++, $scope.paginationYears[0]++);
-          $scope.paginationYears.splice(0,-2, $scope.paginationYears[0]--, $scope.paginationYears[0]--);
+          $scope.paginationYears.splice(0,-9, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++, $scope.paginationYears[0]++);
+          $scope.paginationYears.splice(0,-10, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--, $scope.paginationYears[0]--);
           $scope.paginationYears.sort();
         };
 
