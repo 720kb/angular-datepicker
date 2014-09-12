@@ -15,8 +15,21 @@ AngularJS v1.2+
 ##Screen
 ![Angularjs datepicker calendar](http://i.imgur.com/44ut0ET.png)
 
-## Load
+###Browser support
 
+
+Chrome  ![ok](http://i.imgur.com/CK8qxk1.png)
+
+Firefox ![ok](http://i.imgur.com/CK8qxk1.png)
+
+Safari ![ok](http://i.imgur.com/CK8qxk1.png)
+
+Opera ![ok](http://i.imgur.com/CK8qxk1.png)
+
+IE    ![mmm](http://i.imgur.com/iAIwqCL.png)
+
+
+## Load
 
 To use the directive, include the javascript and css files of Angularjs Datepicker in your web page:
 
