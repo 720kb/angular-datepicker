@@ -65,7 +65,7 @@
       2,
       "outside"
     ],
-    "no-global-strict": 2,
+    "global-strict": [2, "never"],
     "no-extra-strict": 2,
     "strict": 2,
     "no-catch-shadow": 2,

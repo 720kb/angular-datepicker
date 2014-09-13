@@ -2,7 +2,7 @@
   "name": "angular-datepicker",
   "version": "0.1.1",
   "description": "A datepicker directive for angularjs.",
-  "homepage": "none-atm",
+  "homepage": "http://720kb.github.io/angular-datepicker",
   "keywords": [
     "date",
     "datepicker",
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "none-atm"
+    "url": "https://github.com/720kb/angular-datepicker.git"
   },
   "license": "MIT",
   "devDependencies": {
