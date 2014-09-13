@@ -1,8 +1,8 @@
-AngularJS Datepicker
+Angular Datepicker
 ==================
 
 
-Angularjs Datepicker is a pure angularjs directive that generates a datepicker calendar on your input element.
+Angular datepicker is an angularjs directive that generates a datepicker calendar on your input element.
 
 
 The Angularjs Datepicker is developed by [720kb](http://720kb.net).
@@ -13,12 +13,12 @@ The Angularjs Datepicker is developed by [720kb](http://720kb.net).
 AngularJS v1.2+
 
 ##Screen
-![Angularjs datepicker calendar](http://i.imgur.com/44ut0ET.png)
+![Angular datepicker calendar](http://i.imgur.com/44ut0ET.png)
 
 ###Browser support
 
 
-Chrome  ![ok](http://i.imgur.com/CK8qxk1.png)
+Chrome ![ok](http://i.imgur.com/CK8qxk1.png)
 
 Firefox ![ok](http://i.imgur.com/CK8qxk1.png)
 
@@ -26,12 +26,12 @@ Safari ![ok](http://i.imgur.com/CK8qxk1.png)
 
 Opera ![ok](http://i.imgur.com/CK8qxk1.png)
 
-IE    ![mmm](http://i.imgur.com/iAIwqCL.png)
+IE ![mmm](http://i.imgur.com/iAIwqCL.png)
 
 
 ## Load
 
-To use the directive, include the javascript and css files of Angularjs Datepicker in your web page:
+To use the directive, include the Angular Datepicker's javascript and css files in your web page:
 
 ```html
 <!DOCTYPE HTML>
@@ -64,7 +64,7 @@ Call the directive wherever you want in your html page
 </datepicker>
 ```
 ##Options
-Angularjs datepicker allows you to use some options via `attribute`  data
+Angular datepicker allows you to use some options via `attribute` data
 
 ####Date format
 You can use all the Angularjs `$date` filter date formats (that can be found [here](https://docs.angularjs.org/api/ng/filter/date))
@@ -84,7 +84,7 @@ You can customize the calendar navigation buttons content, let's make an example
 ```
 ## Example
 
-###[Live demo](https://720kb.github.io/angularjs-datepicker)
+###[Live demo](https://720kb.github.io/angular-datepicker)
 
 
 ##Contributing
