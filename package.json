@@ -14,7 +14,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "connect-modrewrite": "*",
     "grunt": "*",
     "grunt-concurrent": "*",
     "grunt-contrib-connect": "*",
