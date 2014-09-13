@@ -17,7 +17,7 @@ AngularJS v1.2+
 
 ###Browser support
 
-
+ 
 Chrome ![ok](http://i.imgur.com/CK8qxk1.png)
 
 Firefox ![ok](http://i.imgur.com/CK8qxk1.png)
