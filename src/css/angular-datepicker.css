@@ -119,7 +119,7 @@ datepicker,
 }
 .datepicker-calendar-years-pagination a, .datepicker-calendar-years-pagination a:hover {
   font-size:12px;
-  padding:0px 7px;
+  padding:0 7px;
   font-weight: normal;
   margin:3px 1% 0 1%;
   line-height: 20px;
