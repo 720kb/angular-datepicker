@@ -37,11 +37,11 @@ To use the directive, include the javascript and css files of Angularjs Datepick
 <!DOCTYPE HTML>
 <html>
 <head>
-  <script src="src/js/angular-datepicker.js"></script>
   <link href="src/css/angular-datepicker.css" rel="stylesheet" type="text/css" />
 </head>
 <body ng-app="app">
- //.....
+  //.....
+  <script src="src/js/angular-datepicker.js"></script>
 </body>
 </html>
 ```
@@ -59,8 +59,8 @@ angular.module('app', [
 Call the directive wherever you want in your html page
 
 ```html
-<datepicker> 
-<input ng-model="date" type="text"/>
+<datepicker>
+  <input ng-model="date" type="text"/>
 </datepicker>
 ```
 ##Options
@@ -70,18 +70,16 @@ Angularjs datepicker allows you to use some options via `attribute`  data
 You can use all the Angularjs `$date` filter date formats (that can be found [here](https://docs.angularjs.org/api/ng/filter/date))
 
 ```html
-<datepicker date-format="{{pattern}}"> 
-<input ng-model="date" type="text"/>
+<datepicker date-format="{{pattern}}">
+  <input ng-model="date" type="text"/>
 </datepicker>
 ```
 ####Custom buttons
 You can customize the calendar navigation buttons content, let's make an example while using [FontAwesome](http://fontawesome.io)
 
 ```html
-<datepicker 
-button-prev="<i class='fa fa-arrow-left'></i>" 
-button-next="<i class='fa fa-arrow-right'></i>"> 
-<input ng-model="date" type="text"/>
+<datepicker button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
+  <input ng-model="date" type="text"/>
 </datepicker>
 ```
 ## Example
@@ -91,7 +89,7 @@ button-next="<i class='fa fa-arrow-right'></i>">
 
 ##Contributing
 
-We will be much greatful if you help us making this project to grow up. 
+We will be much grateful if you help us making this project to grow up.
 Feel free to contribute by forking, opening issues, pull requests etc.
 
 ## License
