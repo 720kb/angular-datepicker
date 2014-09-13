@@ -12,7 +12,7 @@
     "input"
   ],
   "license": "MIT",
-  "homepage": "none-atm",
+  "homepage": "http://720kb.github.io/angular-datepicker",
   "private": true,
   "ignore": [
     "**/.*",

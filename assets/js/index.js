@@ -1,17 +1,17 @@
 /*global angular*/
 
-(function (angular) {
+(function withAngular(angular) {
   'use strict';
 
   angular.module('720kb', [
     'ngRoute',
     '720kb.datepicker',
     'hljs'
-  ]).config(['hljsServiceProvider', function (hljsServiceProvider) {
+  ]).config(['hljsServiceProvider', function configurationFunction(hljsServiceProvider) {
 
-  	hljsServiceProvider.setOptions({
+    hljsServiceProvider.setOptions({
       // replace tab with 4 spaces
-      tabReplace: ''
+      'tabReplace': ''
     });
   }]);
 }(angular));
