@@ -45,7 +45,7 @@
     <small class="font-medium font-small color-muted">
       Wrap your input into the datepicker element
     </small>
-    <div class="separator10"></div>
+    <div class="separator15"></div>
     <code hljs="">
 <datepicker>
   <input ng-model="date" type="text"/>
@@ -56,7 +56,7 @@
     <small class="font-medium font-small color-muted">
       Add the datepicker module dependency
     </small>
-    <div class="separator10"></div>
+    <div class="separator15"></div>
     <code hljs="">
  angular.module('app', [
   '720kb.datepicker'
@@ -74,7 +74,24 @@
     </small>
     <div class="separator15"></div>
     <code hljs="">
-date-format="{{pattern}}"
+<datepicker date-format="{{pattern}}">
+ <input type="text" ng-model="date"/>
+</datepicker>
+    </code>
+     <div class="separator15"></div>
+    <h4>
+      Date limits
+    </h4>
+    <small class="font-small color-muted">
+      Setting date min and max limits its easy (you can use any javascript <i>new Date()</i> accepted date formats)
+    </small>
+    <div class="separator15"></div>
+    <code hljs="">
+<datepicker
+date-min-limit="2014/07/04"
+date-max-limit="2020/09/09">
+ <input type="text" ng-model="date"/>
+</datepicker>
     </code>
     <div class="separator15"></div>
     <h4>
@@ -83,9 +100,13 @@ date-format="{{pattern}}"
     <small class="font-small color-muted">
       Just a FontAwesome buttons example
     </small>
+    <div class="separator15"></div>
     <code hljs="">
+<datepicker
 button-prev="<i class='fa fa-arrow-left'></i>"
-button-next="<i class='fa fa-arrow-right'></i>"
+button-next="<i class='fa fa-arrow-right'></i>">
+ <input type="text" ng-model="date"/>
+</datepicker>
     </code>
   </div>
 </div>
