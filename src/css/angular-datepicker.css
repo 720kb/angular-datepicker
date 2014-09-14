@@ -76,12 +76,6 @@ datepicker,
 .datepicker-calendar-day:hover,.datepicker-calendar-day.datepicker-active {
   background: rgba(0, 0, 0, 0.03);
 }
-.datepicker-calendar-day.datepicker-disabled,
-.datepicker-calendar-day.datepicker-disabled:hover{
-  color:rgba(0,0,0,0.2);
-  background: rgba(25,2,0,0.02);
-  cursor: default;
-}
 .datepicker-calendar-header a, .datepicker-calendar-header a:hover {
   text-decoration:none;
   padding:3% 9% 4% 9%;
@@ -149,8 +143,19 @@ datepicker,
  text-align: center;
  color:rgba(0,0,0,0.7);
 }
+.datepicker-calendar-days
 .datepicker-default-button{
   font-size: 18.5px;
   position: relative;
   bottom:-0.5px;
+}
+.datepicker-calendar-day.datepicker-disabled,
+.datepicker-calendar-day.datepicker-disabled:hover,
+.datepicker-calendar-years-pagination a.datepicker-disabled,
+.datepicker-calendar-years-pagination a.datepicker-disabled:hover,
+.datepicker-calendar-years-pagination a.datepicker-active.datepicker-disabled,
+.datepicker-calendar-years-pagination a.datepicker-active.datepicker-disabled:hover{
+  color:rgba(0,0,0,0.2);
+  background: rgba(25,2,0,0.02);
+  cursor: default;
 }

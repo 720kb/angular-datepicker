@@ -14,7 +14,7 @@ AngularJS v1.2+
 ##Screen
 ![Angular datepicker calendar](http://i.imgur.com/44ut0ET.png)
 
-###Browser support 
+###Browser support
 =======
 
 Chrome ![ok](http://i.imgur.com/CK8qxk1.png)
@@ -73,6 +73,15 @@ You can use all the Angularjs `$date` filter date formats (that can be found [he
   <input ng-model="date" type="text"/>
 </datepicker>
 ```
+####Date limits
+You can set date limits using `date-min-limit=""` and `date-max-limit=""` attribute data ( you can use all the accepted date formats by the javascript `new Date()`)
+
+```html
+<datepicker date-min-limit="2014/08/11" date-max-limit="2018/07/14">
+  <input ng-model="date" type="text"/>
+</datepicker>
+```
+
 ####Custom buttons
 You can customize the calendar navigation buttons content, let's make an example while using [FontAwesome](http://fontawesome.io)
 
@@ -81,6 +90,7 @@ You can customize the calendar navigation buttons content, let's make an example
   <input ng-model="date" type="text"/>
 </datepicker>
 ```
+
 ## Example
 
 ###[Live demo](https://720kb.github.io/angular-datepicker)
