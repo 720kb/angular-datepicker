@@ -95,6 +95,10 @@ You can customize the calendar navigation buttons content, let's make an example
 
 ###[Live demo](https://720kb.github.io/angular-datepicker)
 
+##Theming
+You can edit the default Css file `angular-datepicker.css` if you want to make a new theme for the datepicker.
+
+Here is an example of a [Dark Theme](http://codepen.io/45kb/pen/bjslv) made using custom Css.
 
 ##Contributing
 
