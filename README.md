@@ -46,6 +46,17 @@ To use the directive, include the Angular Datepicker's javascript and css files 
 ```
 
 ##Install
+
+###Bower installation
+
+```
+$ bower install angularjs-datepicker --save
+```
+
+_then load the js files in your html_
+
+###Add module dependency
+
 Add the 720kb.datepicker module dependency
 
 ```js
