@@ -93,6 +93,19 @@ You can set date limits using `date-min-limit=""` and `date-max-limit=""` attrib
 </datepicker>
 ```
 
+####Default date
+You can set date to be displayed by default with `date-set=""` attribute data ( you can use all the accepted date formats by the javascript `new Date()`)
+
+```html
+<datepicker date-set="2018/07/14">
+  <input ng-model="date" type="text"/>
+</datepicker>
+
+<datepicker date-set="myModel.date">
+  <input ng-model="myModel.date" type="text"/>
+</datepicker>
+```
+
 ####Custom buttons
 You can customize the calendar navigation buttons content, let's make an example while using [FontAwesome](http://fontawesome.io)
 
