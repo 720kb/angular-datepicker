@@ -10,7 +10,9 @@
     var A_DAY_IN_MILLISECONDS = 86400000;
     return {
       'restrict': 'E',
-      'scope': {},
+      'scope': {
+        'dateSet': '@'
+      },
       'link': function linkingFunction($scope, element, attr) {
         //get child input
         var thisInput = angular.element(element[0].children[0])
