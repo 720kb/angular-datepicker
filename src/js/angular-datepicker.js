@@ -2,13 +2,17 @@
 
 (function withAngular(angular) {
 
+  'use strict';
+
   angular.module('720kb.datepicker', [])
   .directive('datepicker',['$window', '$compile', '$locale', '$filter', function manageDirective($window, $compile, $locale, $filter) {
 
     var A_DAY_IN_MILLISECONDS = 86400000;
     return {
       'restrict': 'E',
-      'scope': {},
+      'scope': {
+        'dateSet': '@'
+      },
       'link': function linkingFunction($scope, element, attr) {
         //get child input
         var thisInput = angular.element(element[0].children[0])
@@ -59,6 +63,16 @@
           '</div>' +
           '</div>' +
           '</div>';
+
+        $scope.$watch('dateSet', function(value) {
+          if (value) {
+            date = new Date(value);
+            $scope.month = $filter('date')(date, 'MMMM');//December-November like
+            $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
+            $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
+            $scope.year = Number($filter('date')(date,'yyyy'));//2014 like
+          }
+        });
 
         $scope.month = $filter('date')(date, 'MMMM');//December-November like
         $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like

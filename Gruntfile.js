@@ -1,6 +1,8 @@
 /*global module, require*/
 (function setUp(module, require) {
 
+  'use strict';
+
   var banner = ['/*!',
       ' * Angular Datepicker v<%= pkg.version %>',
       ' *',
