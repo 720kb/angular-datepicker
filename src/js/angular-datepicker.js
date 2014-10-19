@@ -32,13 +32,13 @@
           //motnh+year header
           '<div class="datepicker-calendar-header">' +
           '<div class="datepicker-calendar-header-left">' +
-          '<a href="javascript:void(0)" ng-click="prevMonth()">' + prevButton + '</a>' +
+          '<a href="javascript:void(0)" ng-click="prevMonth()" ng-class="{hidden: !isPrevMonth}">' + prevButton + '</a>' +
           '</div>' +
           '<div class="datepicker-calendar-header-middle datepicker-calendar-month">' +
           '{{month}} <a href="javascript:void(0)" ng-click="showYearsPagination = !showYearsPagination"><span>{{year}} <i ng-if="!showYearsPagination">&dtrif;</i> <i ng-if="showYearsPagination">&urtri;</i> </span> </a>' +
           '</div>' +
           '<div class="datepicker-calendar-header-right">' +
-          '<a href="javascript:void(0)" ng-click="nextMonth()">' + nextButton + '</a>' +
+          '<a href="javascript:void(0)" ng-click="nextMonth()" ng-class="{hidden: !isNextMonth}">' + nextButton + '</a>' +
           '</div>' +
           '</div>' +
           //years pagination header
@@ -47,8 +47,8 @@
           '<a ng-class="{\'datepicker-active\': y === year, \'datepicker-disabled\': !isSelectableMaxYear(y) || !isSelectableMinYear(y)}" href="javascript:void(0)" ng-click="setNewYear(y)" ng-repeat="y in paginationYears">{{y}}</a>' +
           '</div>' +
           '<div class="datepicker-calendar-years-pagination-pages">' +
-          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[0])">' + prevButton + '</a>' +
-          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[paginationYears.length -1 ])">' + nextButton + '</a>' +
+          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[0])" ng-class="{hidden: !isPrevYear}">' + prevButton + '</a>' +
+          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[paginationYears.length -1 ])" ng-class="{hidden: !isNextYear}">' + nextButton + '</a>' +
           '</div>' +
           '</div>' +
           //days column
@@ -73,6 +73,13 @@
             $scope.year = Number($filter('date')(date,'yyyy'));//2014 like
           }
         });
+
+        // If max date is before today or min date is after today, start there
+        if ( !!dateMaxLimit && new Date(dateMaxLimit) && new Date(dateMaxLimit) < date ) {
+          date = new Date(dateMaxLimit);
+        } else if ( !!dateMinLimit && new Date(dateMinLimit) && new Date(dateMinLimit) > date ) {
+          date = new Date(dateMinLimit);
+        }
 
         $scope.month = $filter('date')(date, 'MMMM');//December-November like
         $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
@@ -136,6 +143,7 @@
           //reinit days
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
           $scope.setInputValue();
+          $scope.checkNextPrevMonth();
         };
 
         $scope.setNewYear = function setNewYear (year) {
@@ -162,7 +170,26 @@
           //reinit days
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
           $scope.setInputValue();
+          $scope.checkNextPrevMonth();
         };
+
+        $scope.checkNextPrevMonth = function manageNextPrevMonth() {
+          if (!!dateMaxLimit  && !!new Date(dateMaxLimit)) {
+            if (new Date($scope.year, $scope.monthNumber, 0) < new Date(dateMaxLimit)) {
+              $scope.isNextMonth = true;
+            } else {
+              $scope.isNextMonth = false;
+            }
+          }
+
+          if (!!dateMaxLimit  && !!new Date(dateMaxLimit)) {
+            if (new Date($scope.year, $scope.monthNumber, 1) <= new Date(dateMinLimit)) {
+              $scope.isPrevMonth = true;
+            } else {
+              $scope.isPrevMonth = false;
+            }
+          }
+        }; // checkNextPrevMonth
 
         $scope.nextYear = function manageNextYear() {
 
@@ -271,14 +298,31 @@
         $scope.paginateYears = function paginateYears (startingYear) {
 
           $scope.paginationYears = [];
-          var i;
-          for (i = 10/* Years */; i > 0; i -= 1) {
 
+          var yearsBefore, yearsAfter, i;
+
+          if (!!dateMinLimit  && !!new Date(dateMinLimit)) {
+            yearsBefore = Math.min(startingYear - new Date(dateMinLimit).getFullYear(), 10);
+          } else {
+            yearsBefore = 10;
+          }
+
+          if (!!dateMaxLimit  && !!new Date(dateMaxLimit)) {
+            yearsAfter = Math.min(new Date(dateMaxLimit).getFullYear() - startingYear, 10);
+          } else {
+            yearsAfter = 10;
+          }
+
+          $scope.isNextYear = Boolean(yearsAfter);
+          $scope.isPrevYear = Boolean(yearsBefore);
+
+          for (i = yearsBefore/* Years */; i > 0; i -= 1) {
             $scope.paginationYears.push(startingYear - i);
           }
 
-          for (i = 0; i < 10/* Years */; i += 1) {
+          $scope.paginationYears.push(startingYear);
 
+          for (i = 1; i < yearsAfter/* Years */; i += 1) {
             $scope.paginationYears.push(startingYear + i);
           }
         };
@@ -332,6 +376,7 @@
 
         $scope.paginateYears($scope.year);
         $scope.setDaysInMonth($scope.monthNumber, $scope.year);
+        $scope.checkNextPrevMonth();
       }
     };
   }]);

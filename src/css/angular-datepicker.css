@@ -159,3 +159,6 @@ datepicker,
   background: rgba(25,2,0,0.02);
   cursor: default;
 }
+.datepicker-calendar .hidden {
+  visibility: hidden;
+}
