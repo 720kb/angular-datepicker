@@ -1,6 +1,6 @@
 {
   "name": "angular-datepicker",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A datepicker directive for angularjs.",
   "authors": [
     "Filippo Oretti <filippo.oretti@gmail.com",
@@ -12,6 +12,11 @@
     "input"
   ],
   "license": "MIT",
+  "main": [
+    "./dist/angular-datepicker.min.css",
+    "./dist/angular-datepicker.min.js",
+    "./dist/angular-datepicker.sourcemap.map",
+  ],
   "homepage": "http://720kb.github.io/angular-datepicker",
   "ignore": [
     "**/.*",
@@ -19,5 +24,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular": "~1.3.1"
+  }
 }
