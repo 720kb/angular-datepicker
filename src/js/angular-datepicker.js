@@ -28,7 +28,8 @@
           , isMouseOn = false
           , isMouseOnInput = false
           , datetime = $locale.DATETIME_FORMATS
-          , htmlTemplate = '<div class="datepicker-calendar" tabindex="0" ng-blur="hideCalendar()">' +
+          , pageDatepickers
+          , htmlTemplate = '<div class="datepicker-calendar" ng-blur="hideCalendar()">' +
           //motnh+year header
           '<div class="datepicker-calendar-header">' +
           '<div class="datepicker-calendar-header-left">' +
@@ -57,9 +58,9 @@
           '</div>' +
           //days
           '<div class="datepicker-calendar-body">' +
-          '<a ng-repeat="px in prevMonthDays" class="datepicker-calendar-day datepicker-disabled">{{px}}</a>' +
-          '<a ng-repeat="item in days" ng-click="setDatepickerDay(item)" ng-class="{\'datepicker-active\': day === item, \'datepicker-disabled\': !isSelectableMinDate(year + \'/\' + monthNumber + \'/\' + item ) || !isSelectableMaxDate(year + \'/\' + monthNumber + \'/\' + item)}" class="datepicker-calendar-day">{{item}}</a>' +
-          '<a ng-repeat="nx in nextMonthDays" class="datepicker-calendar-day datepicker-disabled">{{nx}}</a>' +
+          '<a href="javascript:void(0)" ng-repeat="px in prevMonthDays" class="datepicker-calendar-day datepicker-disabled">{{px}}</a>' +
+          '<a href="javascript:void(0)" ng-repeat="item in days" ng-click="setDatepickerDay(item)" ng-class="{\'datepicker-active\': day === item, \'datepicker-disabled\': !isSelectableMinDate(year + \'/\' + monthNumber + \'/\' + item ) || !isSelectableMaxDate(year + \'/\' + monthNumber + \'/\' + item)}" class="datepicker-calendar-day">{{item}}</a>' +
+          '<a href="javascript:void(0)" ng-repeat="nx in nextMonthDays" class="datepicker-calendar-day datepicker-disabled">{{nx}}</a>' +
           '</div>' +
           '</div>' +
           '</div>';
@@ -79,7 +80,7 @@
         $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
         $scope.year = Number($filter('date')(date,'yyyy'));//2014 like
         $scope.months = datetime.MONTH;
-        $scope.daysInString = ['0','1','2','3','4','5','6'].map(function mappingFunc(el) {
+        $scope.daysInString = ['0', '1', '2', '3', '4', '5', '6'].map(function mappingFunc(el) {
 
           return $filter('date')(new Date(new Date('06/08/2014').valueOf() + A_DAY_IN_MILLISECONDS * el), 'EEE');
         });
@@ -93,10 +94,11 @@
         thisInput.bind('focus click', function onFocusAndClick() {
 
           isMouseOnInput = true;
+
           $scope.showCalendar();
         });
 
-        thisInput.bind('blur focusout', function onBlurAndFocusOut() {
+        thisInput.bind('focusout', function onBlurAndFocusOut() {
 
           isMouseOnInput = false;
         });
@@ -111,7 +113,12 @@
           isMouseOn = false;
         });
 
-        angular.element($window).bind('click', function onClickOnWindow() {
+        angular.element(theCalendar).bind('focusin', function onCalendarFocus() {
+
+          isMouseOn = true;
+        });
+
+        angular.element($window).bind('click focus', function onClickOnWindow() {
 
           if (!isMouseOn &&
             !isMouseOnInput) {
@@ -190,6 +197,13 @@
         };
 
         $scope.showCalendar = function manageShowCalendar() {
+          //lets hide all the latest instances of datepicker
+          pageDatepickers = $window.document.getElementsByClassName('datepicker-calendar');
+
+          angular.forEach(pageDatepickers, function (value, key) {
+
+            pageDatepickers[key].classList.remove('datepicker-open');
+          });
 
           theCalendar.classList.add('datepicker-open');
         };
@@ -245,7 +259,7 @@
           //get next month days is first day in month is not Sunday
           if (lastDayMonthNumber < 6) {
 
-            howManyNextDays =  6 - lastDayMonthNumber;
+            howManyNextDays = 6 - lastDayMonthNumber;
             //get previous month
 
             //return next month days
