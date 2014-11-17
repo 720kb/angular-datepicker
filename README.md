@@ -115,6 +115,18 @@ You can customize the calendar navigation buttons content, let's make an example
 </datepicker>
 ```
 
+####Input as grandchild
+Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome 
+
+```html
+<datepicker date-format="yyyy-MM-dd" selector="form-control">
+    <div class="input-group">
+        <input placeholder="Choose a date"/>
+        <span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-calendar"></i></span>
+    </div>
+</datepicker>
+```
+
 ## Example
 
 ###[Live demo](https://720kb.github.io/angular-datepicker)

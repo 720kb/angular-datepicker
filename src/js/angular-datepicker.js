@@ -15,7 +15,8 @@
       },
       'link': function linkingFunction($scope, element, attr) {
         //get child input
-        var thisInput = angular.element(element[0].children[0])
+        var selector = attr.selector
+          ,  thisInput = angular.element(selector ? element[0].querySelector('.' + selector) : element[0].children[0])
           , theCalendar
           , defaultPrevButton = '<b class="datepicker-default-button">&lang;</b>'
           , defaultNextButton = '<b class="datepicker-default-button">&rang;</b>'
@@ -89,7 +90,7 @@
         thisInput.after($compile(angular.element(htmlTemplate))($scope));
 
         //get the calendar as element
-        theCalendar = element[0].children[1];
+        theCalendar = element[0].querySelector('.datepicker-calendar');
         //some tricky dirty events to fire if click is outside of the calendar and show/hide calendar when needed
         thisInput.bind('focus click', function onFocusAndClick() {
 
