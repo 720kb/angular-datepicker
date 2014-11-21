@@ -1,5 +1,6 @@
 datepicker a{
   color:inherit;
+  text-decoration:none;
 }
 datepicker,
 .datepicker-calendar-header,
