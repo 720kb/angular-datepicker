@@ -16,7 +16,7 @@
       'link': function linkingFunction($scope, element, attr) {
         //get child input
         var selector = attr.selector
-          ,  thisInput = angular.element(selector ? element[0].querySelector('.' + selector) : element[0].children[0])
+          , thisInput = angular.element(selector ? element[0].querySelector('.' + selector) : element[0].children[0])
           , theCalendar
           , defaultPrevButton = '<b class="datepicker-default-button">&lang;</b>'
           , defaultNextButton = '<b class="datepicker-default-button">&rang;</b>'
@@ -49,8 +49,8 @@
           '<a ng-class="{\'datepicker-active\': y === year, \'datepicker-disabled\': !isSelectableMaxYear(y) || !isSelectableMinYear(y)}" href="javascript:void(0)" ng-click="setNewYear(y)" ng-repeat="y in paginationYears">{{y}}</a>' +
           '</div>' +
           '<div class="datepicker-calendar-years-pagination-pages">' +
-          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[0])">' + prevButton + '</a>' +
-          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[paginationYears.length -1 ])">' + nextButton + '</a>' +
+          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[0])" ng-class="{\'datepicker-item-hidden\': paginationYearsPrevDisabled}">' + prevButton + '</a>' +
+          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[paginationYears.length -1 ])" ng-class="{\'datepicker-item-hidden\': paginationYearsNextDisabled}">' + nextButton + '</a>' +
           '</div>' +
           '</div>' +
           //days column
@@ -128,6 +128,22 @@
           }
         });
 
+        $scope.resetToMinDate = function manageResetToMinDate() {
+
+          $scope.month = $filter('date')(new Date(dateMinLimit), 'MMMM');
+          $scope.monthNumber = Number($filter('date')(new Date(dateMinLimit), 'MM'));
+          $scope.day = Number($filter('date')(new Date(dateMinLimit), 'dd'));
+          $scope.year = Number($filter('date')(new Date(dateMinLimit),'yyyy'));
+        };
+
+        $scope.resetToMaxDate = function manageResetToMaxDate() {
+
+          $scope.month = $filter('date')(new Date(dateMaxLimit), 'MMMM');
+          $scope.monthNumber = Number($filter('date')(new Date(dateMaxLimit), 'MM'));
+          $scope.day = Number($filter('date')(new Date(dateMaxLimit), 'dd'));
+          $scope.year = Number($filter('date')(new Date(dateMaxLimit),'yyyy'));
+        };
+
         $scope.nextMonth = function manageNextMonth() {
 
           if ($scope.monthNumber === 12) {
@@ -144,13 +160,15 @@
           //reinit days
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
           $scope.setInputValue();
-        };
 
-        $scope.setNewYear = function setNewYear (year) {
+          //check if max date is ok
+          if (dateMaxLimit) {
+            if (!$scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
-          $scope.year = Number(year);
-          $scope.setDaysInMonth($scope.monthNumber, $scope.year);
-          $scope.paginateYears(year);
+              $scope.resetToMaxDate();
+            }
+          }
+          //set value input
           $scope.setInputValue();
         };
 
@@ -169,6 +187,36 @@
           $scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day), 'MMMM');
           //reinit days
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
+          //check if min date is ok
+          if (dateMinLimit) {
+            if (!$scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
+
+              $scope.resetToMinDate();
+            }
+          }
+
+          $scope.setInputValue();
+        };
+
+        $scope.setNewYear = function setNewYear (year) {
+
+          if (dateMaxLimit && ($scope.year < Number(year))) {
+
+            if (!$scope.isSelectableMaxYear(year)) {
+
+              return;
+            }
+          } else if (dateMinLimit && ($scope.year > Number(year))) {
+
+            if (!$scope.isSelectableMinYear(year)) {
+
+              return;
+            }
+          }
+
+          $scope.year = Number(year);
+          $scope.setDaysInMonth($scope.monthNumber, $scope.year);
+          $scope.paginateYears(year);
           $scope.setInputValue();
         };
 
@@ -286,16 +334,38 @@
         $scope.paginateYears = function paginateYears (startingYear) {
 
           $scope.paginationYears = [];
-          var i;
+
+          var i
+            , theNewYears = [];
+
           for (i = 10/* Years */; i > 0; i -= 1) {
 
-            $scope.paginationYears.push(startingYear - i);
+            theNewYears.push(startingYear - i);
           }
 
           for (i = 0; i < 10/* Years */; i += 1) {
 
-            $scope.paginationYears.push(startingYear + i);
+            theNewYears.push(startingYear + i);
           }
+
+          //check range dates
+          if (dateMaxLimit && theNewYears && theNewYears.length && !$scope.isSelectableMaxYear(Number(theNewYears[theNewYears.length - 1]) + 1)) {
+
+            $scope.paginationYearsNextDisabled = true;
+          } else {
+
+            $scope.paginationYearsNextDisabled = false;
+          }
+
+          if (dateMinLimit && theNewYears && theNewYears.length && !$scope.isSelectableMinYear(Number(theNewYears[0]) - 1)) {
+
+            $scope.paginationYearsPrevDisabled = true;
+          } else {
+
+            $scope.paginationYearsPrevDisabled = false;
+          }
+
+          $scope.paginationYears = theNewYears;
         };
 
         $scope.isSelectableMinDate = function isSelectableMinDate (date) {
@@ -344,6 +414,17 @@
 
           return true;
         };
+
+        //check always if given range of dates is ok
+        if (dateMinLimit && !$scope.isSelectableMinYear($scope.year)) {
+
+          $scope.resetToMinDate();
+        }
+
+        if (dateMaxLimit && !$scope.isSelectableMaxYear($scope.year)) {
+
+          $scope.resetToMaxDate();
+        }
 
         $scope.paginateYears($scope.year);
         $scope.setDaysInMonth($scope.monthNumber, $scope.year);

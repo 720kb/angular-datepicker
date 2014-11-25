@@ -156,6 +156,9 @@ datepicker,
   position: relative;
   bottom:-0.5px;
 }
+.datepicker-item-hidden{
+  visibility:hidden;
+}
 .datepicker-calendar-day.datepicker-disabled,
 .datepicker-calendar-day.datepicker-disabled:hover,
 .datepicker-calendar-years-pagination a.datepicker-disabled,
