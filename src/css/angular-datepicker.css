@@ -117,6 +117,7 @@ datepicker,
   padding:2% 0 0 0;
   float:left;
   clear: right;
+  width: 100%;
 }
 .datepicker-calendar-years-pagination a, .datepicker-calendar-years-pagination a:hover {
   font-size:12px;
