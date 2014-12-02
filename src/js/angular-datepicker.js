@@ -237,8 +237,9 @@
           if ($scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)
               && $scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
-            thisInput.val($filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day), dateFormat))
-            .triggerHandler('input').triggerHandler('change');//just to be sure;
+            thisInput.val($filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day), dateFormat));
+            thisInput.triggerHandler('input');
+            thisInput.triggerHandler('change');//just to be sure;
           } else {
 
             return false;
