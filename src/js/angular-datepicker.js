@@ -5,7 +5,7 @@
   'use strict';
 
   angular.module('720kb.datepicker', [])
-  .directive('datepicker',['$window', '$compile', '$locale', '$filter', function manageDirective($window, $compile, $locale, $filter) {
+  .directive('datepicker', ['$window', '$compile', '$locale', '$filter', function manageDirective($window, $compile, $locale, $filter) {
 
     var A_DAY_IN_MILLISECONDS = 86400000;
     return {
@@ -72,14 +72,14 @@
             $scope.month = $filter('date')(date, 'MMMM');//December-November like
             $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
             $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
-            $scope.year = Number($filter('date')(date,'yyyy'));//2014 like
+            $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
           }
         });
 
         $scope.month = $filter('date')(date, 'MMMM');//December-November like
         $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
         $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
-        $scope.year = Number($filter('date')(date,'yyyy'));//2014 like
+        $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
         $scope.months = datetime.MONTH;
         $scope.daysInString = ['0', '1', '2', '3', '4', '5', '6'].map(function mappingFunc(el) {
 
@@ -133,7 +133,7 @@
           $scope.month = $filter('date')(new Date(dateMinLimit), 'MMMM');
           $scope.monthNumber = Number($filter('date')(new Date(dateMinLimit), 'MM'));
           $scope.day = Number($filter('date')(new Date(dateMinLimit), 'dd'));
-          $scope.year = Number($filter('date')(new Date(dateMinLimit),'yyyy'));
+          $scope.year = Number($filter('date')(new Date(dateMinLimit), 'yyyy'));
         };
 
         $scope.resetToMaxDate = function manageResetToMaxDate() {
@@ -141,7 +141,7 @@
           $scope.month = $filter('date')(new Date(dateMaxLimit), 'MMMM');
           $scope.monthNumber = Number($filter('date')(new Date(dateMaxLimit), 'MM'));
           $scope.day = Number($filter('date')(new Date(dateMaxLimit), 'dd'));
-          $scope.year = Number($filter('date')(new Date(dateMaxLimit),'yyyy'));
+          $scope.year = Number($filter('date')(new Date(dateMaxLimit), 'yyyy'));
         };
 
         $scope.nextMonth = function manageNextMonth() {
