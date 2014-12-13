@@ -73,6 +73,9 @@ Call the directive wherever you want in your html page
   <input ng-model="date" type="text"/>
 </datepicker>
 ```
+####By default the ng-model will show a Javascript Date() Object inside your input.
+####You can use the options below to set your preferred date format to.
+
 ##Options
 Angular datepicker allows you to use some options via `attribute` data
 
@@ -84,6 +87,7 @@ You can use all the Angularjs `$date` filter date formats (that can be found [he
   <input ng-model="date" type="text"/>
 </datepicker>
 ```
+
 ####Date limits
 You can set date limits using `date-min-limit=""` and `date-max-limit=""` attribute data ( you can use all the accepted date formats by the javascript `new Date()`)
 
