@@ -73,8 +73,7 @@ Call the directive wherever you want in your html page
   <input ng-model="date" type="text"/>
 </datepicker>
 ```
-####By default the ng-model will show a Javascript Date() Object inside your input.
-####You can use the options below to set your preferred date format to.
+**By default the ng-model will show a Javascript Date() Object inside your input, you can use the options below to set your preferred date format to.**
 
 ##Options
 Angular datepicker allows you to use some options via `attribute` data
