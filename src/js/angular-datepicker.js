@@ -22,7 +22,7 @@
           , defaultNextButton = '<b class="datepicker-default-button">&rang;</b>'
           , prevButton = attr.buttonPrev || defaultPrevButton
           , nextButton = attr.buttonNext || defaultNextButton
-          , dateFormat = attr.dateFormat || 'mediumDate'
+          , dateFormat = attr.dateFormat
           , dateMinLimit = attr.dateMinLimit || undefined
           , dateMaxLimit = attr.dateMaxLimit || undefined
           , date = new Date()
@@ -237,7 +237,16 @@
           if ($scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)
               && $scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
-            thisInput.val($filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day), dateFormat));
+            var modelDate = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
+
+            if (attr.dateFormat) {
+
+              thisInput.val($filter('date')(modelDate, dateFormat));
+            } else {
+
+              thisInput.val(modelDate);
+            }
+
             thisInput.triggerHandler('input');
             thisInput.triggerHandler('change');//just to be sure;
           } else {
