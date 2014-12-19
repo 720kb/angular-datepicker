@@ -1,4 +1,4 @@
-/*global angular*/
+/*global angular navigator*/
 
 (function withAngular(angular) {
 
@@ -32,7 +32,7 @@
           , pageDatepickers
           , htmlTemplate = '<div class="datepicker-calendar" ng-blur="hideCalendar()">' +
           //motnh+year header
-          '<div class="datepicker-calendar-header">' +
+          '<div class="datepicker-calendar-header" ng-hide="isMobile()">' +
           '<div class="datepicker-calendar-header-left">' +
           '<a href="javascript:void(0)" ng-click="prevMonth()">' + prevButton + '</a>' +
           '</div>' +
@@ -41,6 +41,19 @@
           '</div>' +
           '<div class="datepicker-calendar-header-right">' +
           '<a href="javascript:void(0)" ng-click="nextMonth()">' + nextButton + '</a>' +
+          '</div>' +
+          '</div>' +
+          //Mobile month+year pagination
+          '<div class="datepicker-calendar-header" ng-show="isMobile()">' +
+          '<div class="datepicker-calendar-header-middle datepicker-mobile-item datepicker-calendar-month">' +
+          '<select ng-model="month"><option ng-repeat="item in months" ng-selected="month === item">{{item}}</option></select>' +
+          '</div>' +
+          '</div>' +
+          '<div class="datepicker-calendar-header" ng-show="isMobile()">' +
+          '<div class="datepicker-calendar-header-middle datepicker-mobile-item datepicker-calendar-month">' +
+          '<select ng-model="mobileYear" ng-change="setNewYear(mobileYear)">' +
+          '<option ng-repeat="item in paginationYears" ng-selected="year === item" ng-value="item" ng-disabled="!isSelectableMinYear(item) || !isSelectableMaxYear(item)">{{item}}</option>' +
+          '</select>' +
           '</div>' +
           '</div>' +
           //years pagination header
@@ -127,6 +140,20 @@
             $scope.hideCalendar();
           }
         });
+
+        $scope.isMobile = function () {
+
+          if (navigator.userAgent && (navigator.userAgent.match(/Android/i)
+             || navigator.userAgent.match(/webOS/i)
+             || navigator.userAgent.match(/iPhone/i)
+             || navigator.userAgent.match(/iPad/i)
+             || navigator.userAgent.match(/iPod/i)
+             || navigator.userAgent.match(/BlackBerry/i)
+             || navigator.userAgent.match(/Windows Phone/i))){
+
+              return true;
+          }
+        };
 
         $scope.resetToMinDate = function manageResetToMinDate() {
 
@@ -350,12 +377,12 @@
 
           for (i = 10/* Years */; i > 0; i -= 1) {
 
-            theNewYears.push(startingYear - i);
+            theNewYears.push(Number(startingYear) - i);
           }
 
           for (i = 0; i < 10/* Years */; i += 1) {
 
-            theNewYears.push(startingYear + i);
+            theNewYears.push(Number(startingYear) + i);
           }
 
           //check range dates
