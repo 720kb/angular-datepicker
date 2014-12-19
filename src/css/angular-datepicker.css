@@ -5,12 +5,6 @@ datepicker a{
 datepicker a:hover{
   text-decoration:none;
 }
-datepicker select,datepicker select:focus,datepicker select:hover{
-  background:none;
-  color:white;
-  width:100%;
-  margin:0 auto;
-}
 datepicker,
 .datepicker-calendar-header,
 .datepicker-calendar-body,
@@ -162,11 +156,6 @@ datepicker,
   font-size: 18.5px;
   position: relative;
   bottom:-0.5px;
-}
-.datepicker-calendar-header-middle.datepicker-mobile-item{
-  width:95%;
-  float:none;
-  margin:0 auto;
 }
 .datepicker-item-hidden{
   visibility:hidden;
