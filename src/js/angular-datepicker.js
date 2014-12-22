@@ -46,7 +46,9 @@
           //Mobile month+year pagination
           '<div class="datepicker-calendar-header" ng-show="isMobile()">' +
           '<div class="datepicker-calendar-header-middle datepicker-mobile-item datepicker-calendar-month">' +
-          '<select ng-model="month"><option ng-repeat="item in months" ng-selected="month === item">{{item}}</option></select>' +
+          '<select ng-model="month" ng-change="selectedMonthHandle(month)">' +
+          '<option ng-repeat="item in months" ng-selected="month === item" ng-disabled=\'!isSelectableMaxDate(item + " " + day + ", " + year) || !isSelectableMinDate(item + " " + day + ", " + year)\' ng-value="item">{{item}}</option>' +
+          '</select>' +
           '</div>' +
           '</div>' +
           '<div class="datepicker-calendar-header" ng-show="isMobile()">' +
@@ -199,6 +201,13 @@
           $scope.setInputValue();
         };
 
+        $scope.selectedMonthHandle = function manageSelectedMonthHandle (selectedMonth) {
+
+          $scope.monthNumber = Number($filter('date')(new Date('01 ' + selectedMonth + ' 2000'), 'MM'));
+          $scope.setDaysInMonth($scope.monthNumber, $scope.year);
+          $scope.setInputValue();
+        };
+
         $scope.prevMonth = function managePrevMonth() {
 
           if ($scope.monthNumber === 1) {
@@ -216,6 +225,7 @@
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
           //check if min date is ok
           if (dateMinLimit) {
+
             if (!$scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
               $scope.resetToMinDate();
@@ -373,14 +383,20 @@
           $scope.paginationYears = [];
 
           var i
-            , theNewYears = [];
+            , theNewYears = []
+            , daysToAppendPrepend = 10;
 
-          for (i = 10/* Years */; i > 0; i -= 1) {
+          if ($scope.isMobile()) {
+
+            daysToAppendPrepend = 50;
+          }
+
+          for (i = daysToAppendPrepend/* Years */; i > 0; i -= 1) {
 
             theNewYears.push(Number(startingYear) - i);
           }
 
-          for (i = 0; i < 10/* Years */; i += 1) {
+          for (i = 0; i < daysToAppendPrepend/* Years */; i += 1) {
 
             theNewYears.push(Number(startingYear) + i);
           }

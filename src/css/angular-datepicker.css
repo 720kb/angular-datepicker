@@ -6,10 +6,14 @@ datepicker a:hover{
   text-decoration:none;
 }
 datepicker select,datepicker select:focus,datepicker select:hover{
-  background:none;
-  color:white;
   width:100%;
-  margin:0 auto;
+   overflow: hidden;
+   background:none;
+   color:#fff;
+   background-color: #138EFA;
+   border: 1px solid rgba(0,0,0,0.05);
+   height: 30px;
+   border-radius:2px;
 }
 datepicker,
 .datepicker-calendar-header,
