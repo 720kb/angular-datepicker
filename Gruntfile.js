@@ -6,7 +6,7 @@
   var banner = ['/*!',
       ' * Angular Datepicker v<%= pkg.version %>',
       ' *',
-      ' * Released under the MIT license',
+      ' * Released by 720kb.net under the MIT license',
       ' * www.opensource.org/licenses/MIT',
       ' *',
       ' * <%= grunt.template.today("yyyy-mm-dd") %>',
