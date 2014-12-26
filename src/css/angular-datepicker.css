@@ -5,6 +5,16 @@ datepicker a{
 datepicker a:hover{
   text-decoration:none;
 }
+datepicker select,datepicker select:focus,datepicker select:hover{
+  width:100%;
+   overflow: hidden;
+   background:none;
+   color:#fff;
+   background-color: #138EFA;
+   border: 1px solid rgba(0,0,0,0.05);
+   height: 30px;
+   border-radius:2px;
+}
 datepicker,
 .datepicker-calendar-header,
 .datepicker-calendar-body,
@@ -156,6 +166,11 @@ datepicker,
   font-size: 18.5px;
   position: relative;
   bottom:-0.5px;
+}
+.datepicker-calendar-header-middle.datepicker-mobile-item{
+  width:95%;
+  float:none;
+  margin:0 auto;
 }
 .datepicker-item-hidden{
   visibility:hidden;

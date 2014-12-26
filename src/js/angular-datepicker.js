@@ -1,4 +1,4 @@
-/*global angular*/
+/*global angular navigator*/
 
 (function withAngular(angular) {
 
@@ -32,7 +32,7 @@
           , pageDatepickers
           , htmlTemplate = '<div class="datepicker-calendar" ng-blur="hideCalendar()">' +
           //motnh+year header
-          '<div class="datepicker-calendar-header">' +
+          '<div class="datepicker-calendar-header" ng-hide="isMobile()">' +
           '<div class="datepicker-calendar-header-left">' +
           '<a href="javascript:void(0)" ng-click="prevMonth()">' + prevButton + '</a>' +
           '</div>' +
@@ -41,6 +41,21 @@
           '</div>' +
           '<div class="datepicker-calendar-header-right">' +
           '<a href="javascript:void(0)" ng-click="nextMonth()">' + nextButton + '</a>' +
+          '</div>' +
+          '</div>' +
+          //Mobile month+year pagination
+          '<div class="datepicker-calendar-header" ng-show="isMobile()">' +
+          '<div class="datepicker-calendar-header-middle datepicker-mobile-item datepicker-calendar-month">' +
+          '<select ng-model="month" ng-change="selectedMonthHandle(month)">' +
+          '<option ng-repeat="item in months" ng-selected="month === item" ng-disabled=\'!isSelectableMaxDate(item + " " + day + ", " + year) || !isSelectableMinDate(item + " " + day + ", " + year)\' ng-value="item">{{item}}</option>' +
+          '</select>' +
+          '</div>' +
+          '</div>' +
+          '<div class="datepicker-calendar-header" ng-show="isMobile()">' +
+          '<div class="datepicker-calendar-header-middle datepicker-mobile-item datepicker-calendar-month">' +
+          '<select ng-model="mobileYear" ng-change="setNewYear(mobileYear)">' +
+          '<option ng-repeat="item in paginationYears" ng-selected="year === item" ng-value="item" ng-disabled="!isSelectableMinYear(item) || !isSelectableMaxYear(item)">{{item}}</option>' +
+          '</select>' +
           '</div>' +
           '</div>' +
           //years pagination header
@@ -128,6 +143,20 @@
           }
         });
 
+        $scope.isMobile = function () {
+
+          if (navigator.userAgent && (navigator.userAgent.match(/Android/i)
+             || navigator.userAgent.match(/webOS/i)
+             || navigator.userAgent.match(/iPhone/i)
+             || navigator.userAgent.match(/iPad/i)
+             || navigator.userAgent.match(/iPod/i)
+             || navigator.userAgent.match(/BlackBerry/i)
+             || navigator.userAgent.match(/Windows Phone/i))){
+
+              return true;
+          }
+        };
+
         $scope.resetToMinDate = function manageResetToMinDate() {
 
           $scope.month = $filter('date')(new Date(dateMinLimit), 'MMMM');
@@ -172,6 +201,13 @@
           $scope.setInputValue();
         };
 
+        $scope.selectedMonthHandle = function manageSelectedMonthHandle (selectedMonth) {
+
+          $scope.monthNumber = Number($filter('date')(new Date('01 ' + selectedMonth + ' 2000'), 'MM'));
+          $scope.setDaysInMonth($scope.monthNumber, $scope.year);
+          $scope.setInputValue();
+        };
+
         $scope.prevMonth = function managePrevMonth() {
 
           if ($scope.monthNumber === 1) {
@@ -189,6 +225,7 @@
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
           //check if min date is ok
           if (dateMinLimit) {
+
             if (!$scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
               $scope.resetToMinDate();
@@ -346,16 +383,22 @@
           $scope.paginationYears = [];
 
           var i
-            , theNewYears = [];
+            , theNewYears = []
+            , daysToAppendPrepend = 10;
 
-          for (i = 10/* Years */; i > 0; i -= 1) {
+          if ($scope.isMobile()) {
 
-            theNewYears.push(startingYear - i);
+            daysToAppendPrepend = 50;
           }
 
-          for (i = 0; i < 10/* Years */; i += 1) {
+          for (i = daysToAppendPrepend/* Years */; i > 0; i -= 1) {
 
-            theNewYears.push(startingYear + i);
+            theNewYears.push(Number(startingYear) - i);
+          }
+
+          for (i = 0; i < daysToAppendPrepend/* Years */; i += 1) {
+
+            theNewYears.push(Number(startingYear) + i);
           }
 
           //check range dates
