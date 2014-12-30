@@ -30,53 +30,53 @@
           , isMouseOnInput = false
           , datetime = $locale.DATETIME_FORMATS
           , pageDatepickers
-          , htmlTemplate = '<div class="datepicker-calendar" ng-blur="hideCalendar()">' +
+          , htmlTemplate = '<div class="_720kb-datepicker-calendar" ng-blur="hideCalendar()">' +
           //motnh+year header
-          '<div class="datepicker-calendar-header" ng-hide="isMobile()">' +
-          '<div class="datepicker-calendar-header-left">' +
+          '<div class="_720kb-datepicker-calendar-header" ng-hide="isMobile()">' +
+          '<div class="_720kb-datepicker-calendar-header-left">' +
           '<a href="javascript:void(0)" ng-click="prevMonth()">' + prevButton + '</a>' +
           '</div>' +
-          '<div class="datepicker-calendar-header-middle datepicker-calendar-month">' +
+          '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-calendar-month">' +
           '{{month}} <a href="javascript:void(0)" ng-click="showYearsPagination = !showYearsPagination"><span>{{year}} <i ng-if="!showYearsPagination">&dtrif;</i> <i ng-if="showYearsPagination">&urtri;</i> </span> </a>' +
           '</div>' +
-          '<div class="datepicker-calendar-header-right">' +
+          '<div class="_720kb-datepicker-calendar-header-right">' +
           '<a href="javascript:void(0)" ng-click="nextMonth()">' + nextButton + '</a>' +
           '</div>' +
           '</div>' +
           //Mobile month+year pagination
-          '<div class="datepicker-calendar-header" ng-show="isMobile()">' +
-          '<div class="datepicker-calendar-header-middle datepicker-mobile-item datepicker-calendar-month">' +
+          '<div class="_720kb-datepicker-calendar-header" ng-show="isMobile()">' +
+          '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-mobile-item _720kb-datepicker-calendar-month">' +
           '<select ng-model="month" ng-change="selectedMonthHandle(month)">' +
           '<option ng-repeat="item in months" ng-selected="month === item" ng-disabled=\'!isSelectableMaxDate(item + " " + day + ", " + year) || !isSelectableMinDate(item + " " + day + ", " + year)\' ng-value="item">{{item}}</option>' +
           '</select>' +
           '</div>' +
           '</div>' +
-          '<div class="datepicker-calendar-header" ng-show="isMobile()">' +
-          '<div class="datepicker-calendar-header-middle datepicker-mobile-item datepicker-calendar-month">' +
+          '<div class="_720kb-datepicker-calendar-header" ng-show="isMobile()">' +
+          '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-mobile-item _720kb-datepicker-calendar-month">' +
           '<select ng-model="mobileYear" ng-change="setNewYear(mobileYear)">' +
           '<option ng-repeat="item in paginationYears" ng-selected="year === item" ng-value="item" ng-disabled="!isSelectableMinYear(item) || !isSelectableMaxYear(item)">{{item}}</option>' +
           '</select>' +
           '</div>' +
           '</div>' +
           //years pagination header
-          '<div class="datepicker-calendar-header" ng-show="showYearsPagination">' +
-          '<div class="datepicker-calendar-years-pagination">' +
-          '<a ng-class="{\'datepicker-active\': y === year, \'datepicker-disabled\': !isSelectableMaxYear(y) || !isSelectableMinYear(y)}" href="javascript:void(0)" ng-click="setNewYear(y)" ng-repeat="y in paginationYears">{{y}}</a>' +
+          '<div class="_720kb-datepicker-calendar-header" ng-show="showYearsPagination">' +
+          '<div class="_720kb-datepicker-calendar-years-pagination">' +
+          '<a ng-class="{\'_720kb-datepicker-active\': y === year, \'_720kb-datepicker-disabled\': !isSelectableMaxYear(y) || !isSelectableMinYear(y)}" href="javascript:void(0)" ng-click="setNewYear(y)" ng-repeat="y in paginationYears">{{y}}</a>' +
           '</div>' +
-          '<div class="datepicker-calendar-years-pagination-pages">' +
-          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[0])" ng-class="{\'datepicker-item-hidden\': paginationYearsPrevDisabled}">' + prevButton + '</a>' +
-          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[paginationYears.length -1 ])" ng-class="{\'datepicker-item-hidden\': paginationYearsNextDisabled}">' + nextButton + '</a>' +
+          '<div class="_720kb-datepicker-calendar-years-pagination-pages">' +
+          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[0])" ng-class="{\'_720kb-datepicker-item-hidden\': paginationYearsPrevDisabled}">' + prevButton + '</a>' +
+          '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[paginationYears.length -1 ])" ng-class="{\'_720kb-datepicker-item-hidden\': paginationYearsNextDisabled}">' + nextButton + '</a>' +
           '</div>' +
           '</div>' +
           //days column
-          '<div class="datepicker-calendar-days-header">' +
+          '<div class="_720kb-datepicker-calendar-days-header">' +
           '<div ng-repeat="d in daysInString"> {{d}} </div> ' +
           '</div>' +
           //days
-          '<div class="datepicker-calendar-body">' +
-          '<a href="javascript:void(0)" ng-repeat="px in prevMonthDays" class="datepicker-calendar-day datepicker-disabled">{{px}}</a>' +
-          '<a href="javascript:void(0)" ng-repeat="item in days" ng-click="setDatepickerDay(item)" ng-class="{\'datepicker-active\': day === item, \'datepicker-disabled\': !isSelectableMinDate(year + \'/\' + monthNumber + \'/\' + item ) || !isSelectableMaxDate(year + \'/\' + monthNumber + \'/\' + item)}" class="datepicker-calendar-day">{{item}}</a>' +
-          '<a href="javascript:void(0)" ng-repeat="nx in nextMonthDays" class="datepicker-calendar-day datepicker-disabled">{{nx}}</a>' +
+          '<div class="_720kb-datepicker-calendar-body">' +
+          '<a href="javascript:void(0)" ng-repeat="px in prevMonthDays" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">{{px}}</a>' +
+          '<a href="javascript:void(0)" ng-repeat="item in days" ng-click="setDatepickerDay(item)" ng-class="{\'_720kb-datepicker-active\': day === item, \'_720kb-datepicker-disabled\': !isSelectableMinDate(year + \'/\' + monthNumber + \'/\' + item ) || !isSelectableMaxDate(year + \'/\' + monthNumber + \'/\' + item)}" class="_720kb-datepicker-calendar-day">{{item}}</a>' +
+          '<a href="javascript:void(0)" ng-repeat="nx in nextMonthDays" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">{{nx}}</a>' +
           '</div>' +
           '</div>' +
           '</div>';
@@ -105,7 +105,7 @@
         thisInput.after($compile(angular.element(htmlTemplate))($scope));
 
         //get the calendar as element
-        theCalendar = element[0].querySelector('.datepicker-calendar');
+        theCalendar = element[0].querySelector('._720kb-datepicker-calendar');
         //some tricky dirty events to fire if click is outside of the calendar and show/hide calendar when needed
         thisInput.bind('focus click', function onFocusAndClick() {
 
@@ -294,19 +294,19 @@
 
         $scope.showCalendar = function manageShowCalendar() {
           //lets hide all the latest instances of datepicker
-          pageDatepickers = $window.document.getElementsByClassName('datepicker-calendar');
+          pageDatepickers = $window.document.getElementsByClassName('_720kb-datepicker-calendar');
 
           angular.forEach(pageDatepickers, function (value, key) {
 
-            pageDatepickers[key].classList.remove('datepicker-open');
+            pageDatepickers[key].classList.remove('_720kb-datepicker-open');
           });
 
-          theCalendar.classList.add('datepicker-open');
+          theCalendar.classList.add('_720kb-datepicker-open');
         };
 
         $scope.hideCalendar = function manageHideCalendar() {
 
-          theCalendar.classList.remove('datepicker-open');
+          theCalendar.classList.remove('_720kb-datepicker-open');
         };
 
         $scope.setDaysInMonth = function setDaysInMonth(month, year) {
