@@ -104,7 +104,7 @@ You can set date to be displayed by default with `date-set=""` attribute data ( 
   <input ng-model="date" type="text"/>
 </datepicker>
 
-<datepicker date-set="myModel.date">
+<datepicker date-set="{{myModel.date}}">
   <input ng-model="myModel.date" type="text"/>
 </datepicker>
 ```
