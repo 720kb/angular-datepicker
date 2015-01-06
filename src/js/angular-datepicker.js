@@ -13,6 +13,7 @@
       'scope': {
         'dateSet': '@',
         'dateMinLimit': '@',
+        'dateMaxLimit': '@'
       },
       'link': function linkingFunction($scope, element, attr) {
         //get child input
@@ -24,8 +25,8 @@
           , prevButton = attr.buttonPrev || defaultPrevButton
           , nextButton = attr.buttonNext || defaultNextButton
           , dateFormat = attr.dateFormat
-          , dateMaxLimit = attr.dateMaxLimit || undefined
           , dateMinLimit 
+          , dateMaxLimit 
           , date = new Date()
           , isMouseOn = false
           , isMouseOnInput = false
@@ -95,6 +96,12 @@
         $scope.$watch('dateMinLimit', function (value) {
           if (value) {
             dateMinLimit = value;
+          }
+        });
+
+        $scope.$watch('dateMaxLimit', function (value) {
+          if (value) {
+            dateMaxLimit = value;
           }
         });
 
