@@ -83,7 +83,7 @@
           '</div>' +
           '</div>';
 
-        $scope.$watch('dateSet', function(value) {
+        $scope.$watch('dateSet', function dateSetWatcher(value) {
           if (value) {
             date = new Date(value);
             $scope.month = $filter('date')(date, 'MMMM');//December-November like
@@ -93,13 +93,13 @@
           }
         });
 
-        $scope.$watch('dateMinLimit', function (value) {
+        $scope.$watch('dateMinLimit', function dateMinLimitWatcher(value) {
           if (value) {
             dateMinLimit = value;
           }
         });
 
-        $scope.$watch('dateMaxLimit', function (value) {
+        $scope.$watch('dateMaxLimit', function dateMaxLimitWatcher(value) {
           if (value) {
             dateMaxLimit = value;
           }
@@ -157,7 +157,7 @@
           }
         });
 
-        $scope.isMobile = function () {
+        $scope.isMobile = function isMobile() {
 
           if (navigator.userAgent && (navigator.userAgent.match(/Android/i)
              || navigator.userAgent.match(/webOS/i)
@@ -251,13 +251,13 @@
 
         $scope.setNewYear = function setNewYear (year) {
 
-          if (dateMaxLimit && ($scope.year < Number(year))) {
+          if (dateMaxLimit && $scope.year < Number(year)) {
 
             if (!$scope.isSelectableMaxYear(year)) {
 
               return;
             }
-          } else if (dateMinLimit && ($scope.year > Number(year))) {
+          } else if (dateMinLimit && $scope.year > Number(year)) {
 
             if (!$scope.isSelectableMinYear(year)) {
 
@@ -310,7 +310,7 @@
           //lets hide all the latest instances of datepicker
           pageDatepickers = $window.document.getElementsByClassName('_720kb-datepicker-calendar');
 
-          angular.forEach(pageDatepickers, function (value, key) {
+          angular.forEach(pageDatepickers, function forEachDatepickerPages(value, key) {
 
             pageDatepickers[key].classList.remove('_720kb-datepicker-open');
           });
@@ -435,11 +435,11 @@
           $scope.paginationYears = theNewYears;
         };
 
-        $scope.isSelectableMinDate = function isSelectableMinDate (date) {
+        $scope.isSelectableMinDate = function isSelectableMinDate (aDate) {
           //if current date
           if (!!dateMinLimit &&
              !!new Date(dateMinLimit) &&
-             (new Date(date).getTime() < new Date(dateMinLimit).getTime())) {
+             new Date(aDate).getTime() < new Date(dateMinLimit).getTime()) {
 
             return false;
           }
@@ -447,12 +447,12 @@
           return true;
         };
 
-        $scope.isSelectableMaxDate = function isSelectableMaxDate (date) {
+        $scope.isSelectableMaxDate = function isSelectableMaxDate (aDate) {
 
           //if current date
           if (!!dateMaxLimit &&
              !!new Date(dateMaxLimit) &&
-             (new Date(date).getTime() > new Date(dateMaxLimit).getTime())) {
+             new Date(aDate).getTime() > new Date(dateMaxLimit).getTime()) {
 
             return false;
           }
@@ -462,8 +462,8 @@
 
         $scope.isSelectableMaxYear = function isSelectableMaxYear (year) {
 
-          if (!!dateMaxLimit
-            && (year > new Date(dateMaxLimit).getFullYear())) {
+          if (!!dateMaxLimit &&
+            year > new Date(dateMaxLimit).getFullYear()) {
 
             return false;
           }
@@ -473,8 +473,8 @@
 
         $scope.isSelectableMinYear = function isSelectableMinYear (year) {
 
-          if (!!dateMinLimit
-            && (year < new Date(dateMinLimit).getFullYear())) {
+          if (!!dateMinLimit &&
+            year < new Date(dateMinLimit).getFullYear()) {
 
             return false;
           }
