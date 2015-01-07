@@ -25,8 +25,8 @@
           , prevButton = attr.buttonPrev || defaultPrevButton
           , nextButton = attr.buttonNext || defaultNextButton
           , dateFormat = attr.dateFormat
-          , dateMinLimit 
-          , dateMaxLimit 
+          , dateMinLimit
+          , dateMaxLimit
           , date = new Date()
           , isMouseOn = false
           , isMouseOnInput = false
