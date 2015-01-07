@@ -11,7 +11,9 @@
     return {
       'restrict': 'E',
       'scope': {
-        'dateSet': '@'
+        'dateSet': '@',
+        'dateMinLimit': '@',
+        'dateMaxLimit': '@'
       },
       'link': function linkingFunction($scope, element, attr) {
         //get child input
@@ -23,8 +25,8 @@
           , prevButton = attr.buttonPrev || defaultPrevButton
           , nextButton = attr.buttonNext || defaultNextButton
           , dateFormat = attr.dateFormat
-          , dateMinLimit = attr.dateMinLimit || undefined
-          , dateMaxLimit = attr.dateMaxLimit || undefined
+          , dateMinLimit
+          , dateMaxLimit
           , date = new Date()
           , isMouseOn = false
           , isMouseOnInput = false
@@ -88,6 +90,18 @@
             $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
             $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
             $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
+          }
+        });
+
+        $scope.$watch('dateMinLimit', function (value) {
+          if (value) {
+            dateMinLimit = value;
+          }
+        });
+
+        $scope.$watch('dateMaxLimit', function (value) {
+          if (value) {
+            dateMaxLimit = value;
           }
         });
 
