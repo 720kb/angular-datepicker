@@ -202,7 +202,6 @@
           $scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day), 'MMMM');
           //reinit days
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
-          $scope.setInputValue();
 
           //check if max date is ok
           if (dateMaxLimit) {
@@ -211,8 +210,6 @@
               $scope.resetToMaxDate();
             }
           }
-          //set value input
-          $scope.setInputValue();
         };
 
         $scope.selectedMonthHandle = function manageSelectedMonthHandle (selectedMonth) {
@@ -245,8 +242,6 @@
               $scope.resetToMinDate();
             }
           }
-
-          $scope.setInputValue();
         };
 
         $scope.setNewYear = function setNewYear (year) {
@@ -274,13 +269,11 @@
         $scope.nextYear = function manageNextYear() {
 
           $scope.year = Number($scope.year) + 1;
-          $scope.setInputValue();
         };
 
         $scope.prevYear = function managePrevYear() {
 
           $scope.year = Number($scope.year) - 1;
-          $scope.setInputValue();
         };
 
         $scope.setInputValue = function manageInputValue() {
