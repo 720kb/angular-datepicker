@@ -1,11 +1,13 @@
-datepicker a{
+datepicker a, [datepicker] a, .datepicker a{
   color:inherit;
   text-decoration:none;
 }
-datepicker a:hover{
+datepicker a:hover, [datepicker] a:hover, .datepicker a:hover{
   text-decoration:none;
 }
-datepicker select,datepicker select:focus,datepicker select:hover{
+datepicker select, datepicker select:focus, datepicker select:hover,
+.datepicker select, .datepicker select:focus, .datepicker select:hover
+[datepicker] select, [datepicker] select:focus, [datepicker] select:hover{
   width:100%;
    overflow: hidden;
    background:none;
@@ -15,7 +17,7 @@ datepicker select,datepicker select:focus,datepicker select:hover{
    height: 30px;
    border-radius:2px;
 }
-datepicker,
+datepicker, .datepicker, [datepicker],
 ._720kb-datepicker-calendar-header,
 ._720kb-datepicker-calendar-body,
 ._720kb-datepicker-calendar-days-header,
