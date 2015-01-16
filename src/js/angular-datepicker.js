@@ -9,7 +9,7 @@
 
     var A_DAY_IN_MILLISECONDS = 86400000;
     return {
-      'restrict': 'E',
+      'restrict': 'AEC',
       'scope': {
         'dateSet': '@',
         'dateMinLimit': '@',
