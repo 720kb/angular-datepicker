@@ -199,7 +199,7 @@
             $scope.monthNumber += 1;
           }
           //set next month
-          $scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day), 'MMMM');
+          $scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber), 'MMMM');
           //reinit days
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
 
@@ -210,6 +210,8 @@
               $scope.resetToMaxDate();
             }
           }
+          //deactivate selected day
+          $scope.day = undefined;
         };
 
         $scope.selectedMonthHandle = function manageSelectedMonthHandle (selectedMonth) {
@@ -231,7 +233,7 @@
             $scope.monthNumber -= 1;
           }
           //set next month
-          $scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day), 'MMMM');
+          $scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber), 'MMMM');
           //reinit days
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
           //check if min date is ok
@@ -242,9 +244,14 @@
               $scope.resetToMinDate();
             }
           }
+          //deactivate selected day
+          $scope.day = undefined;
         };
 
         $scope.setNewYear = function setNewYear (year) {
+
+          //deactivate selected day
+          $scope.day = undefined;
 
           if (dateMaxLimit && $scope.year < Number(year)) {
 
@@ -263,7 +270,6 @@
           $scope.year = Number(year);
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
           $scope.paginateYears(year);
-          $scope.setInputValue();
         };
 
         $scope.nextYear = function manageNextYear() {
