@@ -199,7 +199,7 @@
             $scope.monthNumber += 1;
           }
           //set next month
-          $scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber), 'MMMM');
+          $scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/01'), 'MMMM');
           //reinit days
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
 
@@ -233,7 +233,7 @@
             $scope.monthNumber -= 1;
           }
           //set next month
-          $scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber), 'MMMM');
+          $scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/01'), 'MMMM');
           //reinit days
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
           //check if min date is ok
