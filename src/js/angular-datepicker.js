@@ -314,7 +314,7 @@
                 element.className=classes.join(' ');
             },
             remove:function(element,klass){
-                if(element.className.indexOf(klass)==-1);
+                if(element.className.indexOf(klass)==-1)
                     return;
                 var classes=element.className.split(' ');
                 for(var i=0;i<classes.length;i++) if(classes[i]===klass){
