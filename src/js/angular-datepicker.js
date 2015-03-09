@@ -305,22 +305,58 @@
           }
         };
 
+        $scope.classHelper = {
+            'add': function add(ele, klass){
+                if (ele.className.indexOf(klass) > -1){
+                    return;
+                }
+                var classes = ele.className.split(' ');
+                classes.push(klass);
+                ele.className = classes.join(' ');
+            },
+            'remove': function remove(ele, klass){
+                var i, classes;
+                if (ele.className.indexOf(klass) === -1){
+                  return;
+                }
+                classes = ele.className.split(' ');
+                for (i = 0;i < classes.length;i += 1){
+                  if (classes[i] === klass){
+                        classes = classes.slice(0, i).concat(classes.slice(i + 1));
+                        break;
+                  }
+                }
+                ele.className = classes.join(' ');
+            }
+        };
+
         $scope.showCalendar = function manageShowCalendar() {
           //lets hide all the latest instances of datepicker
           pageDatepickers = $window.document.getElementsByClassName('_720kb-datepicker-calendar');
 
           angular.forEach(pageDatepickers, function forEachDatepickerPages(value, key) {
-
-            pageDatepickers[key].classList.remove('_720kb-datepicker-open');
+            if (pageDatepickers[key].classList) {
+              pageDatepickers[key].classList.remove('_720kb-datepicker-open');
+            } else {
+              $scope.classHelper.remove(pageDatepickers[key], '_720kb-datepicker-open');
+            }
           });
 
-          theCalendar.classList.add('_720kb-datepicker-open');
+          if (theCalendar.classList) {
+            theCalendar.classList.add('_720kb-datepicker-open');
+          } else {
+            $scope.classHelper.add(theCalendar, '_720kb-datepicker-open');
+          }
         };
 
         $scope.hideCalendar = function manageHideCalendar() {
-
-          theCalendar.classList.remove('_720kb-datepicker-open');
+          if (theCalendar.classList){
+            theCalendar.classList.remove('_720kb-datepicker-open');
+          } else {
+            $scope.classHelper.remove(theCalendar, '_720kb-datepicker-open');
+          }
         };
+
 
         $scope.setDaysInMonth = function setDaysInMonth(month, year) {
 
@@ -404,12 +440,12 @@
             daysToAppendPrepend = 50;
           }
 
-          for (i = daysToAppendPrepend/* Years */; i > 0; i -= 1) {
+          for (i = daysToAppendPrepend; i > 0; i -= 1) { /* Years */
 
             theNewYears.push(Number(startingYear) - i);
           }
 
-          for (i = 0; i < daysToAppendPrepend/* Years */; i += 1) {
+          for (i = 0; i < daysToAppendPrepend; i += 1) { /* Years */
 
             theNewYears.push(Number(startingYear) + i);
           }
