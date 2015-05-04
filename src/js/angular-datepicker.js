@@ -444,7 +444,6 @@
               daysToPrepend = 50, daysToAppend = 50;
               if ( $scope.dateMinLimit &&  $scope.dateMaxLimit) {
                  startingYear = new Date($scope.dateMaxLimit).getFullYear();
-                 $scope.year = startingYear;
                  daysToPrepend = startingYear - (new Date($scope.dateMinLimit).getFullYear());
                  daysToAppend = 1;
               }
