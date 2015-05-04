@@ -109,7 +109,11 @@
         $scope.month = $filter('date')(date, 'MMMM');//December-November like
         $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
         $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
-        $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
+         if ($scope.dateMaxLimit) {
+            $scope.year = Number($filter('date')(new Date($scope.dateMaxLimit), 'yyyy'));//2014 like
+         } else {
+            $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
+         }
         $scope.months = datetime.MONTH;
         $scope.daysInString = ['0', '1', '2', '3', '4', '5', '6'].map(function mappingFunc(el) {
 
