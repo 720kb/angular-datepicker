@@ -430,26 +430,31 @@
 
         $scope.paginateYears = function paginateYears (startingYear) {
 
-          $scope.paginationYears = [];
+           $scope.paginationYears = [];
 
-          var i
-            , theNewYears = []
-            , daysToAppendPrepend = 10;
+           var i
+              , theNewYears = []
+              , daysToPrepend = 10,  daysToAppend = 10;
 
-          if ($scope.isMobile()) {
+           if ($scope.isMobile()) {
+              daysToPrepend = 50, daysToAppend = 50;
+              if ( $scope.dateMinLimit &&  $scope.dateMaxLimit) {
+                 startingYear = new Date($scope.dateMaxLimit).getFullYear();
+                 $scope.year = startingYear;
+                 daysToPrepend = startingYear - (new Date($scope.dateMinLimit).getFullYear());
+                 daysToAppend = 1;
+              }
+           }
 
-            daysToAppendPrepend = 50;
-          }
+           for (i = daysToPrepend/* Years */; i > 0; i -= 1) {
 
-          for (i = daysToAppendPrepend; i > 0; i -= 1) { /* Years */
+              theNewYears.push(Number(startingYear) - i);
+           }
 
-            theNewYears.push(Number(startingYear) - i);
-          }
+           for (i = 0; i < daysToAppend/* Years */; i += 1) {
 
-          for (i = 0; i < daysToAppendPrepend; i += 1) { /* Years */
-
-            theNewYears.push(Number(startingYear) + i);
-          }
+              theNewYears.push(Number(startingYear) + i);
+           }
 
           //check range dates
           if (dateMaxLimit && theNewYears && theNewYears.length && !$scope.isSelectableMaxYear(Number(theNewYears[theNewYears.length - 1]) + 1)) {
