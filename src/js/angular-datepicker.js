@@ -109,7 +109,11 @@
         $scope.month = $filter('date')(date, 'MMMM');//December-November like
         $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
         $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
-        $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
+         if ($scope.dateMaxLimit) {
+            $scope.year = Number($filter('date')(new Date($scope.dateMaxLimit), 'yyyy'));//2014 like
+         } else {
+            $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
+         }
         $scope.months = datetime.MONTH;
         $scope.daysInString = ['0', '1', '2', '3', '4', '5', '6'].map(function mappingFunc(el) {
 
@@ -321,7 +325,7 @@
                   return;
                 }
                 classes = ele.className.split(' ');
-                for (i = 0;i < classes.length;i += 1){
+                for (i = 0; i < classes.length; i += 1){
                   if (classes[i] === klass){
                         classes = classes.slice(0, i).concat(classes.slice(i + 1));
                         break;
@@ -430,26 +434,31 @@
 
         $scope.paginateYears = function paginateYears (startingYear) {
 
-          $scope.paginationYears = [];
+           $scope.paginationYears = [];
 
-          var i
-            , theNewYears = []
-            , daysToAppendPrepend = 10;
+           var i
+              , theNewYears = []
+              , daysToPrepend = 10, daysToAppend = 10;
 
-          if ($scope.isMobile()) {
+           if ($scope.isMobile()) {
+              daysToPrepend = 50;
+              daysToAppend = 50;
+              if ( $scope.dateMinLimit && $scope.dateMaxLimit) {
+                 startingYear = new Date($scope.dateMaxLimit).getFullYear();
+                 daysToPrepend = startingYear - new Date($scope.dateMinLimit).getFullYear();
+                 daysToAppend = 1;
+              }
+           }
 
-            daysToAppendPrepend = 50;
-          }
+           for (i = daysToPrepend; i > 0; i -= 1) {
 
-          for (i = daysToAppendPrepend; i > 0; i -= 1) { /* Years */
+              theNewYears.push(Number(startingYear) - i);
+           }
 
-            theNewYears.push(Number(startingYear) - i);
-          }
+           for (i = 0; i < daysToAppend; i += 1) {
 
-          for (i = 0; i < daysToAppendPrepend; i += 1) { /* Years */
-
-            theNewYears.push(Number(startingYear) + i);
-          }
+              theNewYears.push(Number(startingYear) + i);
+           }
 
           //check range dates
           if (dateMaxLimit && theNewYears && theNewYears.length && !$scope.isSelectableMaxYear(Number(theNewYears[theNewYears.length - 1]) + 1)) {
