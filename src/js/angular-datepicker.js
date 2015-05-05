@@ -325,7 +325,7 @@
                   return;
                 }
                 classes = ele.className.split(' ');
-                for (i = 0;i < classes.length;i += 1){
+                for (i = 0; i < classes.length; i += 1){
                   if (classes[i] === klass){
                         classes = classes.slice(0, i).concat(classes.slice(i + 1));
                         break;
@@ -438,23 +438,24 @@
 
            var i
               , theNewYears = []
-              , daysToPrepend = 10,  daysToAppend = 10;
+              , daysToPrepend = 10, daysToAppend = 10;
 
            if ($scope.isMobile()) {
-              daysToPrepend = 50, daysToAppend = 50;
-              if ( $scope.dateMinLimit &&  $scope.dateMaxLimit) {
+              daysToPrepend = 50;
+              daysToAppend = 50;
+              if ( $scope.dateMinLimit && $scope.dateMaxLimit) {
                  startingYear = new Date($scope.dateMaxLimit).getFullYear();
-                 daysToPrepend = startingYear - (new Date($scope.dateMinLimit).getFullYear());
+                 daysToPrepend = startingYear - new Date($scope.dateMinLimit).getFullYear();
                  daysToAppend = 1;
               }
            }
 
-           for (i = daysToPrepend/* Years */; i > 0; i -= 1) {
+           for (i = daysToPrepend; i > 0; i -= 1) {
 
               theNewYears.push(Number(startingYear) - i);
            }
 
-           for (i = 0; i < daysToAppend/* Years */; i += 1) {
+           for (i = 0; i < daysToAppend; i += 1) {
 
               theNewYears.push(Number(startingYear) + i);
            }
