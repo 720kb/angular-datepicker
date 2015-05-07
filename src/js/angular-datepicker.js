@@ -133,7 +133,7 @@
           $scope.showCalendar();
         });
 
-        thisInput.bind('focusout', function onBlurAndFocusOut() {
+        thisInput.bind('focusout blur', function onBlurAndFocusOut() {
 
           isMouseOnInput = false;
         });
