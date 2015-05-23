@@ -33,7 +33,7 @@
           , datetime = $locale.DATETIME_FORMATS
           , pageDatepickers
           , htmlTemplate = '<div class="_720kb-datepicker-calendar" ng-blur="hideCalendar()">' +
-          //motnh+year header
+          //month+year header
           '<div class="_720kb-datepicker-calendar-header" ng-hide="isMobile()">' +
           '<div class="_720kb-datepicker-calendar-header-left">' +
           '<a href="javascript:void(0)" ng-click="prevMonth()">' + prevButton + '</a>' +
