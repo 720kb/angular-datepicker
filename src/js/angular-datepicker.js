@@ -156,7 +156,7 @@
         angular.element($window).bind('click focus', function onClickOnWindow() {
 
           if (!isMouseOn &&
-            !isMouseOnInput) {
+            !isMouseOnInput && theCalendar) {
 
             $scope.hideCalendar();
           }
@@ -204,7 +204,7 @@
             $scope.monthNumber += 1;
           }
           //set next month
-          $scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/01'), 'MMMM');
+          $scope.month = $filter('date')(new Date($scope.year,  $scope.monthNumber - 1), 'MMMM');
           //reinit days
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
 
@@ -238,7 +238,7 @@
             $scope.monthNumber -= 1;
           }
           //set next month
-          $scope.month = $filter('date')(new Date($scope.year + '/' + $scope.monthNumber + '/01'), 'MMMM');
+          $scope.month = $filter('date')(new Date($scope.year, $scope.monthNumber - 1), 'MMMM');
           //reinit days
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
           //check if min date is ok
