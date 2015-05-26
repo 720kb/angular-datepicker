@@ -7,10 +7,4 @@
     'ngRoute',
     '720kb.datepicker'
   ]);
-  
-  // Setup interpolation to use [[ / ]]
-  app.config(function($interpolateProvider) {
-        // Setup angular to use [[ expression ]] instead of {{ expression }}
-        $interpolateProvider.startSymbol('[[').endSymbol(']]');
-  });
 }(angular));
