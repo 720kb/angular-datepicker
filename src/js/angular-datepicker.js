@@ -5,7 +5,7 @@
   'use strict';
 
   angular.module('720kb.datepicker', [])
-  .directive('datepicker', ['$window', '$compile', '$locale', '$filter', function manageDirective($window, $compile, $locale, $filter) {
+		.directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', function manageDirective($window, $compile, $locale, $filter, $interpolate) {
 
     var A_DAY_IN_MILLISECONDS = 86400000;
     return {
@@ -81,8 +81,11 @@
           '<a href="javascript:void(0)" ng-repeat="nx in nextMonthDays" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">{{nx}}</a>' +
           '</div>' +
           '</div>' +
-          '</div>';
+			'</div>';
 
+        // Respect previously configured interpolation symbols.
+        htmlTemplate = htmlTemplate.replace(/{{/g, $interpolate.startSymbol())
+            .replace(/}}/g, $interpolate.endSymbol());
         $scope.$watch('dateSet', function dateSetWatcher(value) {
           if (value) {
             date = new Date(value);
