@@ -1,6 +1,8 @@
 Angular Datepicker
 ==================
 
+[![Join the chat at https://gitter.im/720kb/angular-datepicker](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/720kb/angular-datepicker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 Angular datepicker is an angularjs directive that generates a datepicker calendar on your input element.
 
