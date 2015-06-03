@@ -13,10 +13,19 @@
       'scope': {
         'dateSet': '@',
         'dateMinLimit': '@',
-        'dateMaxLimit': '@'
+        'dateMaxLimit': '@',
+        'monthTitle': '@',
+        'yearTitle': '@',
+        'nextTitle': '@',
+        'prevTitle': '@'
       },
       'link': function linkingFunction($scope, element, attr) {
         //get child input
+        $scope.monthTitle = $scope.monthTitle || "select month";
+        $scope.yearTitle = $scope.yearTitle || "select year";
+        $scope.nextTitle = $scope.nextTitle || "next";
+        $scope.prevTitle = $scope.prevTitle || "prev";
+
         var selector = attr.selector
           , thisInput = angular.element(selector ? element[0].querySelector('.' + selector) : element[0].children[0])
           , theCalendar
@@ -36,26 +45,26 @@
           //month+year header
           '<div class="_720kb-datepicker-calendar-header" ng-hide="isMobile()">' +
           '<div class="_720kb-datepicker-calendar-header-left">' +
-          '<a href="javascript:void(0)" ng-click="prevMonth()">' + prevButton + '</a>' +
+          '<a href="javascript:void(0)" ng-click="prevMonth()" title="{{prevTitle}}">' + prevButton + '</a>' +
           '</div>' +
           '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-calendar-month">' +
           '{{month}} <a href="javascript:void(0)" ng-click="showYearsPagination = !showYearsPagination"><span>{{year}} <i ng-if="!showYearsPagination">&dtrif;</i> <i ng-if="showYearsPagination">&urtri;</i> </span> </a>' +
           '</div>' +
           '<div class="_720kb-datepicker-calendar-header-right">' +
-          '<a href="javascript:void(0)" ng-click="nextMonth()">' + nextButton + '</a>' +
+          '<a href="javascript:void(0)" ng-click="nextMonth()" title="{{nextTitle}}">' + nextButton + '</a>' +
           '</div>' +
           '</div>' +
           //Mobile month+year pagination
           '<div class="_720kb-datepicker-calendar-header" ng-show="isMobile()">' +
           '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-mobile-item _720kb-datepicker-calendar-month">' +
-          '<select ng-model="month" ng-change="selectedMonthHandle(month)">' +
+          '<select ng-model="month" title="{{monthTitle}}" ng-change="selectedMonthHandle(month)">' +
           '<option ng-repeat="item in months" ng-selected="month === item" ng-disabled=\'!isSelectableMaxDate(item + " " + day + ", " + year) || !isSelectableMinDate(item + " " + day + ", " + year)\' ng-value="item">{{item}}</option>' +
           '</select>' +
           '</div>' +
           '</div>' +
           '<div class="_720kb-datepicker-calendar-header" ng-show="isMobile()">' +
           '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-mobile-item _720kb-datepicker-calendar-month">' +
-          '<select ng-model="mobileYear" ng-change="setNewYear(mobileYear)">' +
+          '<select ng-model="mobileYear" title="{{yearTitle}}" ng-change="setNewYear(mobileYear)">' +
           '<option ng-repeat="item in paginationYears" ng-selected="year === item" ng-value="item" ng-disabled="!isSelectableMinYear(item) || !isSelectableMaxYear(item)">{{item}}</option>' +
           '</select>' +
           '</div>' +
