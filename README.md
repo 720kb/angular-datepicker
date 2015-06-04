@@ -111,6 +111,30 @@ You can set date to be displayed by default with `date-set=""` attribute data ( 
 </datepicker>
 ```
 
+#### Custom titles
+You can set the titles for the month and year selectors with 'yearTitle="" and 'monthTitle=""'. Set by default to "select month" and "select year".
+
+<datepicker >
+    <input ng-model="date" monthTitle="selected year"/>
+</datepicker>
+
+
+<datepicker >
+    <input ng-model="date" yearTitle="selected title"/>
+</datepicker>
+
+
+### Custom titles for arrows
+You can also set the titles for the left and right arrows with 'nextTitle=""' for the right and 'prevTitle=""' for the left. By default they are labeled "next" and "prev".
+<datepicker >
+    <input ng-model="date" prevTitle="previous month"/>
+</datepicker>
+
+<datepicker >
+    <input ng-model="date" nextTitle="next month"/>
+</datepicker>
+
+  
 ####Custom buttons
 You can customize the calendar navigation buttons content, let's make an example while using [FontAwesome](http://fontawesome.io)
 
