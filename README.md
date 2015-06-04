@@ -111,21 +111,20 @@ You can set date to be displayed by default with `date-set=""` attribute data ( 
 </datepicker>
 ```
 
-#### Custom titles
-You can set the titles for the month and year selectors with 'yearTitle="" and 'monthTitle=""'. Set by default to "select month" and "select year".
+####Custom titles
+You can set the titles for the month and year selectors with the **date-year-title=""** and **date-month-title=""** data attributes (default to is _"select month"_ and _"select year"_)
 
-<datepicker >
-    <input ng-model="date" monthTitle="selected year"/>
+<datepicker>
+    <input ng-model="date" date-month-title="selected year"/>
+</datepicker>
+
+<datepicker>
+    <input ng-model="date" date-year-title="selected title"/>
 </datepicker>
 
 
-<datepicker >
-    <input ng-model="date" yearTitle="selected title"/>
-</datepicker>
-
-
-### Custom titles for arrows
-You can also set the titles for the left and right arrows with 'nextTitle=""' for the right and 'prevTitle=""' for the left. By default they are labeled "next" and "prev".
+####Custom titles for arrows
+You can also set the titles for the left and right arrows with **date-next-title=""** for the right and **date-prev-title=""** for the left. By default they are labeled _"next"_ and _"prev"_.
 <datepicker >
     <input ng-model="date" prevTitle="previous month"/>
 </datepicker>
