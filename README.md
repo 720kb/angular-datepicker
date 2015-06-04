@@ -124,7 +124,7 @@ You can set the titles for the month and year selectors with the **date-year-tit
 
 
 ####Custom titles for arrows
-You can also set the titles for the left and right arrows with **date-next-title=""** for the right and **date-prev-title=""** for the left. By default they are labeled _"next"_ and _"prev"_.
+You can also set the titles for the left and right arrows with **button-next-title=""** for the right and **button-prev-title=""** for the left. By default they are labeled _"next"_ and _"prev"_.
 <datepicker >
     <input ng-model="date" prevTitle="previous month"/>
 </datepicker>
