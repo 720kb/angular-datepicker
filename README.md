@@ -114,25 +114,13 @@ You can set date to be displayed by default with `date-set=""` attribute data ( 
 ####Custom titles
 You can set the titles for the month and year selectors with the **date-year-title=""** and **date-month-title=""** data attributes (default to is _"select month"_ and _"select year"_)
 
-<datepicker>
-    <input ng-model="date" date-month-title="selected year"/>
+<datepicker date-month-title="selected year">
+    <input ng-model="date"/>
 </datepicker>
 
-<datepicker>
-    <input ng-model="date" date-year-title="selected title"/>
+<datepicker date-year-title="selected title">
+    <input ng-model="date"/>
 </datepicker>
-
-
-####Custom titles for arrows
-You can also set the titles for the left and right arrows with **button-next-title=""** for the right and **button-prev-title=""** for the left. By default they are labeled _"next"_ and _"prev"_.
-<datepicker >
-    <input ng-model="date" prevTitle="previous month"/>
-</datepicker>
-
-<datepicker >
-    <input ng-model="date" nextTitle="next month"/>
-</datepicker>
-
   
 ####Custom buttons
 You can customize the calendar navigation buttons content, let's make an example while using [FontAwesome](http://fontawesome.io)
@@ -142,6 +130,15 @@ You can customize the calendar navigation buttons content, let's make an example
   <input ng-model="date" type="text"/>
 </datepicker>
 ```
+####Custom buttons titles for arrows
+You can also set the titles for the left and right arrows with **button-next-title=""** for the right and **button-prev-title=""** for the left. By default they are labeled _"next"_ and _"prev"_.
+<datepicker button-prev-title="previous month">
+    <input ng-model="date"/>
+</datepicker>
+
+<datepicker button-next-title="next month">
+    <input ng-model="date" type="text"/>
+</datepicker>
 
 ####Input as grandchild
 Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome 
