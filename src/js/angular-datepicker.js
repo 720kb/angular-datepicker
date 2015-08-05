@@ -96,6 +96,14 @@
         htmlTemplate = htmlTemplate.replace(/{{/g, $interpolate.startSymbol())
             .replace(/}}/g, $interpolate.endSymbol());
 
+        $scope.ChangeFirstDay = function ChangeFirstDay(firstDay, lastDay){
+          // rough way to change the first day of the week to Monday
+          firstDay -= 1;
+          lastDay -= 1;
+          firstDay === -1 : firstDay = 6;
+          lastDay === -1 : lastDay = 6;
+        };
+
         $scope.$watch('dateSet', function dateSetWatcher(value) {
 
           if (value) {
@@ -395,6 +403,10 @@
             , monthAlias;
 
           $scope.days = [];
+
+          // rough way to change the first day of the week to Monday
+          $scope.ChangeFirstDay(firstDayMonthNumber,lastDayMonthNumber);
+
 
           for (i = 1; i <= limitDate; i += 1) {
 
