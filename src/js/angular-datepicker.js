@@ -41,7 +41,7 @@
           , isMouseOnInput = false
           , datetime = $locale.DATETIME_FORMATS
           , pageDatepickers
-          , startDay = "monday"
+          , startDay = ""
           , htmlTemplate = '<div class="_720kb-datepicker-calendar" ng-blur="hideCalendar()">' +
           //month+year header
           '<div class="_720kb-datepicker-calendar-header" ng-hide="isMobile()">' +
