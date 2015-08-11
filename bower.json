@@ -1,6 +1,6 @@
 {
   "name": "angularjs-datepicker",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "A datepicker directive for angularjs.",
   "authors": [
     "Filippo Oretti <filippo.oretti@gmail.com",
@@ -9,6 +9,9 @@
   "keywords": [
     "date",
     "datepicker",
+    "input",
+    "angularjs",
+    "angular",
     "input"
   ],
   "main": [
