@@ -8,6 +8,7 @@
 		.directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', function manageDirective($window, $compile, $locale, $filter, $interpolate) {
 
     var A_DAY_IN_MILLISECONDS = 86400000;
+
     return {
       'restrict': 'AEC',
       'scope': {
@@ -37,6 +38,9 @@
           , dateMinLimit
           , dateMaxLimit
           , date = new Date()
+          , currentDay = $filter('date')(date, 'd')
+          , currentMonthNumber = $filter('date')(date, 'M')
+          , currentYear = $filter('date')(date, 'yyyy')
           , isMouseOn = false
           , isMouseOnInput = false
           , datetime = $locale.DATETIME_FORMATS
@@ -90,7 +94,7 @@
           '<a href="javascript:void(0)" ng-repeat="nx in nextMonthDays" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">{{nx}}</a>' +
           '</div>' +
           '</div>' +
-			'</div>';
+          '</div>';
 
         // Respect previously configured interpolation symbols.
         htmlTemplate = htmlTemplate.replace(/{{/g, $interpolate.startSymbol())
@@ -228,10 +232,11 @@
           $scope.setDaysInMonth($scope.monthNumber, $scope.year);
 
           //check if max date is ok
-          if (dateMaxLimit) {
+          if (dateMaxLimit
+            && currentMonthNumber > $scope.monthNumber) {
             if (!$scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
-              $scope.resetToMaxDate();
+                $scope.resetToMaxDate();
             }
           }
           //deactivate selected day
