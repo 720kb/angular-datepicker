@@ -18,7 +18,8 @@
         'dateMonthTitle': '@',
         'dateYearTitle': '@',
         'buttonNextTitle': '@',
-        'buttonPrevTitle': '@'
+        'buttonPrevTitle': '@',
+        'dateDisabledDates': '@'
       },
       'link': function linkingFunction($scope, element, attr) {
         //get child input
@@ -37,6 +38,7 @@
           , dateFormat = attr.dateFormat
           , dateMinLimit
           , dateMaxLimit
+          , dateDisabledDates = $scope.$eval(attr.dateDisabledDates)
           , date = new Date()
           , currentDay = $filter('date')(date, 'd')
           , currentMonthNumber = $filter('date')(date, 'M')
@@ -90,7 +92,7 @@
           //days
           '<div class="_720kb-datepicker-calendar-body">' +
           '<a href="javascript:void(0)" ng-repeat="px in prevMonthDays" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">{{px}}</a>' +
-          '<a href="javascript:void(0)" ng-repeat="item in days" ng-click="setDatepickerDay(item)" ng-class="{\'_720kb-datepicker-active\': day === item, \'_720kb-datepicker-disabled\': !isSelectableMinDate(year + \'/\' + monthNumber + \'/\' + item ) || !isSelectableMaxDate(year + \'/\' + monthNumber + \'/\' + item)}" class="_720kb-datepicker-calendar-day">{{item}}</a>' +
+          '<a href="javascript:void(0)" ng-repeat="item in days" ng-click="setDatepickerDay(item)" ng-class="{\'_720kb-datepicker-active\': day === item, \'_720kb-datepicker-disabled\': !isSelectableMinDate(year + \'/\' + monthNumber + \'/\' + item ) || !isSelectableMaxDate(year + \'/\' + monthNumber + \'/\' + item) || !isSelectableDate(monthNumber, year, item)}" class="_720kb-datepicker-calendar-day">{{item}}</a>' +
           '<a href="javascript:void(0)" ng-repeat="nx in nextMonthDays" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">{{nx}}</a>' +
           '</div>' +
           '</div>' +
@@ -128,6 +130,7 @@
             dateMaxLimit = value;
           }
         });
+
 
         $scope.month = $filter('date')(date, 'MMMM');//December-November like
         $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
@@ -502,6 +505,21 @@
           }
 
           $scope.paginationYears = theNewYears;
+        };
+
+        $scope.isSelectableDate = function isSelectableDate(monthNumber, year, day) {
+
+          if (dateDisabledDates
+            && dateDisabledDates.length > 0) {
+            var i = 0;
+            for (i; i <= dateDisabledDates.length; i += 1 ) {
+              if (new Date(dateDisabledDates[i]).getTime() === new Date(monthNumber + '/' + day + '/' + year).getTime()) {
+
+                return false;
+              }
+            }
+          }
+          return true;
         };
 
         $scope.isSelectableMinDate = function isSelectableMinDate (aDate) {
