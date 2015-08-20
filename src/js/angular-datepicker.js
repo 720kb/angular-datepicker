@@ -454,9 +454,12 @@
 
         $scope.setDatepickerDay = function setDatepickeDay(day) {
 
-          $scope.day = Number(day);
-          $scope.setInputValue();
-          $scope.hideCalendar();
+          if ($scope.isSelectableDate($scope.monthNumber, $scope.year, day)) {
+
+            $scope.day = Number(day);
+            $scope.setInputValue();
+            $scope.hideCalendar();
+          }
         };
 
         $scope.paginateYears = function paginateYears (startingYear) {
