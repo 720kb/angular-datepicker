@@ -454,11 +454,11 @@
 
         $scope.setDatepickerDay = function setDatepickeDay(day) {
 
-          if ($scope.isSelectableDate($scope.monthNumber, $scope.year, day)) {
-
-            $scope.day = Number(day);
-            $scope.setInputValue();
-            $scope.hideCalendar();
+          if ($scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + day)
+              && $scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + day)) {
+              $scope.day = Number(day);
+              $scope.setInputValue();
+              $scope.hideCalendar();
           }
         };
 
