@@ -104,6 +104,16 @@ You can set date to be displayed by default with `date-set=""` attribute data ( 
 </datepicker>
 ```
 
+####Date disabled
+You can disable specific dates using the **date-disabled-dates=""** attribute and an _Array_ of dates you want to disable.
+
+```html
+<datepicker date-disabled-dates="['2018/07/14', '2018/09/07']">
+  <input ng-model="date" type="text"/>
+</datepicker>
+```
+
+
 ####Custom titles
 You can set the titles for the month and year selectors with the **date-year-title=""** and **date-month-title=""** data attributes (default to is _"select month"_ and _"select year"_)
 
