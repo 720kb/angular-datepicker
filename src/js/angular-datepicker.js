@@ -19,7 +19,8 @@
         'dateYearTitle': '@',
         'buttonNextTitle': '@',
         'buttonPrevTitle': '@',
-        'dateDisabledDates': '@'
+        'dateDisabledDates': '@',
+        'hideDefaultDate': '@'
       },
       'link': function linkingFunction($scope, element, attr) {
         //get child input
@@ -112,8 +113,10 @@
             $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
             $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
             $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
-						$scope.setDaysInMonth($scope.monthNumber, $scope.year);
-            $scope.setInputValue();
+			$scope.setDaysInMonth($scope.monthNumber, $scope.year);
+            if ($scope.hideDefaultDate != 'true') {
+              $scope.setInputValue();
+            }
           }
         });
 
