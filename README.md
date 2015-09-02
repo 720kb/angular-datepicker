@@ -104,6 +104,15 @@ You can set date to be displayed by default with `date-set=""` attribute data ( 
 </datepicker>
 ```
 
+####Default date not to be visible in input
+You can set default date only to be set in calendar, not in input field. To be used with `date-set=""` option.
+
+```html
+<datepicker date-set="2018/07/14" hide-default-date="true">
+  <input ng-model="date" type="text"/>
+</datepicker>
+```
+
 ####Date disabled
 You can disable specific dates using the **date-disabled-dates=""** attribute and an _Array_ of dates you want to disable.
 
