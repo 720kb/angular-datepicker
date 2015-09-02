@@ -104,11 +104,11 @@ You can set date to be displayed by default with `date-set=""` attribute data ( 
 </datepicker>
 ```
 
-####Default date not to be visible in input
-You can set default date only to be set in calendar, not in input field. To be used with `date-set=""` option.
+####Default date hidden on start
+You can set default date to be shown only in calendar and not in input field by using the `date-set-hidden="true"` option.
 
 ```html
-<datepicker date-set="2018/07/14" hide-default-date="true">
+<datepicker date-set="2018/07/14" date-set-hidden="true">
   <input ng-model="date" type="text"/>
 </datepicker>
 ```
@@ -133,7 +133,7 @@ You can set the titles for the month and year selectors with the **date-year-tit
 <datepicker date-year-title="selected title">
     <input ng-model="date"/>
 </datepicker>
-  
+
 ####Custom buttons
 You can customize the calendar navigation buttons content, let's make an example while using [FontAwesome](http://fontawesome.io)
 
@@ -153,7 +153,7 @@ You can also set the titles for the left and right arrows with **button-next-tit
 </datepicker>
 
 ####Input as grandchild
-Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome 
+Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome
 
 ```html
 <datepicker date-format="yyyy-MM-dd" selector="form-control">
