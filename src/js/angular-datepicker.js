@@ -48,6 +48,7 @@
           , isMouseOnInput = false
           , datetime = $locale.DATETIME_FORMATS
           , pageDatepickers
+          , startDay = ""
           , htmlTemplate = '<div class="_720kb-datepicker-calendar" ng-blur="hideCalendar()">' +
           //month+year header
           '<div class="_720kb-datepicker-calendar-header" ng-hide="isMobile()">' +
@@ -103,6 +104,7 @@
         htmlTemplate = htmlTemplate.replace(/{{/g, $interpolate.startSymbol())
             .replace(/}}/g, $interpolate.endSymbol());
 
+
         $scope.$watch('dateSet', function dateSetWatcher(value) {
 
           if (value) {
@@ -133,6 +135,14 @@
             dateMaxLimit = value;
           }
         });
+
+        $scope.$watch('startDay', function startDayWatcher(value) {
+          if (value) {
+
+            startDay = value;
+          }
+        });
+
 
         $scope.month = $filter('date')(date, 'MMMM');//December-November like
         $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
@@ -202,6 +212,22 @@
 
               return true;
           }
+        };
+
+        $scope.setFirstDay = function manageSetFirstDay(startDay){
+            if (startDay.toLowerCase() === 'monday'){
+              $scope.first  -= 1;
+              $scope.last   -= 1;
+              if ($scope.first === -1) { $scope.first = 6; }
+              if ($scope.last === -1) { $scope.last = 6; }
+
+              // change the order of the names of days of the week: Mon-Sun
+              $scope.daysInString = ['1', '2', '3', '4', '5', '6', '0'].map(function mappingFunc(el) {
+                return $filter('date')(new Date(new Date('06/08/2014').valueOf() + A_DAY_IN_MILLISECONDS * el), 'EEE');
+              });
+              return true;
+            }
+            return true;
         };
 
         $scope.resetToMinDate = function manageResetToMinDate() {
@@ -405,6 +431,16 @@
             , monthAlias;
 
           $scope.days = [];
+
+          // Change first day to monday
+          $scope.first = firstDayMonthNumber;
+          $scope.last = lastDayMonthNumber;
+
+          $scope.setFirstDay(startDay);
+
+          firstDayMonthNumber = $scope.first;
+          lastDayMonthNumber = $scope.last;
+
 
           for (i = 1; i <= limitDate; i += 1) {
 
