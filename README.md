@@ -169,7 +169,9 @@ Sometimes you cannot put date input as a first child of datepicker. In this case
 ###[Live demo](https://720kb.github.io/angular-datepicker)
 
 ##Theming
-You can edit the default Css file `angular-datepicker.css` if you want to make a new theme for the datepicker.
+You can edit the default Css file `angular-datepicker.css` if you want to make a new theme for the datepicker, then just add it to the ```themes``` dir.
+
+More about it https://github.com/720kb/angular-datepicker/tree/master/themes.
 
 Here is an example of a [Dark Theme](http://codepen.io/45kb/pen/bjslv) made using custom Css.
 
