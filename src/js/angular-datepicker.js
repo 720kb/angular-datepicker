@@ -103,6 +103,25 @@
         htmlTemplate = htmlTemplate.replace(/{{/g, $interpolate.startSymbol())
             .replace(/}}/g, $interpolate.endSymbol());
 
+        $scope.updateCalendarDate = function(v){
+            var d = "Invalid Date";
+            if (v.length == 10) {
+                d = new Date(v);
+            }
+            if (d != "Invalid Date") {
+                date = d;
+
+                $scope.month = $filter('date')(date, 'MMMM');//December-November like
+                $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
+                $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
+                $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
+                $scope.setDaysInMonth($scope.monthNumber, $scope.year);
+                if ($scope.dateSetHidden !== 'true') {
+                    $scope.setInputValue();
+                }
+            }
+        };
+
         $scope.$watch('dateSet', function dateSetWatcher(value) {
 
           if (value) {
@@ -164,6 +183,15 @@
         thisInput.bind('focusout blur', function onBlurAndFocusOut() {
 
           isMouseOnInput = false;
+
+          // On tab out, the calendar should hide.
+          if (!isMouseOn && !isMouseOnInput && theCalendar) {
+              $scope.hideCalendar();
+          }
+        });
+
+        thisInput.bind('keyup', function typingInField() {
+            $scope.updateCalendarDate(thisInput.val());
         });
 
         angular.element(theCalendar).bind('mouseenter', function onMouseEnter() {
@@ -365,6 +393,9 @@
         };
 
         $scope.showCalendar = function manageShowCalendar() {
+
+          $scope.updateCalendarDate(thisInput.val());
+          
           //lets hide all the latest instances of datepicker
           pageDatepickers = $window.document.getElementsByClassName('_720kb-datepicker-calendar');
 
