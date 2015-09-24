@@ -76,6 +76,15 @@ datepicker, .datepicker, [datepicker],
 ._720kb-datepicker-calendar-header-middle {
   width: 70%;
 }
+
+._720kb-datepicker-calendar-header-closed-pagination::after {
+  content: " \25BE";
+}
+
+._720kb-datepicker-calendar-header-opened-pagination::after {
+  content: " \25F9";
+}
+
 ._720kb-datepicker-calendar-body {
   width: 96%;
   margin: 2%;
