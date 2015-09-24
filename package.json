@@ -11,6 +11,9 @@
     "angular",
     "input"
   ],
+  "scripts": {
+    "precommit": "grunt lint"
+  },
   "main": [
     "dist/angular-datepicker.min.js",
     "dist/angular-datepicker.min.css"
@@ -30,7 +33,8 @@
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
     "grunt-eslint": "*",
-    "grunt-jscs": "*"
+    "grunt-jscs": "*",
+    "husky": "*"
   },
   "author": {
     "name": "Filippo Oretti",
