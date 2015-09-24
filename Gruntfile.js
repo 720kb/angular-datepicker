@@ -1,6 +1,5 @@
 /*global module, require*/
 (function setUp(module, require) {
-
   'use strict';
 
   var banner = ['/*!',
@@ -10,145 +9,44 @@
       ' * www.opensource.org/licenses/MIT',
       ' *',
       ' * <%= grunt.template.today("yyyy-mm-dd") %>',
-      ' */\n\n'].join('\n')
-    , modRewrite = require('connect-modrewrite');
+      ' */\n\n'].join('\n');
 
   module.exports = function doGrunt(grunt) {
+    var confs = require('./tasks/confs')
+      , jscs = require('./tasks/jscs')(grunt)
+      , csslint = require('./tasks/csslint')(grunt)
+      , eslint = require('./tasks/eslint')(grunt)
+      , uglify = require('./tasks/uglify')(banner, grunt)
+      , cssmin = require('./tasks/cssmin')(banner, grunt)
+      , connect = require('./tasks/connect')(grunt)
+      , watch = require('./tasks/watch')(grunt)
+      , concurrent = require('./tasks/concurrent')(grunt);
 
     grunt.initConfig({
       'pkg': grunt.file.readJSON('package.json'),
-      'confs': {
-        'dist': 'dist',
-        'config': 'config',
-        'css': 'src/css',
-        'js': 'src/js',
-        'serverPort': 8000
-      },
-      'csslint': {
-        'options': {
-          'csslintrc': '<%= confs.config %>/csslintrc.json'
-        },
-        'strict': {
-          'src': [
-            '<%= confs.css %>/**/*.css'
-          ]
-        }
-      },
-      'eslint': {
-        'options': {
-          'config': '<%= confs.config %>/eslint.json'
-        },
-        'target': [
-          'Gruntfile.js',
-          '<%= confs.js %>/**/*.js'
-        ]
-      },
-      'uglify': {
-        'options': {
-          'sourceMap': true,
-          'sourceMapName': '<%= confs.dist %>/angular-datepicker.sourcemap.map',
-          'preserveComments': false,
-          'report': 'gzip',
-          'banner': banner
-        },
-        'minifyTarget': {
-          'files': {
-            '<%= confs.dist %>/angular-datepicker.min.js': [
-              '<%= confs.js %>/angular-datepicker.js'
-            ]
-          }
-        }
-      },
-      'cssmin': {
-        'options': {
-          'report': 'gzip',
-          'banner': banner
-        },
-        'minifyTarget': {
-          'files': {
-            '<%= confs.dist %>/angular-datepicker.min.css': [
-              '<%= confs.css %>/angular-datepicker.css'
-            ]
-          }
-        }
-      },
-      'connect': {
-        'server': {
-          'options': {
-            'port': '<%= confs.serverPort %>',
-            'base': '.',
-            'keepalive': true,
-            'middleware': function manageMiddlewares(connect, options) {
-              var middlewares = []
-                , directory = options.directory || options.base[options.base.length - 1];
-
-              // enable Angular's HTML5 mode
-              middlewares.push(modRewrite(['!\\.html|\\.js|\\.svg|\\.css|\\.png|\\.gif$ /index.html [L]']));
-
-              if (!Array.isArray(options.base)) {
-                options.base = [options.base];
-              }
-              options.base.forEach(function forEachOption(base) {
-                // Serve static files.
-                middlewares.push(connect.static(base));
-              });
-
-              // Make directory browse-able.
-              middlewares.push(connect.directory(directory));
-
-              return middlewares;
-            }
-          }
-        }
-      },
-      'watch': {
-        'dev': {
-          'files': [
-            'Gruntfile.js',
-            '<%= confs.css %>/**/*.css',
-            '<%= confs.js %>/**/*.js'
-          ],
-          'tasks': [
-            'csslint',
-            'eslint'
-          ],
-          'options': {
-            'spawn': false
-          }
-        }
-      },
-      'concurrent': {
-        'dev': {
-          'tasks': [
-            'connect:server',
-            'watch:dev'
-          ],
-          'options': {
-            'limit': '<%= concurrent.dev.tasks.length %>',
-            'logConcurrentOutput': true
-          }
-        }
-      }
+      'confs': confs,
+      'jscs': jscs,
+      'csslint': csslint,
+      'eslint': eslint,
+      'uglify': uglify,
+      'cssmin': cssmin,
+      'connect': connect,
+      'watch': watch,
+      'concurrent': concurrent
     });
 
-    grunt.loadNpmTasks('grunt-contrib-csslint');
-    grunt.loadNpmTasks('grunt-eslint');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-
-    grunt.loadNpmTasks('grunt-concurrent');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-
     grunt.registerTask('default', [
-      'csslint',
-      'eslint',
+      'lint',
       'concurrent:dev'
     ]);
 
-    grunt.registerTask('prod', [
+    grunt.registerTask('lint', [
       'csslint',
-      'eslint',
+      'eslint'
+    ]);
+
+    grunt.registerTask('prod', [
+      'lint',
       'cssmin',
       'uglify'
     ]);

@@ -31,7 +31,7 @@
   "text-indent": false,
   "unique-headings": false,
   "universal-selector": false,
-  "unqualified-attributes": false,
+  "unqualified-attributes": true,
   "vendor-prefix": true,
   "zero-units": true
 }

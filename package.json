@@ -29,7 +29,8 @@
     "grunt-contrib-cssmin": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
-    "grunt-eslint": "*"
+    "grunt-eslint": "*",
+    "grunt-jscs": "*"
   },
   "author": {
     "name": "Filippo Oretti",
