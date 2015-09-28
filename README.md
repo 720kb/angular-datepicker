@@ -164,6 +164,15 @@ Sometimes you cannot put date input as a first child of datepicker. In this case
 </datepicker>
 ```
 
+####Datepicker visible on load
+You have an option to make the datepicker visible when it loads with `visible-on-load` attribute.
+
+```html
+<datepicker visible-on-load>
+    <input placeholder="Choose a date"/>
+</datepicker>
+```
+
 ### Example
 
 [Live demo](https://720kb.github.io/angular-datepicker)

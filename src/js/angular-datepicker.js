@@ -651,6 +651,10 @@
           angular.element(theCalendar).off('mouseenter mouseleave focusin');
           angular.element($window).off('click focus');
         });
+        
+        if (attr.hasOwnProperty('visibleOnLoad')) {
+          showCalendar();
+        }
       };
 
       return {
