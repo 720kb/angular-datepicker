@@ -51,7 +51,7 @@
             '</a>',
           '</div>',
           '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-calendar-month">',
-            '{{month}}',
+            '{{month}}&nbsp;',
             '<a href="javascript:void(0)" ng-click="showYearsPagination = !showYearsPagination">',
               '<span>',
                 '{{year}}',
@@ -651,7 +651,7 @@
           angular.element(theCalendar).off('mouseenter mouseleave focusin');
           angular.element($window).off('click focus');
         });
-        
+
         if (attr.hasOwnProperty('visibleOnLoad')) {
           showCalendar();
         }
