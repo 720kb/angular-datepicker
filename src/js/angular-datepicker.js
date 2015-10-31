@@ -445,6 +445,11 @@
 
             $scope.day = Number(day);
             setInputValue();
+            
+            if (attr.hasOwnProperty('dateRefocus')) {
+              thisInput[0].focus();
+            }
+            
             $scope.hideCalendar();
           }
         };

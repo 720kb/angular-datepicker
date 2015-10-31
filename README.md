@@ -173,6 +173,15 @@ You have an option to make the datepicker visible when it loads with `visible-on
 </datepicker>
 ```
 
+####Re-focus input after selecting date
+Re-focus input after selecting a date with `date-refocus` attribute.
+
+```html
+<datepicker date-refocus>
+    <input placeholder="Choose a date"/>
+</datepicker>
+```
+
 ### Example
 
 [Live demo](https://720kb.github.io/angular-datepicker)
