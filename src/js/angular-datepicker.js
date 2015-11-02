@@ -445,7 +445,7 @@
               $scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + day)) {
 
             $scope.day = Number(day);
-            setInputValue(); 
+            setInputValue();
             $scope.hideCalendar();
           }
         };
