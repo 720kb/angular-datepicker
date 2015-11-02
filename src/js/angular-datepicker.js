@@ -445,12 +445,7 @@
               $scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + day)) {
 
             $scope.day = Number(day);
-            setInputValue();
-            
-            if (attr.hasOwnProperty('dateRefocus')) {
-              thisInput[0].focus();
-            }
-            
+            setInputValue(); 
             $scope.hideCalendar();
           }
         };
@@ -680,5 +675,6 @@
       };
     };
 
-  angular.module('720kb.datepicker', []).directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', datepickerDirective]);
+  angular.module('720kb.datepicker', [])
+               .directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', datepickerDirective]);
 }(angular, navigator));
