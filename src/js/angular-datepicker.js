@@ -426,6 +426,7 @@
           $scope.year = Number(year);
           setDaysInMonth($scope.monthNumber, $scope.year);
           $scope.paginateYears(year);
+          $scope.showYearsPagination = false;
         };
 
         $scope.hideCalendar = function hideCalendar() {
@@ -680,5 +681,5 @@
     };
 
   angular.module('720kb.datepicker', [])
-		.directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', datepickerDirective]);
+               .directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', datepickerDirective]);
 }(angular, navigator));
