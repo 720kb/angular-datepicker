@@ -446,11 +446,11 @@
 
             $scope.day = Number(day);
             setInputValue();
-            
+
             if (attr.hasOwnProperty('dateRefocus')) {
               thisInput[0].focus();
             }
-            
+
             $scope.hideCalendar();
           }
         };
@@ -483,7 +483,42 @@
 
             theNewYears.push(Number(startingYear) + i);
           }
+          //date typing in input date-typer
+          if ($scope.dateTyper) {
 
+            thisInput.on('keyup', function onTyping() {
+
+              if (thisInput[0].value &&
+                thisInput[0].value.length &&
+                thisInput[0].value.length > 0) {
+
+                try {
+
+                  date = new Date(thisInput[0].value.toString());
+
+                  if (date.getFullYear() &&
+                   date.getDay() &&
+                   date.getMonth() &&
+                   $scope.isSelectableDate(date) &&
+                   $scope.isSelectableMaxDate(date) &&
+                   $scope.isSelectableMinDate(date)) {
+
+                    $scope.$apply(function applyTyping() {
+
+                      $scope.month = $filter('date')(date, 'MMMM');//december-November like
+                      $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
+                      $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
+                      setDaysInMonth($scope.monthNumber, $scope.year);
+                      $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
+                    });
+                  }
+                } catch (e) {
+
+                  return e;
+                }
+              }
+            });
+          }
           //check range dates
           if ($scope.dateMaxLimit &&
             theNewYears &&
@@ -674,7 +709,8 @@
           'buttonNextTitle': '@',
           'buttonPrevTitle': '@',
           'dateDisabledDates': '@',
-          'dateSetHidden': '@'
+          'dateSetHidden': '@',
+          'dateTyper': '@'
         },
         'link': linkingFunction
       };
