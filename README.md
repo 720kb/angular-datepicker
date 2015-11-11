@@ -62,7 +62,6 @@ angular.module('app', [
  ]);
 ```
 
-
 Call the directive wherever you want in your html page
 
 ```html
@@ -72,57 +71,20 @@ Call the directive wherever you want in your html page
 ```
 > By default the ng-model will show a Javascript Date() Object inside your input, you can use the options below to set your preferred date format to.
 
+
+##DOC
+
+Option | Type | Default | Description
+------------- | ------------- | ------------- | -------------
+date-set="" | String | false | Set a default date to show and init datepicker
+date-format="" | String | String(new Date()) | Set the date format you want to use, see the list [here](https://docs.angularjs.org/api/ng/filter/date)
+date-min-limit="" | String | false | Set a minimum date limit - you can use all the accepted date formats by the javascript `new Date()`
+date-max-limit="" | String | false | Set a maximum date limit - you can use all the accepted date formats by the javascript `new Date()`
+date-set-hidden="" | String(Boolean) | false | Set the default date to be shown only in calendar and not in the input field
+date-disabled-dates="" | String([Date(), Date(), ...]) | false | Disable specific dates using an _Array_ of dates
+ 
 ##Options
 Angular datepicker allows you to use some options via `attribute` data
-
-####Date format
-You can use all the Angularjs `$date` filter date formats (that can be found [here](https://docs.angularjs.org/api/ng/filter/date))
-
-```html
-<datepicker date-format="{{pattern}}">
-  <input ng-model="date" type="text"/>
-</datepicker>
-```
-
-####Date limits
-You can set date limits using `date-min-limit=""` and `date-max-limit=""` attribute data ( you can use all the accepted date formats by the javascript `new Date()`)
-
-```html
-<datepicker date-min-limit="2014/08/11" date-max-limit="2018/07/14">
-  <input ng-model="date" type="text"/>
-</datepicker>
-```
-
-####Default date
-You can set date to be displayed by default with `date-set=""` attribute data ( you can use all the accepted date formats by the javascript `new Date()`)
-
-```html
-<datepicker date-set="2018/07/14">
-  <input ng-model="date" type="text"/>
-</datepicker>
-
-<datepicker date-set="{{myModel.date}}">
-  <input ng-model="myModel.date" type="text"/>
-</datepicker>
-```
-
-####Default date hidden on start
-You can set default date to be shown only in calendar and not in input field by using the `date-set-hidden="true"` option.
-
-```html
-<datepicker date-set="2018/07/14" date-set-hidden="true">
-  <input ng-model="date" type="text"/>
-</datepicker>
-```
-
-####Date disabled
-You can disable specific dates using the **date-disabled-dates=""** attribute and an _Array_ of dates you want to disable.
-
-```html
-<datepicker date-disabled-dates="['2018/07/14', '2018/09/07']">
-  <input ng-model="date" type="text"/>
-</datepicker>
-```
 
 
 ####Custom titles
