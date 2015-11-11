@@ -1,5 +1,6 @@
 Angular Datepicker
 ==================
+![Angular datepicker calendar](http://i.imgur.com/nOvm7Zs.png)
 
 [![Join the chat at https://gitter.im/720kb/angular-datepicker](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/720kb/angular-datepicker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -10,11 +11,7 @@ The Angularjs Datepicker is developed by [720kb](http://720kb.net).
 
 ##Requirements
 
-
 AngularJS v1.2+
-
-##Screen
-![Angular datepicker calendar](http://i.imgur.com/44ut0ET.png)
 
 ###Browser support
 
