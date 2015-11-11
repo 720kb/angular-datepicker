@@ -83,7 +83,7 @@ date-max-limit="" | String | false | Set a maximum date limit - you can use all 
 date-set-hidden="" | String(Boolean) | false | Set the default date to be shown only in calendar and not in the input field
 date-disabled-dates="" | String([Date(), Date(), ...]) | false | Disable specific dates using an _Array_ of dates
 date-refocus="" | String(Boolean) | false | Set the datepicker to re-focus the input after selecting a date
-date-typer="" | String(Boolean) | false | Set the datepicker to update calendar date when is user typing a date (+1 keyup event may be not so performant)
+date-typer="" | String(Boolean) | false | Set the datepicker to update calendar date when user is typing a date
 
 ##Options
 Angular datepicker allows you to use some options via `attribute` data
