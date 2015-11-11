@@ -82,14 +82,16 @@ date-min-limit="" | String | false | Set a minimum date limit - you can use all 
 date-max-limit="" | String | false | Set a maximum date limit - you can use all the accepted date formats by the javascript `new Date()`
 date-set-hidden="" | String(Boolean) | false | Set the default date to be shown only in calendar and not in the input field
 date-disabled-dates="" | String([Date(), Date(), ...]) | false | Disable specific dates using an _Array_ of dates
+date-refocus="" | String(Boolean) | false | Set the datepicker to re-focus the input after selecting a date
  
 ##Options
 Angular datepicker allows you to use some options via `attribute` data
 
-
 ####Custom titles
+
 You can set the titles for the month and year selectors with the **date-year-title=""** and **date-month-title=""** data attributes (default to is _"select month"_ and _"select year"_)
 
+```html
 <datepicker date-month-title="selected year">
     <input ng-model="date"/>
 </datepicker>
@@ -97,6 +99,7 @@ You can set the titles for the month and year selectors with the **date-year-tit
 <datepicker date-year-title="selected title">
     <input ng-model="date"/>
 </datepicker>
+```
 
 ####Custom buttons
 You can customize the calendar navigation buttons content, let's make an example while using [FontAwesome](http://fontawesome.io)
@@ -106,8 +109,11 @@ You can customize the calendar navigation buttons content, let's make an example
   <input ng-model="date" type="text"/>
 </datepicker>
 ```
+
 ####Custom buttons titles for arrows
 You can also set the titles for the left and right arrows with **button-next-title=""** for the right and **button-prev-title=""** for the left. By default they are labeled _"next"_ and _"prev"_.
+
+```html
 <datepicker button-prev-title="previous month">
     <input ng-model="date"/>
 </datepicker>
@@ -115,6 +121,7 @@ You can also set the titles for the left and right arrows with **button-next-tit
 <datepicker button-next-title="next month">
     <input ng-model="date" type="text"/>
 </datepicker>
+```
 
 ####Input as grandchild
 Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome
@@ -133,15 +140,6 @@ You have an option to make the datepicker visible when it loads with `visible-on
 
 ```html
 <datepicker visible-on-load>
-    <input placeholder="Choose a date"/>
-</datepicker>
-```
-
-####Re-focus input after selecting date
-Re-focus input after selecting a date with `date-refocus` attribute.
-
-```html
-<datepicker date-refocus>
     <input placeholder="Choose a date"/>
 </datepicker>
 ```
