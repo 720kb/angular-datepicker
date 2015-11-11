@@ -155,7 +155,7 @@ More about it https://github.com/720kb/angular-datepicker/tree/master/themes.
 
 Here is an example of a [Dark Theme](http://codepen.io/45kb/pen/bjslv) made using custom Css.
 
-***_Please note that the example may be not updated to the latest angular or module version_
+***_Please note that the example may not be uptodate with the latest angular and/or module version_
 
 ##Contributing
 
