@@ -39,12 +39,12 @@ To use the directive, include the Angular Datepicker's javascript and css files 
 
 ##Installation
 
-###Bower
+####Bower
 
 ```
 $ bower install angularjs-datepicker --save
 ```
-###Npm
+####Npm
 
 ```
 $ npm install angularjs-datepicker --save
