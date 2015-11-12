@@ -52,7 +52,7 @@
           '</div>',
           '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-calendar-month">',
             '{{month}}&nbsp;',
-            '<a href="javascript:void(0)" ng-click="showYearsPagination = !showYearsPagination">',
+            '<a href="javascript:void(0)" ng-click="paginateYears(year); showYearsPagination = !showYearsPagination;">',
               '<span>',
                 '{{year}}',
                 '<i ng-class="{\'_720kb-datepicker-calendar-header-closed-pagination\': !showYearsPagination, \'_720kb-datepicker-calendar-header-opened-pagination\': showYearsPagination}"></i>',
@@ -484,9 +484,9 @@
             theNewYears.push(Number(startingYear) + i);
           }
           //date typing in input date-typer
-          if ($scope.dateTyper) {
+          if ($scope.dateTyper === 'true') {
 
-            thisInput.on('keyup', function onTyping() {
+            thisInput.on('keyup blur', function onTyping() {
 
               if (thisInput[0].value &&
                 thisInput[0].value.length &&
@@ -507,7 +507,10 @@
 
                       $scope.month = $filter('date')(date, 'MMMM');//december-November like
                       $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
-                      $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
+
+                      if (date.getFullYear().toString().length === 4) {
+                        $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
+                      }
                       setDaysInMonth($scope.monthNumber, $scope.year);
                       $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
                     });
