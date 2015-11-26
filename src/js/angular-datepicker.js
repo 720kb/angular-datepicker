@@ -150,7 +150,7 @@
           , dateFormat = attr.dateFormat
           //, dateMinLimit
           //, dateMaxLimit
-          , dateDisabledDates = $scope.dateDisabledDates
+          , dateDisabledDates = $scope.$eval($scope.dateDisabledDates)
           , date = new Date()
           //, currentDay = $filter('date')(date, 'd')
           , currentMonthNumber = $filter('date')(date, 'M')
@@ -557,6 +557,7 @@
             dateDisabledDates.length > 0) {
 
             for (i; i <= dateDisabledDates.length; i += 1) {
+
               if (new Date(dateDisabledDates[i]).getTime() === new Date(monthNumber + '/' + day + '/' + year).getTime()) {
 
                 return false;
