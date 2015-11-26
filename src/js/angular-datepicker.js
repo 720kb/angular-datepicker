@@ -4,7 +4,7 @@
 
   var A_DAY_IN_MILLISECONDS = 86400000
     , isMobile = (function isMobile() {
-      
+
       if (navigator.userAgent &&
         (navigator.userAgent.match(/Android/i) ||
         navigator.userAgent.match(/webOS/i) ||
@@ -397,7 +397,7 @@
 
         $scope.selectedMonthHandle = function manageSelectedMonthHandle(selectedMonthNumber) {
 
-          $scope.monthNumber = Number($filter('date')(new Date(selectedMonthNumber + ' 01 2000'), 'MM'));
+          $scope.monthNumber = Number($filter('date')(new Date(selectedMonthNumber + '/01/2000'), 'MM'));
           setDaysInMonth($scope.monthNumber, $scope.year);
           setInputValue();
         };
