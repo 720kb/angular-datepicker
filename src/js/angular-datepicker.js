@@ -4,7 +4,7 @@
 
   var A_DAY_IN_MILLISECONDS = 86400000
     , isMobile = (function isMobile() {
-
+      
       if (navigator.userAgent &&
         (navigator.userAgent.match(/Android/i) ||
         navigator.userAgent.match(/webOS/i) ||
@@ -25,7 +25,7 @@
           '<div class="_720kb-datepicker-calendar-header">',
             '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-mobile-item _720kb-datepicker-calendar-month">',
               '<select ng-model="month" title="{{ dateMonthTitle }}" ng-change="selectedMonthHandle(month)">',
-                '<option ng-repeat="item in months" ng-selected="month === item" ng-disabled=\'!isSelectableMaxDate(item + " " + day + ", " + year) || !isSelectableMinDate(item + " " + day + ", " + year)\' ng-value="item">',
+                '<option ng-repeat="item in months" ng-selected="item === month" ng-disabled=\'!isSelectableMaxDate(item + " " + day + ", " + year) || !isSelectableMinDate(item + " " + day + ", " + year)\' ng-value="$index + 1" value="$index + 1">',
                   '{{ item }}',
                 '</option>',
               '</select>',
@@ -395,9 +395,9 @@
           $scope.day = undefined;
         };
 
-        $scope.selectedMonthHandle = function manageSelectedMonthHandle(selectedMonth) {
+        $scope.selectedMonthHandle = function manageSelectedMonthHandle(selectedMonthNumber) {
 
-          $scope.monthNumber = Number($filter('date')(new Date('01 ' + selectedMonth + ' 2000'), 'MM'));
+          $scope.monthNumber = Number($filter('date')(new Date(selectedMonthNumber + ' 01 2000'), 'MM'));
           setDaysInMonth($scope.monthNumber, $scope.year);
           setInputValue();
         };
