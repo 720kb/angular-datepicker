@@ -1,6 +1,6 @@
 {
   "name": "angularjs-datepicker",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "description": "A datepicker directive for angularjs.",
   "homepage": "http://720kb.github.io/angular-datepicker",
   "keywords": [
@@ -14,10 +14,7 @@
   "scripts": {
     "precommit": "grunt lint"
   },
-  "main": [
-    "dist/angular-datepicker.min.js",
-    "dist/angular-datepicker.min.css"
-  ],
+  "main": "dist/angular-datepicker.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/720kb/angular-datepicker.git"
