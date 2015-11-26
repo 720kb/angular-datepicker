@@ -4,7 +4,7 @@
 
   var A_DAY_IN_MILLISECONDS = 86400000
     , isMobile = (function isMobile() {
-
+      
       if (navigator.userAgent &&
         (navigator.userAgent.match(/Android/i) ||
         navigator.userAgent.match(/webOS/i) ||
@@ -405,7 +405,9 @@
         $scope.setNewYear = function setNewYear(year) {
 
           //deactivate selected day
-          $scope.day = undefined;
+          if (!$scope.isMobile) {
+            $scope.day = undefined;
+          }
 
           if ($scope.dateMaxLimit &&
             $scope.year < Number(year)) {
