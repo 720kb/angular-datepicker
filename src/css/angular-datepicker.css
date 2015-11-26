@@ -84,7 +84,6 @@ datepicker, .datepicker, [datepicker],
 ._720kb-datepicker-calendar-header-opened-pagination::after {
   content: " \25F9";
 }
-
 ._720kb-datepicker-calendar-body {
   width: 96%;
   margin: 2%;
@@ -176,6 +175,9 @@ datepicker, .datepicker, [datepicker],
   font-size: 18.5px;
   position: relative;
   bottom:-0.5px;
+}
+._720kb-datepicker-default-button{
+  padding:0 4.5px;
 }
 ._720kb-datepicker-calendar-header-middle._720kb-datepicker-mobile-item{
   width:95%;

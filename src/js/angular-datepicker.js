@@ -4,7 +4,7 @@
 
   var A_DAY_IN_MILLISECONDS = 86400000
     , isMobile = (function isMobile() {
-      
+
       if (navigator.userAgent &&
         (navigator.userAgent.match(/Android/i) ||
         navigator.userAgent.match(/webOS/i) ||
@@ -60,7 +60,7 @@
             '</a>',
           '</div>',
           '<div class="_720kb-datepicker-calendar-header-right">',
-          '<a href="javascript:void(0)" ng-click="nextMonth()" title="{{ buttonNextTitle }}">',
+          '<a class="_720kb-datepicker-calendar-month-button" href="javascript:void(0)" ng-click="nextMonth()" title="{{ buttonNextTitle }}">',
             nextButton,
           '</a>',
           '</div>',
@@ -143,8 +143,8 @@
         var selector = attr.selector
           , thisInput = angular.element(selector ? element[0].querySelector('.' + selector) : element[0].children[0])
           , theCalendar
-          , defaultPrevButton = '<b class="datepicker-default-button">&lang;</b>'
-          , defaultNextButton = '<b class="datepicker-default-button">&rang;</b>'
+          , defaultPrevButton = '<b class="_720kb-datepicker-default-button">&lang;</b>'
+          , defaultNextButton = '<b class="_720kb-datepicker-default-button">&rang;</b>'
           , prevButton = attr.buttonPrev || defaultPrevButton
           , nextButton = attr.buttonNext || defaultNextButton
           , dateFormat = attr.dateFormat
