@@ -509,12 +509,12 @@
 
                       $scope.month = $filter('date')(date, 'MMMM');//december-November like
                       $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
+                      $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
 
                       if (date.getFullYear().toString().length === 4) {
                         $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
                       }
                       setDaysInMonth($scope.monthNumber, $scope.year);
-                      $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
                     });
                   }
                 } catch (e) {
