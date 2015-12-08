@@ -500,7 +500,7 @@
 
                   if (date.getFullYear() &&
                    date.getDay() &&
-                   date.getMonth() &&
+                   !isNaN(date.getMonth()) &&
                    $scope.isSelectableDate(date) &&
                    $scope.isSelectableMaxDate(date) &&
                    $scope.isSelectableMinDate(date)) {
