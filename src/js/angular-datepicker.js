@@ -651,6 +651,13 @@
           isMouseOnInput = false;
         });
 
+        thisInput.on('keyup', function onKeyUp(event) {
+          //escape
+          if (event.keyCode === 27) {
+            $scope.hideCalendar();
+          }
+        });
+
         angular.element(theCalendar).on('mouseenter', function onMouseEnter() {
 
           isMouseOn = true;
@@ -694,7 +701,7 @@
         $scope.$on('$destroy', function unregisterListener() {
 
           unregisterDataSetWatcher();
-          thisInput.off('focus click focusout blur');
+          thisInput.off('focus click focusout blur keyup');
           angular.element(theCalendar).off('mouseenter mouseleave focusin');
           angular.element($window).off('click focus');
         });
