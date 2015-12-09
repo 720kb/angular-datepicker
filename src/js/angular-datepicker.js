@@ -405,7 +405,7 @@
         $scope.setNewYear = function setNewYear(year) {
 
           //deactivate selected day
-          if (!$scope.isMobile) {
+          if (!isMobile) {
             $scope.day = undefined;
           }
 
