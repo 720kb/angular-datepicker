@@ -3,6 +3,7 @@
   'use strict';
 
   var A_DAY_IN_MILLISECONDS = 86400000
+    , avoidThisKeyCodesInTyper = ['37','38','39','40','8']
     , isMobile = (function isMobile() {
 
       if (navigator.userAgent &&
@@ -189,7 +190,7 @@
 
               var modelDate = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
 
-              if (attr.dateFormat) {
+              if (dateFormat) {
 
                 thisInput.val($filter('date')(modelDate, dateFormat));
               } else {
@@ -488,38 +489,43 @@
           //date typing in input date-typer
           if ($scope.dateTyper === 'true') {
 
-            thisInput.on('keyup blur', function onTyping() {
+            thisInput.on('keyup blur', function onTyping(e) {
 
-              if (thisInput[0].value &&
-                thisInput[0].value.length &&
-                thisInput[0].value.length > 0) {
+              if (e &&
+                 avoidThisKeyCodesInTyper.indexOf(e.keyCode.toString()) === -1) {
 
-                try {
+                if (thisInput[0].value &&
+                  thisInput[0].value.length &&
+                  thisInput[0].value.length > 0) {
 
-                  date = new Date(thisInput[0].value.toString());
+                  try {
 
-                  if (date.getFullYear() &&
-                   date.getDay() &&
-                   !isNaN(date.getMonth()) &&
-                   $scope.isSelectableDate(date) &&
-                   $scope.isSelectableMaxDate(date) &&
-                   $scope.isSelectableMinDate(date)) {
+                    date = new Date(thisInput[0].value.toString());
 
-                    $scope.$apply(function applyTyping() {
+                    if (date.getFullYear() &&
+                     date.getDay() &&
+                     !isNaN(date.getMonth()) &&
+                     $scope.isSelectableDate(date) &&
+                     $scope.isSelectableMaxDate(date) &&
+                     $scope.isSelectableMinDate(date)) {
 
-                      $scope.month = $filter('date')(date, 'MMMM');//december-November like
-                      $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
-                      $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
+                      $scope.$apply(function applyTyping() {
 
-                      if (date.getFullYear().toString().length === 4) {
-                        $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
-                      }
-                      setDaysInMonth($scope.monthNumber, $scope.year);
-                    });
+                        $scope.month = $filter('date')(date, 'MMMM');//december-November like
+                        $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
+                        $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
+
+                        if (date.getFullYear().toString().length === 4) {
+                          $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
+                        }
+                        setDaysInMonth($scope.monthNumber, $scope.year);
+                      });
+                      setInputValue();
+                    }
+                  } catch (ex) {
+
+                    return ex;
                   }
-                } catch (e) {
-
-                  return e;
                 }
               }
             });
