@@ -130,7 +130,7 @@ Sometimes you cannot put date input as a first child of datepicker. In this case
 ```html
 <datepicker date-format="yyyy-MM-dd" selector="form-control">
     <div class="input-group">
-        <input placeholder="Choose a date"/>
+        <input class="form-control" placeholder="Choose a date"/>
         <span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-calendar"></i></span>
     </div>
 </datepicker>
