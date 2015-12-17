@@ -19,7 +19,7 @@
         'dateYearTitle': '@',
         'buttonNextTitle': '@',
         'buttonPrevTitle': '@',
-        'dateDisabledDates': '@'
+        'dateDisabledDates': '@',
       },
       'link': function linkingFunction($scope, element, attr) {
         //get child input
@@ -109,6 +109,8 @@
             date = new Date(value);
 
             $scope.month = $filter('date')(date, 'MMMM');//December-November like
+
+
             $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
             $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
             $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
@@ -131,6 +133,12 @@
           }
         });
 
+        $scope.currLanguage = 'en';
+        $scope.daysInKa = ['ორშ', 'სამ', 'ოთხ', 'ხუთ', 'პარ', 'შაბ', 'კვი'];
+        $scope.language = {}
+        $scope.language.KA = 'ka';
+        $scope.language.EN = 'en';
+
 
         $scope.month = $filter('date')(date, 'MMMM');//December-November like
         $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
@@ -141,9 +149,13 @@
             $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
          }
         $scope.months = datetime.MONTH;
-        $scope.daysInString = ['0', '1', '2', '3', '4', '5', '6'].map(function mappingFunc(el) {
 
-          return $filter('date')(new Date(new Date('06/08/2014').valueOf() + A_DAY_IN_MILLISECONDS * el), 'EEE');
+        $scope.daysInString = ['0', '1', '2', '3', '4', '5', '6'].map(function mappingFunc(el) {
+          if($scope.currLanguage === $scope.language.EN){
+            return $filter('date')(new Date(new Date('06/08/2014').valueOf() + A_DAY_IN_MILLISECONDS * el), 'EEE');
+          }else if($scope.currLanguage === $scope.language.KA){
+            return $scope.daysInKa[el];
+          }
         });
 
         //create the calendar holder
