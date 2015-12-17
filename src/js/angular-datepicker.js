@@ -260,6 +260,9 @@
               classHelper.add(theCalendar, '_720kb-datepicker-open');
             }
           }
+          , canHideCalendar = function canHideCalendar() {
+            return !isMouseOn && !isMouseOnInput && theCalendar;
+          }
           , setDaysInMonth = function setDaysInMonth(month, year) {
 
             var i
@@ -649,6 +652,12 @@
         thisInput.on('focusout blur', function onBlurAndFocusOut() {
 
           isMouseOnInput = false;
+
+          //needed as Firefox doesn't support focusin event
+          //see https://developer.mozilla.org/en-US/docs/Web/Events/focusin
+          if (canHideCalendar()) {
+            $scope.hideCalendar();
+          }
         });
 
         angular.element(theCalendar).on('mouseenter', function onMouseEnter() {
@@ -666,11 +675,9 @@
           isMouseOn = true;
         });
 
-        angular.element($window).on('click focus', function onClickOnWindow() {
+        angular.element($window).on('click focusin', function onClickOnWindow() {
 
-          if (!isMouseOn &&
-            !isMouseOnInput && theCalendar) {
-
+          if (canHideCalendar()) {
             $scope.hideCalendar();
           }
         });
