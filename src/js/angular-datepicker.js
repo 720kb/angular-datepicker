@@ -432,11 +432,12 @@
         };
 
         $scope.hideCalendar = function hideCalendar() {
-          if (theCalendar.classList){
-            theCalendar.classList.remove('_720kb-datepicker-open');
-          } else {
-
-            classHelper.remove(theCalendar, '_720kb-datepicker-open');
+          if (!attr.hasOwnProperty('asCalendar')) {
+            if (theCalendar.classList){
+              theCalendar.classList.remove('_720kb-datepicker-open');
+            } else {
+              classHelper.remove(theCalendar, '_720kb-datepicker-open');
+            }
           }
         };
 
@@ -721,14 +722,13 @@
         setDaysInMonth($scope.monthNumber, $scope.year);
 
         $scope.$on('$destroy', function unregisterListener() {
-
           unregisterDataSetWatcher();
           thisInput.off('focus click focusout blur');
           angular.element(theCalendar).off('mouseenter mouseleave focusin');
           angular.element($window).off('click focus');
         });
 
-        if (attr.hasOwnProperty('visibleOnLoad')) {
+        if (attr.hasOwnProperty('visibleOnLoad') || attr.hasOwnProperty('asCalendar')) {
           showCalendar();
         }
       };
