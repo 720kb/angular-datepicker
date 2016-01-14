@@ -26,7 +26,8 @@
     </div>
     <div class="col3">
       <div class="datepicker"
-      datepicker-toggle="false"
+      date-set-hidden="true"
+      datepicker-append-to="body"
       date-format="MMMM d, y"
       date-set="2015/11/26"
       date-min-limit="2014/08/07"
@@ -41,7 +42,8 @@
     <input ng-model="date4" type="text" class="angular-datepicker-input"/>
   </div>
   <div class="col3">
-    <datepicker>
+    <datepicker
+    datepicker-toggle="false">
       <input ng-model="date3" type="text" class="angular-datepicker-input"/>
     </datepicker>
     Date 3 is: {{date3}}

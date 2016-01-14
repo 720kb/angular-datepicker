@@ -198,6 +198,6 @@ datepicker, .datepicker, [datepicker],
   cursor: default;
 }
 /*options*/
-[datepicker-toggle="false"] > ._720kb-datepicker-calendar{
+[datepicker-toggle="false"] > ._720kb-datepicker-calendar, ._720kb-datepicker-calendar.no-toggle{
   visibility:visible;
 }

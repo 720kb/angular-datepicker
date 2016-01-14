@@ -1,4 +1,4 @@
-/*global angular, navigator*/
+/*global angular, document, navigator*/
 (function withAngular(angular, navigator) {
   'use strict';
 
@@ -116,7 +116,7 @@
     , generateHtmlTemplate = function generateHtmlTemplate(prevButton, nextButton) {
 
       var toReturn = [
-        '<div class="_720kb-datepicker-calendar" ng-blur="hideCalendar()">',
+        '<div class="_720kb-datepicker-calendar {{datepickerID}} {{classForToggle}}" ng-blur="hideCalendar()">',
         '</div>'
       ]
       , monthAndYearHeader = generateMonthAndYearHeader(prevButton, nextButton)
@@ -617,10 +617,10 @@
         $scope.dateYearTitle = $scope.dateYearTitle || 'Select year';
         $scope.buttonNextTitle = $scope.buttonNextTitle || 'Next';
         $scope.buttonPrevTitle = $scope.buttonPrevTitle || 'Prev';
-
         $scope.month = $filter('date')(date, 'MMMM');//december-November like
         $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
         $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
+
         if ($scope.dateMaxLimit) {
 
           $scope.year = Number($filter('date')(new Date($scope.dateMaxLimit), 'yyyy'));//2014 like
@@ -633,12 +633,41 @@
 
           return $filter('date')(new Date(new Date('06/08/2014').valueOf() + A_DAY_IN_MILLISECONDS * el), 'EEE');
         });
+        //can this toggle  blur/focus?
+        if ($scope.datepickerToggle === 'false') {
 
-        //create the calendar holder
-        thisInput.after($compile(angular.element(htmlTemplate))($scope));
-        //get the calendar as element
-        theCalendar = element[0].querySelector('._720kb-datepicker-calendar');
+          $scope.classForToggle = 'no-toggle';
+        }
+        //create the calendar holder and append where needed
+        if ($scope.datepickerAppendTo &&
+          $scope.datepickerAppendTo.indexOf('.') !== -1) {
 
+          $scope.datepickerID = 'datepicker-id-' + new Date().getTime() + (Math.floor(Math.random() * 6) + 8);
+          angular.element(document.getElementsByClassName($scope.datepickerAppendTo.replace('.', ''))[0]).append($compile(angular.element(htmlTemplate))($scope, function afterCompile(el) {
+
+            theCalendar = angular.element(el)[0];
+          }));
+        } else if ($scope.datepickerAppendTo &&
+          $scope.datepickerAppendTo.indexOf('#') !== -1) {
+
+          $scope.datepickerID = 'datepicker-id-' + new Date().getTime() + (Math.floor(Math.random() * 6) + 8);
+          angular.element(document.getElementById($scope.datepickerAppendTo.replace('#', ''))).append($compile(angular.element(htmlTemplate))($scope, function afterCompile(el) {
+
+            theCalendar = angular.element(el)[0];
+          }));
+        } else if ($scope.datepickerAppendTo &&
+          $scope.datepickerAppendTo === 'body') {
+          $scope.datepickerID = 'datepicker-id-' + (new Date().getTime() + (Math.floor(Math.random() * 6) + 8));
+          angular.element(document).find('body').append($compile(angular.element(htmlTemplate))($scope, function afterCompile(el) {
+
+            theCalendar = angular.element(el)[0];
+          }));
+        } else {
+
+          thisInput.after($compile(angular.element(htmlTemplate))($scope));
+          //get the calendar as element
+          theCalendar = element[0].querySelector('._720kb-datepicker-calendar');
+        }
         //some tricky dirty events to fire if click is outside of the calendar and show/hide calendar when needed
         thisInput.on('focus click', function onFocusAndClick() {
 
@@ -666,7 +695,7 @@
           isMouseOn = true;
         });
 
-        angular.element($window).on('click focus', function onClickOnWindow() {
+        angular.element($window).on('click focus focusin', function onClickOnWindow() {
 
           if (!isMouseOn &&
             !isMouseOnInput && theCalendar) {
@@ -716,7 +745,9 @@
           'buttonPrevTitle': '@',
           'dateDisabledDates': '@',
           'dateSetHidden': '@',
-          'dateTyper': '@'
+          'dateTyper': '@',
+          'datepickerAppendTo': '@',
+          'datepickerToggle': '@'
         },
         'link': linkingFunction
       };
