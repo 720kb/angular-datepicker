@@ -84,7 +84,7 @@ date-set-hidden="" | String(Boolean) | false | Set the default date to be shown 
 date-disabled-dates="" | String([Date(), Date(), ...]) | false | Disable specific dates using an _Array_ of dates
 date-refocus="" | String(Boolean) | false | Set the datepicker to re-focus the input after selecting a date
 date-typer="" | String(Boolean) | false | Set the datepicker to update calendar date when user is typing a date
-datepicker-append-to="" | String('#id' || '.class' || 'body') | false | Append the datepicker to #id or  .class element or to body
+datepicker-append-to="" | String('#id','.classname', 'body') | false | Append the datepicker to #id or  .class element or to body
 datepicker-toggle="" | String(Boolean) | true | Set the datepicker to toggle its visibility on focus and blur
 
 ##Options
