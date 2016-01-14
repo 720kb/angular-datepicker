@@ -84,7 +84,7 @@ date-set-hidden="" | String(Boolean) | false | Set the default date to be shown 
 date-disabled-dates="" | String([Date(), Date(), ...]) | false | Disable specific dates using an _Array_ of dates
 date-refocus="" | String(Boolean) | false | Set the datepicker to re-focus the input after selecting a date
 date-typer="" | String(Boolean) | false | Set the datepicker to update calendar date when user is typing a date
-date-toggle="" | String(Boolean) | true | Set the datepicker always visible in page
+date-toggle="" | String(Boolean) | true | Set the datepicker to toggle its visibility on focus and blur
 
 ##Options
 Angular datepicker allows you to use some options via `attribute` data
