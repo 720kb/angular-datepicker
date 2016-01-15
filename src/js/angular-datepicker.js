@@ -116,7 +116,7 @@
     , generateHtmlTemplate = function generateHtmlTemplate(prevButton, nextButton) {
 
       var toReturn = [
-        '<div class="_720kb-datepicker-calendar {{datepickerID}} {{classForToggle}}" ng-blur="hideCalendar()">',
+        '<div class="_720kb-datepicker-calendar {{datepickerClass}} {{datepickerID}} {{classForToggle}}" ng-blur="hideCalendar()">',
         '</div>'
       ]
       , monthAndYearHeader = generateMonthAndYearHeader(prevButton, nextButton)
@@ -727,10 +727,6 @@
           angular.element(theCalendar).off('mouseenter mouseleave focusin');
           angular.element($window).off('click focus');
         });
-
-        if (attr.hasOwnProperty('visibleOnLoad')) {
-          showCalendar();
-        }
       };
 
       return {
@@ -747,7 +743,8 @@
           'dateSetHidden': '@',
           'dateTyper': '@',
           'datepickerAppendTo': '@',
-          'datepickerToggle': '@'
+          'datepickerToggle': '@',
+          'datepickerClass': '@'
         },
         'link': linkingFunction
       };

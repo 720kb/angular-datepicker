@@ -11,7 +11,7 @@ The Angularjs Datepicker is developed by [720kb](http://720kb.net).
 
 ##Requirements
 
-AngularJS v1.2+
+AngularJS v1.3+
 
 ###Browser support
 
@@ -84,6 +84,7 @@ date-set-hidden="" | String(Boolean) | false | Set the default date to be shown 
 date-disabled-dates="" | String([Date(), Date(), ...]) | false | Disable specific dates using an _Array_ of dates
 date-refocus="" | String(Boolean) | false | Set the datepicker to re-focus the input after selecting a date
 date-typer="" | String(Boolean) | false | Set the datepicker to update calendar date when user is typing a date
+datepicker-class="" | String('class1 class2 class3') | false | Set custom class/es for the datepicker calendar
 datepicker-append-to="" | String('#id','.classname', 'body') | false | Append the datepicker to #id or  .class element or to body
 datepicker-toggle="" | String(Boolean) | true | Set the datepicker to toggle its visibility on focus and blur
 
@@ -133,17 +134,10 @@ Sometimes you cannot put date input as a first child of datepicker. In this case
 <datepicker date-format="yyyy-MM-dd" selector="form-control">
     <div class="input-group">
         <input class="form-control" placeholder="Choose a date"/>
-        <span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-calendar"></i></span>
+        <span class="input-group-addon" style="cursor: pointer">
+        <i class="fa fa-lg fa-calendar"></i>
+        </span>
     </div>
-</datepicker>
-```
-
-####Datepicker visible on load
-You have an option to make the datepicker visible when it loads with `visible-on-load` attribute.
-
-```html
-<datepicker visible-on-load>
-    <input placeholder="Choose a date"/>
 </datepicker>
 ```
 
