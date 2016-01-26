@@ -152,9 +152,6 @@
           //, dateMaxLimit
           , dateDisabledDates = $scope.$eval($scope.dateDisabledDates)
           , date = new Date()
-          //, currentDay = $filter('date')(date, 'd')
-          , currentMonthNumber = $filter('date')(date, 'M')
-          //, currentYear = $filter('date')(date, 'yyyy')
           , isMouseOn = false
           , isMouseOnInput = false
           , datetime = $locale.DATETIME_FORMATS
@@ -350,20 +347,20 @@
 
             $scope.monthNumber += 1;
           }
-          //set next month
-          $scope.month = $filter('date')(new Date($scope.year, $scope.monthNumber - 1), 'MMMM');
-          //reinit days
-          setDaysInMonth($scope.monthNumber, $scope.year);
 
           //check if max date is ok
-          if ($scope.dateMaxLimit &&
-            currentMonthNumber > $scope.monthNumber) {
+          if ($scope.dateMaxLimit) {
 
-            if (!$scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
+            if (!$scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.days[0])) {
 
               resetToMaxDate();
             }
           }
+
+          //set next month
+          $scope.month = $filter('date')(new Date($scope.year, $scope.monthNumber - 1), 'MMMM');
+          //reinit days
+          setDaysInMonth($scope.monthNumber, $scope.year);
           //deactivate selected day
           $scope.day = undefined;
         };
@@ -379,18 +376,18 @@
 
             $scope.monthNumber -= 1;
           }
-          //set next month
-          $scope.month = $filter('date')(new Date($scope.year, $scope.monthNumber - 1), 'MMMM');
-          //reinit days
-          setDaysInMonth($scope.monthNumber, $scope.year);
           //check if min date is ok
           if ($scope.dateMinLimit) {
 
-            if (!$scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
+            if (!$scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.days[$scope.days.length - 1])) {
 
               resetToMinDate();
             }
           }
+          //set next month
+          $scope.month = $filter('date')(new Date($scope.year, $scope.monthNumber - 1), 'MMMM');
+          //reinit days
+          setDaysInMonth($scope.monthNumber, $scope.year);
           //deactivate selected day
           $scope.day = undefined;
         };
