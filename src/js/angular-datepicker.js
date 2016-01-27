@@ -46,7 +46,7 @@
       return [
         '<div class="_720kb-datepicker-calendar-header">',
           '<div class="_720kb-datepicker-calendar-header-left">',
-            '<a href="javascript:void(0)" ng-click="prevMonth()" title="{{ buttonPrevTitle }}">',
+            '<a class="_720kb-datepicker-calendar-month-button" href="javascript:void(0)" ng-class="{\'_720kb-datepicker-item-hidden\': !willPrevMonthBeSelectable()}" ng-click="prevMonth()" title="{{ buttonPrevTitle }}">',
               prevButton,
             '</a>',
           '</div>',
@@ -60,7 +60,7 @@
             '</a>',
           '</div>',
           '<div class="_720kb-datepicker-calendar-header-right">',
-          '<a class="_720kb-datepicker-calendar-month-button" href="javascript:void(0)" ng-click="nextMonth()" title="{{ buttonNextTitle }}">',
+          '<a class="_720kb-datepicker-calendar-month-button" ng-class="{\'_720kb-datepicker-item-hidden\': !willNextMonthBeSelectable()}" href="javascript:void(0)" ng-click="nextMonth()" title="{{ buttonNextTitle }}">',
             nextButton,
           '</a>',
           '</div>',
@@ -156,6 +156,7 @@
           , isMouseOnInput = false
           , datetime = $locale.DATETIME_FORMATS
           , pageDatepickers
+          , hours24h = 86400000
           , htmlTemplate = generateHtmlTemplate(prevButton, nextButton)
           , resetToMinDate = function resetToMinDate() {
 
@@ -363,6 +364,53 @@
           setDaysInMonth($scope.monthNumber, $scope.year);
           //deactivate selected day
           $scope.day = undefined;
+        };
+
+        $scope.willPrevMonthBeSelectable = function willPrevMonthBeSelectable() {
+          var monthNumber = $scope.monthNumber
+            , year = $scope.year
+            , prevDay = $filter('date')(new Date(new Date(year + '/' + monthNumber + '/01').getTime() - hours24h), 'dd'); //get last day in previous month
+
+          if (monthNumber === 1) {
+
+            monthNumber = 12;
+            year = year - 1;
+          } else {
+
+            monthNumber -= 1;
+          }
+
+          if ($scope.dateMinLimit) {
+            if (!$scope.isSelectableMinDate(year + '/' + monthNumber + '/' + prevDay)) {
+
+              return false;
+            }
+          }
+
+          return true;
+        };
+
+        $scope.willNextMonthBeSelectable = function willNextMonthBeSelectable() {
+          var monthNumber = $scope.monthNumber
+            , year = $scope.year;
+
+          if (monthNumber === 12) {
+
+            monthNumber = 1;
+            year += 1;
+          } else {
+
+            monthNumber += 1;
+          }
+
+          if ($scope.dateMaxLimit) {
+            if (!$scope.isSelectableMaxDate(year + '/' + monthNumber + '/01')) {
+
+              return false;
+            }
+          }
+
+          return true;
         };
 
         $scope.prevMonth = function managePrevMonth() {
