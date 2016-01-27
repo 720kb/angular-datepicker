@@ -751,13 +751,15 @@
 
         //check always if given range of dates is ok
         if ($scope.dateMinLimit &&
-          !$scope.isSelectableMinYear($scope.year)) {
+          !$scope.isSelectableMinYear($scope.year) ||
+          !$scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
           resetToMinDate();
         }
 
         if ($scope.dateMaxLimit &&
-          !$scope.isSelectableMaxYear($scope.year)) {
+          !$scope.isSelectableMaxYear($scope.year) ||
+          !$scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
           resetToMaxDate();
         }
