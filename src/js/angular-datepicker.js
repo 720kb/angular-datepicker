@@ -714,10 +714,18 @@
           theCalendar = element[0].querySelector('._720kb-datepicker-calendar');
         }
         //some tricky dirty events to fire if click is outside of the calendar and show/hide calendar when needed
-        thisInput.on('focus click', function onFocusAndClick() {
+        thisInput.on('focus click focusin', function onFocusAndClick() {
 
           isMouseOnInput = true;
-          showCalendar();
+
+          if (!isMouseOn &&
+            !isMouseOnInput && theCalendar) {
+
+            $scope.hideCalendar();
+          } else {
+
+            showCalendar();
+          }
         });
 
         thisInput.on('focusout blur', function onBlurAndFocusOut() {
