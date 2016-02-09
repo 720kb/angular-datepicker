@@ -1,6 +1,6 @@
 Angular Datepicker
 ==================
-![Angular datepicker calendar](http://i.imgur.com/ScgCR00.png)
+![Angular datepicker calendar](http://i.imgur.com/jKfADtA.png)
 
 [![Join the chat at https://gitter.im/720kb/angular-datepicker](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/720kb/angular-datepicker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
