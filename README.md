@@ -140,6 +140,15 @@ Sometimes you cannot put date input as a first child of datepicker. In this case
     </div>
 </datepicker>
 ```
+####Datepicker always visible
+Sometimes you would set the datepicker always visible in page.
+To achieve this, you just have to use this CSS line:
+
+```css
+._720kb-datepicker-calendar{
+  visibility:visible;
+}
+```
 
 ### Example
 
