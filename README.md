@@ -77,8 +77,8 @@ Call the directive wherever you want in your html page
 Option | Type | Default | Description
 ------------- | ------------- | ------------- | -------------
 date-set="" | String | false | Set a default date to show and init datepicker
- |  | _tip_ | _Do not use same scope for ng-model="date" and date-set="{{date}}", this example is wrong._
- |  |_tip_ | _If you want to pass a Date Object inside do like this date-set="{{new Date().toString()}}"_
+ |  | | **tip:** _Do not use same scope for ng-model="date" and date-set="{{date}}", this example is wrong._
+ |  | | **tip:** _If you want to pass a Date Object inside do like this date-set="{{new Date().toString()}}"_
 date-format="" | String | String(new Date()) | Set the date format you want to use, see the list [here](https://docs.angularjs.org/api/ng/filter/date)
 date-min-limit="" | String | false | Set a minimum date limit - you can use all the accepted date formats by the javascript `new Date()`
 date-max-limit="" | String | false | Set a maximum date limit - you can use all the accepted date formats by the javascript `new Date()`
