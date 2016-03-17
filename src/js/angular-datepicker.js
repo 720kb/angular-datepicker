@@ -34,7 +34,7 @@
           '<div class="_720kb-datepicker-calendar-header">',
             '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-mobile-item _720kb-datepicker-calendar-month">',
               '<select ng-model="mobileYear" title="{{ dateYearTitle }}" ng-change="setNewYear(mobileYear)">',
-                '<option ng-repeat="item in paginationYears" ng-selected="year === item" ng-value="item" ng-disabled="!isSelectableMinYear(item) || !isSelectableMaxYear(item)">',
+                '<option ng-repeat="item in paginationYears track by $index" ng-selected="year === item" ng-value="item" ng-disabled="!isSelectableMinYear(item) || !isSelectableMaxYear(item)">',
                   '{{ item }}',
                 '</option>',
               '</select>',
@@ -72,7 +72,7 @@
       return [
         '<div class="_720kb-datepicker-calendar-header" ng-show="showYearsPagination">',
           '<div class="_720kb-datepicker-calendar-years-pagination">',
-            '<a ng-class="{\'_720kb-datepicker-active\': y === year, \'_720kb-datepicker-disabled\': !isSelectableMaxYear(y) || !isSelectableMinYear(y)}" href="javascript:void(0)" ng-click="setNewYear(y)" ng-repeat="y in paginationYears">',
+            '<a ng-class="{\'_720kb-datepicker-active\': y === year, \'_720kb-datepicker-disabled\': !isSelectableMaxYear(y) || !isSelectableMinYear(y)}" href="javascript:void(0)" ng-click="setNewYear(y)" ng-repeat="y in paginationYears track by $index">',
               '{{y}}',
             '</a>',
           '</div>',
@@ -324,12 +324,15 @@
 
             if (newValue) {
 
-              date = new Date(newValue);
+              date = $filter('date')(new Date(newValue), attr.dateFormat);
+
               $scope.month = $filter('date')(date, 'MMMM');//december-November like
               $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
               $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
               $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
+
               setDaysInMonth($scope.monthNumber, $scope.year);
+
               if ($scope.dateSetHidden !== 'true') {
 
                 setInputValue();
