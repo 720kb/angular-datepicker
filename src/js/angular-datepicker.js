@@ -547,7 +547,7 @@
                   date = new Date(thisInput[0].value.toString());
 
                   if (date.getFullYear() &&
-                   date.getDay() &&
+                   !isNaN(date.getDay()) &&
                    !isNaN(date.getMonth()) &&
                    $scope.isSelectableDate(date) &&
                    $scope.isSelectableMaxDate(date) &&

@@ -1,6 +1,6 @@
 {
   "name": "angularjs-datepicker",
-  "version": "0.2.26-beta",
+  "version": "0.2.27-beta",
   "description": "A datepicker directive for angularjs.",
   "authors": [
     "Filippo Oretti <filippo.oretti@gmail.com",
