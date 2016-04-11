@@ -751,14 +751,16 @@
           isMouseOn = true;
         });
 
-        angular.element($window).on('click focus focusin', function onClickOnWindow() {
+        var onClickOnWindow = function() {
 
           if (!isMouseOn &&
             !isMouseOnInput && theCalendar) {
 
             $scope.hideCalendar();
           }
-        });
+        };
+
+        angular.element($window).on('click focus focusin', onClickOnWindow);
 
         //check always if given range of dates is ok
         if ($scope.dateMinLimit &&
@@ -783,7 +785,7 @@
           unregisterDataSetWatcher();
           thisInput.off('focus click focusout blur');
           angular.element(theCalendar).off('mouseenter mouseleave focusin');
-          angular.element($window).off('click focus');
+          angular.element($window).off('click focus focusin', onClickOnWindow);
         });
       };
 
