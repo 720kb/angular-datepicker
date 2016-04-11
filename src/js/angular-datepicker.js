@@ -158,6 +158,14 @@
           , pageDatepickers
           , hours24h = 86400000
           , htmlTemplate = generateHtmlTemplate(prevButton, nextButton)
+          , onClickOnWindow = function onClickOnWindow() {
+
+            if (!isMouseOn &&
+              !isMouseOnInput && theCalendar) {
+
+              $scope.hideCalendar();
+            }
+          }
           , resetToMinDate = function resetToMinDate() {
 
             $scope.month = $filter('date')(new Date($scope.dateMinLimit), 'MMMM');
@@ -750,15 +758,6 @@
 
           isMouseOn = true;
         });
-
-        var onClickOnWindow = function() {
-
-          if (!isMouseOn &&
-            !isMouseOnInput && theCalendar) {
-
-            $scope.hideCalendar();
-          }
-        };
 
         angular.element($window).on('click focus focusin', onClickOnWindow);
 
