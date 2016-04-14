@@ -87,7 +87,7 @@ date-max-limit="" | String | false | Set a maximum date limit - you can use all 
 date-set-hidden="" | String(Boolean) | false | Set the default date to be shown only in calendar and not in the input field
 date-disabled-dates="" | String([Date(), Date(), ...]) | false | Disable specific dates using an _Array_ of dates
 date-refocus="" | String(Boolean) | false | Set the datepicker to re-focus the input after selecting a date
-date-typer="" | String(Boolean) | false | Set the datepicker to update calendar date when user is typing a date, see validation [tips](#validation) 
+date-typer="" | String(Boolean) | false | Set the datepicker to update calendar date when user is typing a date, see validation [tips](#date-validation) 
 datepicker-class="" | String('class1 class2 class3') | false | Set custom class/es for the datepicker calendar
 datepicker-append-to="" | String('#id','.classname', 'body') | false | Append the datepicker to #id or  .class element or to body
 datepicker-toggle="" | String(Boolean) | true | Set the datepicker to toggle its visibility on focus and blur
@@ -155,7 +155,7 @@ To achieve this, you just have to use this CSS line:
 ```
 ###Tips
 
-####Live input typing validation
+####Date validation
 If you want to validate the input, while user is typing (live), you have to refer to `ngModel`.
 As long as you use something like:
 ```html
