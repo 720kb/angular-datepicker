@@ -187,7 +187,7 @@ Then your final html:
 ```html
 <div ng-controller="MyCtrl as ctrl">
 <input type="text" ng-model="myDate" datepicker/>
-<div ng-if="ctrl.error">{{ctrl.error}}</div>
+<div ng-show="ctrl.error">{{ctrl.error}}</div>
 </div>
 ```
 
