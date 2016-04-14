@@ -156,7 +156,7 @@ To achieve this, you just have to use this CSS line:
 ###Tips
 
 ####Date validation
-If you want to validate the input, while user is typing (live), you have to refer to `ngModel`.
+If you want to validate the input, while user is typing for example, you just have to refer to the `ngModel`.
 As long as you use something like:
 ```html
 <div ng-controller="MyCtrl as ctrl">
