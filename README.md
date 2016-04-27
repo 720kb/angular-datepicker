@@ -147,7 +147,7 @@ Sometimes you cannot put date input as a first child of datepicker. In this case
 </datepicker>
 ```
 ####Manually show and hide datepicker
-Sometimes you would to manually show or hide the datepicker, this can be achieved using `datepicker-show` attribute, if `false`, datepicker is hidden, if `true`, datepicker is shown
+Sometimes you want to (manually/programmatically) show or hide the datepicker, this can be achieved using `datepicker-show` attribute, if `false`, datepicker is hidden, if `true`, datepicker is shown
 
 ```javascript
 .controller('TestController', ['$scope', '$interval', function TestController($scope, $interval) {
