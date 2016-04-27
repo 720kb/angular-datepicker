@@ -53,7 +53,7 @@ datepicker, .datepicker, [datepicker],
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-._720kb-datepicker-calendar._720kb-datepicker-open {
+._720kb-datepicker-calendar._720kb-datepicker-open,._720kb-datepicker-calendar._720kb-datepicker-forced-to-open {
   visibility: visible;
 }
 ._720kb-datepicker-calendar-header {
@@ -198,6 +198,6 @@ datepicker, .datepicker, [datepicker],
   cursor: default;
 }
 /*options*/
-[datepicker-toggle="false"] > ._720kb-datepicker-calendar, ._720kb-datepicker-calendar.no-toggle{
+[datepicker-toggle="false"] > ._720kb-datepicker-calendar{
   visibility:visible;
 }

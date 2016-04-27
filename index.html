@@ -15,7 +15,7 @@
   </style>
   <title>Angularjs Datepicker</title>
 </head>
-<body>
+<body ng-controller="TestController as ctrl">
   <div class="separator50"></div>
   <div class="col6 offset-left2">
     <div class="col3">
@@ -42,8 +42,7 @@
     <input ng-model="date4" type="text" class="angular-datepicker-input"/>
   </div>
   <div class="col3">
-    <datepicker
-    datepicker-toggle="false">
+    <datepicker datepicker-show="{{ctrl.visibility}}">
       <input ng-model="date3" type="text" class="angular-datepicker-input"/>
     </datepicker>
     Date 3 is: {{date3}}

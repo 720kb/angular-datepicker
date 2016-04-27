@@ -1,5 +1,6 @@
-/*global angular, document, navigator*/
+/*global angular document navigator*/
 (function withAngular(angular, navigator) {
+
   'use strict';
 
   var A_DAY_IN_MILLISECONDS = 86400000
@@ -116,7 +117,7 @@
     , generateHtmlTemplate = function generateHtmlTemplate(prevButton, nextButton) {
 
       var toReturn = [
-        '<div class="_720kb-datepicker-calendar {{datepickerClass}} {{datepickerID}} {{classForToggle}}" ng-blur="hideCalendar()">',
+        '<div class="_720kb-datepicker-calendar {{datepickerClass}} {{datepickerID}}" ng-class="{\'_720kb-datepicker-forced-to-open\': checkAndToggleVisibility()}" ng-blur="hideCalendar()">',
         '</div>'
       ]
       , monthAndYearHeader = generateMonthAndYearHeader(prevButton, nextButton)
@@ -266,6 +267,18 @@
               classHelper.add(theCalendar, '_720kb-datepicker-open');
             }
           }
+          , checkAndToggleVisibility = function checkAndToggleVisibility() {
+
+            if ($scope.datepickerShow &&
+              $scope.$eval($scope.datepickerShow)) {
+
+              showCalendar();
+            } else if ($scope.datepickerShow &&
+              !$scope.$eval($scope.datepickerShow)) {
+
+              $scope.hideCalendar();
+            }
+          }
           , setDaysInMonth = function setDaysInMonth(month, year) {
 
             var i
@@ -345,6 +358,7 @@
 
                 setInputValue();
               }
+              checkAndToggleVisibility();
             }
           });
 
@@ -689,11 +703,7 @@
 
           return $filter('date')(new Date(new Date('06/08/2014').valueOf() + A_DAY_IN_MILLISECONDS * el), 'EEE');
         });
-        //can this toggle  blur/focus?
-        if ($scope.datepickerToggle === 'false') {
 
-          $scope.classForToggle = 'no-toggle';
-        }
         //create the calendar holder and append where needed
         if ($scope.datepickerAppendTo &&
           $scope.datepickerAppendTo.indexOf('.') !== -1) {
@@ -724,26 +734,32 @@
           //get the calendar as element
           theCalendar = element[0].querySelector('._720kb-datepicker-calendar');
         }
-        //some tricky dirty events to fire if click is outside of the calendar and show/hide calendar when needed
-        thisInput.on('focus click focusin', function onFocusAndClick() {
+        //if datepicker-toggle="" is not present or true by default
+        if (!$scope.datepickerToggle ||
+          $scope.datepickerToggle !== 'false' ||
+          !$scope.$eval($scope.datepickerToggle)) {
 
-          isMouseOnInput = true;
+          thisInput.on('focus click focusin', function onFocusAndClick() {
 
-          if (!isMouseOn &&
+            isMouseOnInput = true;
+
+            if (!isMouseOn &&
             !isMouseOnInput && theCalendar) {
 
-            $scope.hideCalendar();
-          } else {
+              $scope.hideCalendar();
+            } else {
 
-            showCalendar();
-          }
-        });
+              showCalendar();
+            }
+            checkAndToggleVisibility();
+          });
+        }
 
         thisInput.on('focusout blur', function onBlurAndFocusOut() {
 
           isMouseOnInput = false;
         });
-
+        //some tricky dirty events to fire if click is outside of the calendar and show/hide calendar when needed
         angular.element(theCalendar).on('mouseenter', function onMouseEnter() {
 
           isMouseOn = true;
@@ -776,8 +792,10 @@
           resetToMaxDate();
         }
 
+        //datepicker boot start
         $scope.paginateYears($scope.year);
         setDaysInMonth($scope.monthNumber, $scope.year);
+        $scope.checkAndToggleVisibility = checkAndToggleVisibility;
 
         $scope.$on('$destroy', function unregisterListener() {
 
@@ -803,7 +821,8 @@
           'dateTyper': '@',
           'datepickerAppendTo': '@',
           'datepickerToggle': '@',
-          'datepickerClass': '@'
+          'datepickerClass': '@',
+          'datepickerShow': '@'
         },
         'link': linkingFunction
       };
