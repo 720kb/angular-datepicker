@@ -91,6 +91,8 @@ date-typer="" | String(Boolean) | false | Set the datepicker to update calendar 
 datepicker-class="" | String('class1 class2 class3') | false | Set custom class/es for the datepicker calendar
 datepicker-append-to="" | String('#id','.classname', 'body') | false | Append the datepicker to #id or  .class element or to body
 datepicker-toggle="" | String(Boolean) | true | Set the datepicker to toggle its visibility on focus and blur
+date-show="" | String | false | Trigger the datepicker visibility, if true datepicker is shown if false it is hidden
+ |  | | **tip:** _You may use this option togheter with datepicker-toggle="false" for a stable behavior_
 
 ##Options
 Angular datepicker allows you to use some options via `attribute` data
