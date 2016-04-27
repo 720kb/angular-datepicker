@@ -146,14 +146,38 @@ Sometimes you cannot put date input as a first child of datepicker. In this case
     </div>
 </datepicker>
 ```
-####Datepicker always visible
-Sometimes you would set the datepicker always visible in page.
-To achieve this, you just have to use this CSS line:
+####Datepicker manually show and hide
+Sometimes you would to manually show or hide the datepicker, this can be achieved using `datepicker-show` attribute, if `false`, datepicker is hidden, if `true`, datepicker is shown
 
-```css
-._720kb-datepicker-calendar{
-  visibility:visible;
-}
+```javascript
+.controller('TestController', ['$scope', '$interval', function TestController($scope, $interval) {
+    $scope.visibility = true;
+
+    $interval(function setInterval() {
+      //toggling manually everytime
+      $scope.visibility = !$scope.visibility;
+    }, 3500);
+  }]);
+```
+```html
+  <datepicker ng-controller="TestController" datepicker-show="{{visibility}}">
+      <input ng-model="date3" type="text" class="angular-datepicker-input"/>
+    </datepicker>
+```
+_tip: you should use this attribute togheter with `datepicker-toggle="false" , for a better stable behavior of the datepicker_
+
+####Input as grandchild
+Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome
+
+```html
+<datepicker date-format="yyyy-MM-dd" selector="form-control">
+    <div class="input-group">
+        <input class="form-control" placeholder="Choose a date"/>
+        <span class="input-group-addon" style="cursor: pointer">
+        <i class="fa fa-lg fa-calendar"></i>
+        </span>
+    </div>
+</datepicker>
 ```
 ###Tips
 
