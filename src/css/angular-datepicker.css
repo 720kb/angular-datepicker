@@ -197,7 +197,3 @@ datepicker, .datepicker, [datepicker],
   background: rgba(25,2,0,0.02);
   cursor: default;
 }
-/*options*/
-[datepicker-toggle="false"] > ._720kb-datepicker-calendar{
-  visibility:visible;
-}

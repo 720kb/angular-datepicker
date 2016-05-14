@@ -117,7 +117,7 @@
     , generateHtmlTemplate = function generateHtmlTemplate(prevButton, nextButton) {
 
       var toReturn = [
-        '<div class="_720kb-datepicker-calendar {{datepickerClass}} {{datepickerID}}" ng-class="{\'_720kb-datepicker-forced-to-open\': checkAndToggleVisibility()}" ng-blur="hideCalendar()">',
+        '<div class="_720kb-datepicker-calendar {{datepickerClass}} {{datepickerID}}" ng-class="{\'_720kb-datepicker-forced-to-open\': checkVisibility()}" ng-blur="hideCalendar()">',
         '</div>'
       ]
       , monthAndYearHeader = generateMonthAndYearHeader(prevButton, nextButton)
@@ -267,17 +267,13 @@
               classHelper.add(theCalendar, '_720kb-datepicker-open');
             }
           }
-          , checkAndToggleVisibility = function checkAndToggleVisibility() {
+          , checkToggle = function checkToggle() {
 
-            if ($scope.datepickerShow &&
-              $scope.$eval($scope.datepickerShow)) {
+            return $scope.$eval($scope.datepickerToggle);
+          }
+          , checkVisibility = function checkVisibility() {
 
-              showCalendar();
-            } else if ($scope.datepickerShow &&
-              !$scope.$eval($scope.datepickerShow)) {
-
-              $scope.hideCalendar();
-            }
+            return $scope.$eval($scope.datepickerShow);
           }
           , setDaysInMonth = function setDaysInMonth(month, year) {
 
@@ -358,7 +354,6 @@
 
                 setInputValue();
               }
-              checkAndToggleVisibility();
             }
           });
 
@@ -735,9 +730,7 @@
           theCalendar = element[0].querySelector('._720kb-datepicker-calendar');
         }
         //if datepicker-toggle="" is not present or true by default
-        if (!$scope.datepickerToggle ||
-          $scope.datepickerToggle !== 'false' ||
-          !$scope.$eval($scope.datepickerToggle)) {
+        if (checkToggle()) {
 
           thisInput.on('focus click focusin', function onFocusAndClick() {
 
@@ -751,7 +744,6 @@
 
               showCalendar();
             }
-            checkAndToggleVisibility();
           });
         }
 
@@ -794,8 +786,9 @@
 
         //datepicker boot start
         $scope.paginateYears($scope.year);
+
         setDaysInMonth($scope.monthNumber, $scope.year);
-        $scope.checkAndToggleVisibility = checkAndToggleVisibility;
+        $scope.checkVisibility = checkVisibility;
 
         $scope.$on('$destroy', function unregisterListener() {
 
