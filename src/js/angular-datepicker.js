@@ -268,11 +268,18 @@
             }
           }
           , checkToggle = function checkToggle() {
+            if (!$scope.datepickerToggle) {
+
+              return true;
+            }
 
             return $scope.$eval($scope.datepickerToggle);
           }
           , checkVisibility = function checkVisibility() {
+            if (!$scope.datepickerShow) {
 
+              return false;
+            }
             return $scope.$eval($scope.datepickerShow);
           }
           , setDaysInMonth = function setDaysInMonth(month, year) {
