@@ -104,7 +104,7 @@ datepicker, .datepicker, [datepicker],
   background: rgba(0, 0, 0, 0.03);
 }
 ._720kb-datepicker-calendar-day._720kb-datepicker-today {
-  border: 1px inset;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0, .5);
   font-weight: bold;
 }
 ._720kb-datepicker-calendar-header a, ._720kb-datepicker-calendar-header a:hover {
