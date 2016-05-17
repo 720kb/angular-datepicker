@@ -348,7 +348,7 @@
 
             if (newValue) {
 
-              date = new Date($filter('date')(new Date(newValue), attr.dateFormat));
+              date = new Date(newValue);
 
               $scope.month = $filter('date')(date, 'MMMM');//december-November like
               $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
