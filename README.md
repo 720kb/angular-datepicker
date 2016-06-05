@@ -92,7 +92,7 @@ datepicker-class="" | String('class1 class2 class3') | false | Set custom class/
 datepicker-append-to="" | String('#id','.classname', 'body') | false | Append the datepicker to #id or  .class element or to body
 datepicker-toggle="" | String(Boolean) | true | Set the datepicker to toggle its visibility on focus and blur
 datepicker-show="" | String | false | Trigger the datepicker visibility, if true datepicker is shown if false it is hidden
- |  | | **tip:** _You may use this option togheter with datepicker-toggle="false" for a stable behavior_
+ |  | | **tip:** _You may use this option together with datepicker-toggle="false" for a stable behavior_
 
 ##Options
 Angular datepicker allows you to use some options via `attribute` data
@@ -164,7 +164,7 @@ Sometimes you want to (manually/programmatically) show or hide the datepicker, t
       <input ng-model="date3" type="text" class="angular-datepicker-input"/>
     </datepicker>
 ```
-_tip: you should use this attribute togheter with `datepicker-toggle="false" , for a better stable behavior of the datepicker_
+_tip: you should use this attribute together with `datepicker-toggle="false" , for a better stable behavior of the datepicker_
 
 ####Input as grandchild
 Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome
