@@ -82,7 +82,16 @@ datepicker, .datepicker, [datepicker],
 }
 
 ._720kb-datepicker-calendar-header-opened-pagination::after {
-  content: " \25F9";
+  content: " \25BE";
+  margin-left: 4px;
+  position: relative;
+  bottom: -3px;
+  display:inline-block;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 ._720kb-datepicker-calendar-body {
   width: 96%;
