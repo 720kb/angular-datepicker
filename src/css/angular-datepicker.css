@@ -22,7 +22,7 @@ datepicker, .datepicker, [datepicker],
 ._720kb-datepicker-calendar-body,
 ._720kb-datepicker-calendar-days-header,
 ._720kb-datepicker-calendar-years-pagination-pages {
-  font-family: Helvetica Neue, Arial, sans-serif;
+  font-family: Helvetica Neue;
   font-size: 13.5px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -82,7 +82,7 @@ datepicker, .datepicker, [datepicker],
 }
 
 ._720kb-datepicker-calendar-header-opened-pagination::after {
-  content: " \25B4";
+  content: " \25F9";
 }
 ._720kb-datepicker-calendar-body {
   width: 96%;
