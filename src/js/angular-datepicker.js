@@ -194,14 +194,14 @@
             if ($scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day) &&
                 $scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
-              var modelDate = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
+              $scope.ngModel = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
 
               if (attr.dateFormat) {
 
-                thisInput.val($filter('date')(modelDate, dateFormat));
+                thisInput.val($filter('date')($scope.ngModel, dateFormat));
               } else {
 
-                thisInput.val(modelDate);
+                thisInput.val($scope.ngModel);
               }
 
               thisInput.triggerHandler('input');
@@ -822,7 +822,8 @@
           'datepickerAppendTo': '@',
           'datepickerToggle': '@',
           'datepickerClass': '@',
-          'datepickerShow': '@'
+          'datepickerShow': '@',
+          'datepickerDateObj': '='
         },
         'link': linkingFunction
       };
