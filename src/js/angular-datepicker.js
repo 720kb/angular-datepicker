@@ -823,7 +823,7 @@
           'datepickerToggle': '@',
           'datepickerClass': '@',
           'datepickerShow': '@',
-          'datepickerDateObj': '='
+          'datepickerDateObj': '?='
         },
         'link': linkingFunction
       };
