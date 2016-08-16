@@ -159,6 +159,7 @@
           , pageDatepickers
           , hours24h = 86400000
           , htmlTemplate = generateHtmlTemplate(prevButton, nextButton)
+          , n
           , onClickOnWindow = function onClickOnWindow() {
 
             if (!isMouseOn &&
@@ -301,14 +302,14 @@
               $scope.days.push(i);
             }
 
-            //get previous month days is first day in month is not Sunday
-            if (firstDayMonthNumber === 0) {
+            //get previous month days if first day in month is not first day in week
+            if (firstDayMonthNumber === $scope.dateWeekStartDay) {
 
               //no need for it
               $scope.prevMonthDays = [];
             } else {
 
-              howManyPreviousDays = firstDayMonthNumber;
+              howManyPreviousDays = firstDayMonthNumber - $scope.dateWeekStartDay;
               //get previous month
               if (Number(month) === 1) {
 
@@ -326,10 +327,12 @@
               $scope.prevMonthDays = prevMonthDays.slice(-howManyPreviousDays);
             }
 
-            //get next month days is first day in month is not Sunday
-            if (lastDayMonthNumber < 6) {
-
-              howManyNextDays = 6 - lastDayMonthNumber;
+            //get next month days if last day in month is not last day in week
+            if (lastDayMonthNumber === $scope.dateWeekEndDay) {
+              //no need for it
+              $scope.nextMonthDays = [];
+            } else {
+              howManyNextDays = 6 - lastDayMonthNumber + $scope.dateWeekStartDay;
               //get previous month
 
               //return next month days
@@ -339,9 +342,6 @@
               }
               //attach previous month days
               $scope.nextMonthDays = nextMonthDays;
-            } else {
-              //no need for it
-              $scope.nextMonthDays = [];
             }
           }
           , unregisterDataSetWatcher = $scope.$watch('dateSet', function dateSetWatcher(newValue) {
@@ -692,6 +692,11 @@
         $scope.month = $filter('date')(date, 'MMMM');//december-November like
         $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
         $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
+        $scope.dateWeekStartDay = parseInt($scope.dateWeekStartDay, 10);
+        // making sure that the given option is valid
+        if (!Number.isInteger($scope.dateWeekStartDay) || $scope.dateWeekStartDay < 0 || $scope.dateWeekStartDay > 6) {
+          $scope.dateWeekStartDay = 0;
+        }
 
         if ($scope.dateMaxLimit) {
 
@@ -701,10 +706,20 @@
           $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
         }
         $scope.months = datetime.MONTH;
-        $scope.daysInString = ['0', '1', '2', '3', '4', '5', '6'].map(function mappingFunc(el) {
+
+        $scope.daysInString = ['0', '1', '2', '3', '4', '5', '6'];
+        if ($scope.dateWeekStartDay > 0) {
+          // shifting the first day of the week according to the given option
+          for (n = 0; n < $scope.dateWeekStartDay; n += 1) {
+            $scope.daysInString.push($scope.daysInString.shift());
+          }
+        }
+        $scope.daysInString.map(function mappingFunc(el) {
 
           return $filter('date')(new Date(new Date('06/08/2014').valueOf() + A_DAY_IN_MILLISECONDS * el), 'EEE');
         });
+
+        $scope.dateWeekEndDay = $scope.daysInString[7];
 
         //create the calendar holder and append where needed
         if ($scope.datepickerAppendTo &&
@@ -819,6 +834,7 @@
           'dateDisabledDates': '@',
           'dateSetHidden': '@',
           'dateTyper': '@',
+          'dateWeekStartDay': '@',
           'datepickerAppendTo': '@',
           'datepickerToggle': '@',
           'datepickerClass': '@',
