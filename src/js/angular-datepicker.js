@@ -293,9 +293,12 @@
               , nextMonthDays = []
               , howManyNextDays
               , howManyPreviousDays
-              , monthAlias;
+              , monthAlias
+              , dateWeekEndDay;
 
             $scope.days = [];
+            $scope.dateWeekStartDay = $scope.validateWeekDay($scope.dateWeekStartDay);
+            dateWeekEndDay = ($scope.dateWeekStartDay + 6) % 7;
 
             for (i = 1; i <= limitDate; i += 1) {
 
@@ -310,6 +313,12 @@
             } else {
 
               howManyPreviousDays = firstDayMonthNumber - $scope.dateWeekStartDay;
+
+              if (firstDayMonthNumber < $scope.dateWeekStartDay) {
+
+                howManyPreviousDays += 7;
+              }
+
               //get previous month
               if (Number(month) === 1) {
 
@@ -328,11 +337,16 @@
             }
 
             //get next month days if last day in month is not last day in week
-            if (lastDayMonthNumber === $scope.dateWeekEndDay) {
+            if (lastDayMonthNumber === dateWeekEndDay) {
               //no need for it
               $scope.nextMonthDays = [];
             } else {
               howManyNextDays = 6 - lastDayMonthNumber + $scope.dateWeekStartDay;
+
+              if (lastDayMonthNumber < $scope.dateWeekStartDay) {
+
+                howManyNextDays -= 7;
+              }
               //get previous month
 
               //return next month days
@@ -683,6 +697,16 @@
           return true;
         };
 
+        $scope.validateWeekDay = function isValidWeekDay(weekDay) {
+          var validWeekDay = Number(weekDay, 10);
+          // making sure that the given option is valid
+          if (!validWeekDay || validWeekDay < 0 || validWeekDay > 6) {
+
+            validWeekDay = 0;
+          }
+          return validWeekDay;
+        };
+
         // respect previously configured interpolation symbols.
         htmlTemplate = htmlTemplate.replace(/{{/g, $interpolate.startSymbol()).replace(/}}/g, $interpolate.endSymbol());
         $scope.dateMonthTitle = $scope.dateMonthTitle || 'Select month';
@@ -692,11 +716,7 @@
         $scope.month = $filter('date')(date, 'MMMM');//december-November like
         $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
         $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
-        $scope.dateWeekStartDay = parseInt($scope.dateWeekStartDay, 10);
-        // making sure that the given option is valid
-        if (!Number.isInteger($scope.dateWeekStartDay) || $scope.dateWeekStartDay < 0 || $scope.dateWeekStartDay > 6) {
-          $scope.dateWeekStartDay = 0;
-        }
+        $scope.dateWeekStartDay = $scope.validateWeekDay($scope.dateWeekStartDay);
 
         if ($scope.dateMaxLimit) {
 
@@ -707,19 +727,15 @@
         }
         $scope.months = datetime.MONTH;
 
-        $scope.daysInString = ['0', '1', '2', '3', '4', '5', '6'];
-        if ($scope.dateWeekStartDay > 0) {
-          // shifting the first day of the week according to the given option
-          for (n = 0; n < $scope.dateWeekStartDay; n += 1) {
-            $scope.daysInString.push($scope.daysInString.shift());
-          }
+        $scope.daysInString = [];
+        for (n = $scope.dateWeekStartDay; n <= $scope.dateWeekStartDay + 6; n += 1) {
+
+          $scope.daysInString.push(n % 7);
         }
-        $scope.daysInString.map(function mappingFunc(el) {
+        $scope.daysInString = $scope.daysInString.map(function mappingFunc(el) {
 
           return $filter('date')(new Date(new Date('06/08/2014').valueOf() + A_DAY_IN_MILLISECONDS * el), 'EEE');
         });
-
-        $scope.dateWeekEndDay = $scope.daysInString[7];
 
         //create the calendar holder and append where needed
         if ($scope.datepickerAppendTo &&
