@@ -14,10 +14,6 @@
     "angular",
     "input"
   ],
-  "main": [
-    "./dist/angular-datepicker.min.js",
-    "./dist/angular-datepicker.min.css"
-  ],
   "license": "MIT",
   "main": [
     "./dist/angular-datepicker.min.css",
