@@ -92,6 +92,7 @@ datepicker-class="" | String('class1 class2 class3') | false | Set custom class/
 datepicker-append-to="" | String('#id','.classname', 'body') | false | Append the datepicker to #id or  .class element or to body
 datepicker-toggle="" | String(Boolean) | true | Set the datepicker to toggle its visibility on focus and blur
 datepicker-show="" | String | false | Trigger the datepicker visibility, if true datepicker is shown if false it is hidden
+datepicker-date-obj="" | Date | undefined | It contains the Date object used to fill the input field
  |  | | **tip:** _You may use this option together with datepicker-toggle="false" for a stable behavior_
 
 ##Options
