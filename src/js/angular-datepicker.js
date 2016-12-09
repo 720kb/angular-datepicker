@@ -18,7 +18,9 @@
         return true;
       }
     }())
-    , generateMonthAndYearHeader = function generateMonthAndYearHeader(prevButton, nextButton) {
+    , generateMonthAndYearHeader = function generateMonthAndYearHeader(prevButton, nextButton, preventMobile) {
+
+      if (preventMobile) isMobile = false;
 
       if (isMobile) {
 
@@ -114,13 +116,13 @@
         '</div>'
       ];
     }
-    , generateHtmlTemplate = function generateHtmlTemplate(prevButton, nextButton) {
+    , generateHtmlTemplate = function generateHtmlTemplate(prevButton, nextButton, preventMobile) {
 
       var toReturn = [
         '<div class="_720kb-datepicker-calendar {{datepickerClass}} {{datepickerID}}" ng-class="{\'_720kb-datepicker-forced-to-open\': checkVisibility()}" ng-blur="hideCalendar()">',
         '</div>'
       ]
-      , monthAndYearHeader = generateMonthAndYearHeader(prevButton, nextButton)
+      , monthAndYearHeader = generateMonthAndYearHeader(prevButton, nextButton, preventMobile)
       , yearsPaginationHeader = generateYearsPaginationHeader(prevButton, nextButton)
       , daysColumns = generateDaysColumns()
       , days = generateDays()
@@ -155,10 +157,11 @@
           , date = new Date()
           , isMouseOn = false
           , isMouseOnInput = false
+          , preventMobile = ( typeof attr.preventMobile !== 'undefined' )
           , datetime = $locale.DATETIME_FORMATS
           , pageDatepickers
           , hours24h = 86400000
-          , htmlTemplate = generateHtmlTemplate(prevButton, nextButton)
+          , htmlTemplate = generateHtmlTemplate(prevButton, nextButton, preventMobile)
           , n
           , onClickOnWindow = function onClickOnWindow() {
 
