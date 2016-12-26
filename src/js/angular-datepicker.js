@@ -582,13 +582,11 @@
 
                 try {
 
-                  var typerDateString = thisInput[0].value.toString();
-
                   if (dateFormat) {
-                    typerDateString = $filter('date')(thisInput[0].value.toString(), dateFormat);
+                    date = new Date($filter('date')(thisInput[0].value.toString(), dateFormat));
+                  } else {
+                    date = new Date(thisInput[0].value.toString());
                   }
-
-                  date = new Date(typerDateString);
 
                   if (date.getFullYear() &&
                    !isNaN(date.getDay()) &&
