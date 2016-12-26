@@ -582,7 +582,11 @@
 
                 try {
 
-                  date = new Date(thisInput[0].value.toString());
+                  if (dateFormat) {
+                    date = new Date($filter('date')(thisInput[0].value.toString(), dateFormat));
+                  } else {
+                    date = new Date(thisInput[0].value.toString());
+                  }
 
                   if (date.getFullYear() &&
                    !isNaN(date.getDay()) &&
