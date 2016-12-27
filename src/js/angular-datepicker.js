@@ -174,7 +174,7 @@
             $scope.monthNumber = Number($filter('date')(new Date($scope.dateMinLimit), 'MM'));
             $scope.day = Number($filter('date')(new Date($scope.dateMinLimit), 'dd'));
             $scope.year = Number($filter('date')(new Date($scope.dateMinLimit), 'yyyy'));
-			
+
             setDaysInMonth($scope.monthNumber, $scope.year);
           }
           , resetToMaxDate = function resetToMaxDate() {
@@ -382,17 +382,17 @@
             }
           })
           , unregisterDateMinLimitWatcher = $scope.$watch('dateMinLimit', function dateMinLimitWatcher(newValue){
-            if(newValue){
+            if (newValue) {
               resetToMinDate();
             }
           })
           , unregisterDateMaxLimitWatcher = $scope.$watch('dateMaxLimit', function dateMaxLimitWatcher(newValue){
-            if(newValue){
+            if (newValue) {
               resetToMaxDate();
             }
           })
           , unregisterDateFormatWatcher = $scope.$watch('dateFormat', function dateFormatWatcher(newValue){
-            if(newValue){
+            if (newValue) {
               setInputValue();
             }
           });
@@ -505,7 +505,7 @@
           $scope.monthNumber = Number($filter('date')(new Date(selectedMonthNumber + '/01/2000'), 'MM'));
           setDaysInMonth($scope.monthNumber, $scope.year);
           setInputValue();
-        };	
+        };
 
         $scope.setNewYear = function setNewYear(year) {
 
