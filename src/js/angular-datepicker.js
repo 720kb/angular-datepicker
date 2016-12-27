@@ -387,12 +387,14 @@
             }
           })
           , unregisterDateMaxLimitWatcher = $scope.$watch('dateMaxLimit', function dateMaxLimitWatcher(newValue){
-            if(newValue)
+            if(newValue){
               resetToMaxDate();
+            }
           })
           , unregisterDateFormatWatcher = $scope.$watch('dateFormat', function dateFormatWatcher(newValue){
-            if(newValue)
+            if(newValue){
               setInputValue();
+            }
           });
 
         $scope.nextMonth = function nextMonth() {
