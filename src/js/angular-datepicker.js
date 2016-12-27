@@ -838,7 +838,7 @@
         $scope.$on('$destroy', function unregisterListener() {
 
           unregisterDataSetWatcher();
-          unRegisterDateMinLimitWatcher();
+          unregisterDateMinLimitWatcher();
           thisInput.off('focus click focusout blur');
           angular.element(theCalendar).off('mouseenter mouseleave focusin');
           angular.element($window).off('click focus focusin', onClickOnWindow);
