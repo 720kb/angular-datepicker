@@ -183,6 +183,8 @@
             $scope.monthNumber = Number($filter('date')(new Date($scope.dateMaxLimit), 'MM'));
             $scope.day = Number($filter('date')(new Date($scope.dateMaxLimit), 'dd'));
             $scope.year = Number($filter('date')(new Date($scope.dateMaxLimit), 'yyyy'));
+
+            setDaysInMonth($scope.monthNumber, $scope.year);
           }
           , prevYear = function prevYear() {
 
@@ -383,6 +385,14 @@
             if(newValue){
               resetToMinDate();
             }
+          })
+          , unregisterDateMaxLimitWatcher = $scope.$watch('dateMaxLimit', function dateMaxLimitWatcher(newValue){
+            if(newValue)
+              resetToMaxDate();
+          })
+          , unregisterDateFormatWatcher = $scope.$watch('dateFormat', function dateFormatWatcher(newValue){
+            if(newValue)
+              setInputValue();
           });
 
         $scope.nextMonth = function nextMonth() {
@@ -839,6 +849,8 @@
 
           unregisterDataSetWatcher();
           unregisterDateMinLimitWatcher();
+          unregisterDateMaxLimitWatcher();
+          unregisterDateFormatWatcher();
           thisInput.off('focus click focusout blur');
           angular.element(theCalendar).off('mouseenter mouseleave focusin');
           angular.element($window).off('click focus focusin', onClickOnWindow);
