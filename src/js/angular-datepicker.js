@@ -157,7 +157,7 @@
           , date = new Date()
           , isMouseOn = false
           , isMouseOnInput = false
-          , preventMobile = ( typeof attr.preventMobile !== 'undefined' )
+          , preventMobile = ( typeof attr.datepickerMobile !== 'undefined' && attr.datepickerMobile !== 'false' )
           , datetime = $locale.DATETIME_FORMATS
           , pageDatepickers
           , hours24h = 86400000
