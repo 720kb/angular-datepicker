@@ -20,7 +20,7 @@
     }())
     , generateMonthAndYearHeader = function generateMonthAndYearHeader(prevButton, nextButton, preventMobile) {
 
-      if (preventMobile) isMobile = false;
+      if (preventMobile) { isMobile = false; }
 
       if (isMobile) {
 
