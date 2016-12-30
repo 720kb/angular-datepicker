@@ -94,6 +94,7 @@ datepicker-append-to="" | String('#id','.classname', 'body') | false | Append th
 datepicker-toggle="" | String(Boolean) | true | Set the datepicker to toggle its visibility on focus and blur
 datepicker-show="" | String | false | Trigger the datepicker visibility, if true datepicker is shown if false it is hidden
  |  | | **tip:** _You may use this option together with datepicker-toggle="false" for a stable behavior_
+datepicker-mobile="" | String | true | Set to `false` to force override of mobile styles. Especially useful for using desktop-style pagination control in mobile apps.
 
 ##Options
 Angular datepicker allows you to use some options via `attribute` data
@@ -194,14 +195,14 @@ You can show validation errors simply validating the ngModel, as you would do fo
 ```javascript
 .controller('Ctrl', ['$scope', function ($scope) {
   var liveDate;
-  
+
   $scope.$watch('myDate', function (value) {
     try {
      liveDate = new Date(value);
     } catch(e) {}
-    
+
     if (!liveDate) {
-    
+
       $scope.error = "This is not a valid date";
     } else {
       $scope.error = false;
