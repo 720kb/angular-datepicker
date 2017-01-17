@@ -538,7 +538,7 @@
 
           $scope.paginateYears(year);
           $scope.showYearsPagination = false;
-          $timeout(function(){
+          $timeout(function timeoutForYears() {
             $scope.year = Number(year);
             setDaysInMonth($scope.monthNumber, $scope.year);
           }, 0);
