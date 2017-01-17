@@ -141,7 +141,7 @@
 
       return toReturn.join('');
     }
-    , datepickerDirective = function datepickerDirective($window, $compile, $locale, $filter, $interpolate) {
+    , datepickerDirective = function datepickerDirective($window, $compile, $locale, $filter, $interpolate, $timeout) {
 
       var linkingFunction = function linkingFunction($scope, element, attr) {
 
@@ -536,10 +536,12 @@
             }
           }
 
-          $scope.year = Number(year);
-          setDaysInMonth($scope.monthNumber, $scope.year);
           $scope.paginateYears(year);
           $scope.showYearsPagination = false;
+          $timeout(function(){
+            $scope.year = Number(year);
+            setDaysInMonth($scope.monthNumber, $scope.year);
+          }, 0);
         };
 
         $scope.hideCalendar = function hideCalendar() {
@@ -897,5 +899,5 @@
     };
 
   angular.module('720kb.datepicker', [])
-               .directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', datepickerDirective]);
+               .directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', '$timeout', datepickerDirective]);
 }(angular, navigator));
