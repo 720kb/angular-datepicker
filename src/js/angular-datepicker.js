@@ -158,6 +158,7 @@
           //, dateMaxLimit
           , dateDisabledDates = $scope.$eval($scope.dateDisabledDates)
           , date = new Date()
+          , dateString
           , isMouseOn = false
           , isMouseOnInput = false
           , preventMobile = typeof attr.datepickerMobile !== 'undefined' && attr.datepickerMobile !== 'false'
@@ -348,6 +349,11 @@
             if (theCalendar.classList) {
 
               theCalendar.classList.add('_720kb-datepicker-open');
+              dateString = angular.element(angular.element(theCalendar).parent()[0].querySelector('input')).val().replace(/\//g, '-');
+              date = new Date(dateString);
+              $scope.selectedMonth = Number($filter('date')(date, 'MM'));
+              $scope.selectedDay = Number($filter('date')(date, 'dd'));
+              $scope.selectedYear = Number($filter('date')(date, 'yyyy'));
             } else {
 
               classHelper.add(theCalendar, '_720kb-datepicker-open');
