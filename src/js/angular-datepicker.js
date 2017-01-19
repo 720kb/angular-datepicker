@@ -349,7 +349,7 @@
             if (theCalendar.classList) {
 
               theCalendar.classList.add('_720kb-datepicker-open');
-              dateString = angular.element((angular.element(theCalendar).parent()[0]).querySelector('input')).val();
+              dateString = angular.element((angular.element(theCalendar).parent()[0]).querySelector('input')).val().replace(/\//g, '-');
               date = new Date(dateString);
               $scope.selectedMonth = Number($filter('date')(date, 'MM'));
               $scope.selectedDay = Number($filter('date')(date, 'dd'));
