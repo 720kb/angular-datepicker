@@ -27,6 +27,7 @@
     "grunt": "*",
     "grunt-concurrent": "*",
     "grunt-contrib-connect": "*",
+    "grunt-contrib-copy": "*",
     "grunt-contrib-csslint": "*",
     "grunt-contrib-cssmin": "*",
     "grunt-contrib-uglify": "*",
