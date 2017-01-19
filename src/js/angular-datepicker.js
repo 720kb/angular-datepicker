@@ -376,7 +376,7 @@
           }
           , unregisterDataSetWatcher = $scope.$watch('dateSet', function dateSetWatcher(newValue) {
 
-            if (newValue) {
+            if (newValue && !isNaN(Date.parse(newValue))) {
 
               date = new Date(newValue);
 
