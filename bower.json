@@ -16,8 +16,8 @@
   ],
   "license": "MIT",
   "main": [
-    "./dist/angular-datepicker.min.css",
-    "./dist/angular-datepicker.min.js",
+    "./dist/angular-datepicker.css",
+    "./dist/angular-datepicker.js",
     "./dist/angular-datepicker.sourcemap.map"
   ],
   "homepage": "http://720kb.github.io/angular-datepicker",
