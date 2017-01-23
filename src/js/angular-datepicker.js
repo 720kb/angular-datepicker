@@ -349,15 +349,17 @@
             if (theCalendar.classList) {
 
               theCalendar.classList.add('_720kb-datepicker-open');
-              dateString = angular.element(angular.element(theCalendar).parent()[0].querySelector('input')).val().replace(/\//g, '-');
-              date = new Date(dateString);
-              $scope.selectedMonth = Number($filter('date')(date, 'MM'));
-              $scope.selectedDay = Number($filter('date')(date, 'dd'));
-              $scope.selectedYear = Number($filter('date')(date, 'yyyy'));
             } else {
 
               classHelper.add(theCalendar, '_720kb-datepicker-open');
             }
+            // set selected date components (from datepicker input field) on show
+            dateString = angular.element(angular.element(theCalendar).parent()[0].querySelector('input')).val().replace(/\//g, '-');
+            date = new Date(dateString);
+            $scope.selectedMonth = $scope.monthNumber = Number($filter('date')(date, 'MM'));
+            $scope.selectedDay = $scope.day = Number($filter('date')(date, 'dd'));
+            $scope.selectedYear = $scope.year = Number($filter('date')(date, 'yyyy'));
+            $scope.month = $filter('date')(new Date($scope.year, $scope.monthNumber - 1), 'MMMM');
           }
           , checkToggle = function checkToggle() {
             if (!$scope.datepickerToggle) {
