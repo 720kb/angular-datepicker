@@ -276,35 +276,46 @@
 
             $scope.year = Number($scope.year) + 1;
           }
-          , localDateTimestamp = function localDateTimestamp(rawDate, dateFormat) {
+          , localDateTimestamp = function localDateTimestamp(rawDate, dateFormatDefinition) {
             
-            var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|MM?M?M?|dd?d?|yy?yy?y?|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g;
-            var formatDate = dateFormat.match(formattingTokens);
-            var dateSplit = rawDate.split(/\D/);
-            var m;
-            var d;
-            var y;
+            var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|MM?M?M?|dd?d?|yy?yy?y?|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g
+            ,formatDate = dateFormatDefinition.match(formattingTokens)
+            ,dateSplit, m, d, y, index, el;
 
-            console.log('tutu');
+            for (index = 0; index < datetime.MONTH.length; index += 1) {
+              el = datetime.MONTH[index];
+              if (rawDate.indexOf(el) > -1) {
+                rawDate = rawDate.replace(el, index + 1);
+                break;
+              }
+            }
 
-            formatDate = formatDate.filter(function (item) {
+            dateSplit = rawDate.split(/\D/);
+
+            dateSplit = dateSplit.filter(function dateSplitFilter(item) {
+              if (item.length > 0) {
+                return item;
+              }
+            });
+
+            formatDate = formatDate.filter(function fromatDateFilter(item) {
               if (item.match(/^[a-zA-Z]+$/i) !== null) {
                 return item;
               }
             });
 
-            for (var index = 0; index < formatDate.length; index++) {
-              var element = formatDate[index];
+            for (index = 0; index < formatDate.length; index += 1) {
+              el = formatDate[index];
 
-              if (element.indexOf('d') > -1) {
+              if (el.indexOf('d') > -1) {
                 d = dateSplit[index];
               }
 
-              if (element.indexOf('M') > -1) {
+              if (el.indexOf('M') > -1) {
                 m = dateSplit[index];
               }
 
-              if (element.indexOf('y') > -1) {
+              if (el.indexOf('y') > -1) {
                 y = dateSplit[index];
               }
             }
