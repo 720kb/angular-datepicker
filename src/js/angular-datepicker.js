@@ -276,6 +276,41 @@
 
             $scope.year = Number($scope.year) + 1;
           }
+          , localDateTimestamp = function localDateTimestamp(rawDate, dateFormat) {
+            
+            var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|MM?M?M?|dd?d?|yy?yy?y?|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g;
+            var formatDate = dateFormat.match(formattingTokens);
+            var dateSplit = rawDate.split(/\D/);
+            var m;
+            var d;
+            var y;
+
+            console.log('tutu');
+
+            formatDate = formatDate.filter(function (item) {
+              if (item.match(/^[a-zA-Z]+$/i) !== null) {
+                return item;
+              }
+            });
+
+            for (var index = 0; index < formatDate.length; index++) {
+              var element = formatDate[index];
+
+              if (element.indexOf('d') > -1) {
+                d = dateSplit[index];
+              }
+
+              if (element.indexOf('M') > -1) {
+                m = dateSplit[index];
+              }
+
+              if (element.indexOf('y') > -1) {
+                y = dateSplit[index];
+              }
+            }
+
+            return new Date(y + '/' + m + '/' + d);
+          }
           , setInputValue = function setInputValue() {
 
             if ($scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day) &&
@@ -618,9 +653,8 @@
                 thisInput[0].value.length > 0) {
 
                 try {
-
                   if (dateFormat) {
-                    date = new Date($filter('date')(thisInput[0].value.toString(), dateFormat));
+                    date = localDateTimestamp(thisInput[0].value.toString(), dateFormat);
                   } else {
                     date = new Date(thisInput[0].value.toString());
                   }
