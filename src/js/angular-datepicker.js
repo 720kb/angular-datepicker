@@ -278,45 +278,55 @@
           }
           , localDateTimestamp = function localDateTimestamp(rawDate, dateFormatDefinition) {
             
-            var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|MM?M?M?|dd?d?|yy?yy?y?|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g
-            ,formatDate = dateFormatDefinition.match(formattingTokens)
-            ,dateSplit, m, d, y, index, el;
+            var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|MMMM|MMM|MM|M|dd?d?|yy?yy?y?|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g
+            ,formatDate,dateSplit, m, d, y, index, el, longName, shortName;
 
             for (index = 0; index < datetime.MONTH.length; index += 1) {
-              el = datetime.MONTH[index];
-              if (rawDate.indexOf(el) > -1) {
-                rawDate = rawDate.replace(el, index + 1);
+              longName = datetime.MONTH[index];
+              shortName = datetime.SHORTMONTH[index];
+
+              if (rawDate.indexOf(longName) !== -1) {
+                rawDate = rawDate.replace(longName, index + 1);
                 break;
               }
+
+              if (rawDate.indexOf(shortName) !== -1) {
+                rawDate = rawDate.replace(shortName, index + 1);
+                break;
+              }              
             }
 
-            dateSplit = rawDate.split(/\D/);
+            dateSplit = rawDate
+              .split(/\D/)
+              .filter(function dateSplitFilter(item) {
+                return item.length > 0;
+              });
 
-            dateSplit = dateSplit.filter(function dateSplitFilter(item) {
-              if (item.length > 0) {
-                return item;
-              }
-            });
-
-            formatDate = formatDate.filter(function fromatDateFilter(item) {
-              if (item.match(/^[a-zA-Z]+$/i) !== null) {
-                return item;
-              }
-            });
+            formatDate = dateFormatDefinition
+              .match(formattingTokens)
+              .filter(function fromatDateFilter(item) {
+                return item.match(/^[a-zA-Z]+$/i) !== null;
+              });
 
             for (index = 0; index < formatDate.length; index += 1) {
               el = formatDate[index];
 
-              if (el.indexOf('d') > -1) {
-                d = dateSplit[index];
-              }
-
-              if (el.indexOf('M') > -1) {
-                m = dateSplit[index];
-              }
-
-              if (el.indexOf('y') > -1) {
-                y = dateSplit[index];
+              switch (true) {
+                case el.indexOf('d') !== -1: {
+                  d = dateSplit[index];
+                  break;
+                }
+                case el.indexOf('M') !== -1: {
+                  m = dateSplit[index];
+                  break;
+                }
+                case el.indexOf('y') !== -1: {
+                  y = dateSplit[index];
+                  break; 
+                }
+                default: {
+                  break;  
+                }                                 
               }
             }
 
