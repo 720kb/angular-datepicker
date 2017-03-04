@@ -113,6 +113,16 @@ You can set the titles for the month and year selectors with the **date-year-tit
 </datepicker>
 ```
 
+####Highlight today day in  calendar
+To highlight or style the today day in the calendar just use its own CSS class (`._720kb-datepicker-today`) like this:
+
+```css
+._720kb-datepicker-calendar-day._720kb-datepicker-today {
+  background:red;
+  color:white;
+}
+```
+
 ####Custom buttons
 You can customize the calendar navigation buttons content, let's make an example while using [FontAwesome](http://fontawesome.io)
 
