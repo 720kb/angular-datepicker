@@ -110,8 +110,7 @@ datepicker, .datepicker, [datepicker],
   border-radius: 1px;
 }
 ._720kb-datepicker-calendar-day:hover,
-._720kb-datepicker-calendar-day._720kb-datepicker-active,
-._720kb-datepicker-calendar-day._720kb-datepicker-today {
+._720kb-datepicker-calendar-day._720kb-datepicker-active {
   background: rgba(0, 0, 0, 0.03);
 }
 ._720kb-datepicker-calendar-header a, ._720kb-datepicker-calendar-header a:hover {
