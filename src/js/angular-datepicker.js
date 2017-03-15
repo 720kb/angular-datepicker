@@ -415,6 +415,17 @@
               classHelper.add(theCalendar, '_720kb-datepicker-open');
             }
             $scope.today = new Date();
+            $timeout(function timeoutForYears() {
+              if ($scope.selectedDay) {
+                $scope.year = $scope.selectedYear;
+                $scope.monthNumber = $scope.selectedMonth;
+              } else {
+                $scope.year = $scope.today.getFullYear();
+                $scope.monthNumber = $scope.today.getMonth() + 1;
+              }
+              $scope.month = $filter('date')(new Date($scope.year, $scope.monthNumber - 1), 'MMMM');
+              setDaysInMonth($scope.monthNumber, $scope.year);
+            }, 0);
           }
           , checkToggle = function checkToggle() {
             if (!$scope.datepickerToggle) {
