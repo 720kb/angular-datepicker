@@ -9,11 +9,11 @@ Angular datepicker is an angularjs directive that generates a datepicker calenda
 
 The Angularjs Datepicker is developed by [720kb](http://720kb.net).
 
-##Requirements
+## Requirements
 
 AngularJS v1.3+
 
-###Browser support
+### Browser support
 
 Chrome | Firefox | IE | Opera | Safari
 --- | --- | --- | --- | --- |
@@ -37,14 +37,14 @@ To use the directive, include the Angular Datepicker's javascript and css files 
 </html>
 ```
 
-##Installation
+## Installation
 
-####Bower
+#### Bower
 
 ```
 $ bower install angularjs-datepicker --save
 ```
-####Npm
+#### Npm
 
 ```
 $ npm install angularjs-datepicker --save
@@ -52,7 +52,7 @@ $ npm install angularjs-datepicker --save
 
 _then load the js files in your html_
 
-###Add module dependency
+### Add module dependency
 
 Add the 720kb.datepicker module dependency
 
@@ -72,7 +72,7 @@ Call the directive wherever you want in your html page
 > By default the ng-model will show a Javascript Date() Object inside your input, you can use the options below to set your preferred date format to.
 
 
-##DOC
+## DOC
 
 Option | Type | Default | Description
 ------------- | ------------- | ------------- | -------------
@@ -96,10 +96,10 @@ datepicker-show="" | String | false | Trigger the datepicker visibility, if true
  |  | | **tip:** _You may use this option together with datepicker-toggle="false" for a stable behavior_
 datepicker-mobile="" | String | true | Set to `false` to force override of mobile styles. Especially useful for using desktop-style pagination control in mobile apps.
 
-##Options
+## Options
 Angular datepicker allows you to use some options via `attribute` data
 
-####Custom titles
+#### Custom titles
 
 You can set the titles for the month and year selectors with the **date-year-title=""** and **date-month-title=""** data attributes (default to is _"select month"_ and _"select year"_)
 
@@ -113,7 +113,7 @@ You can set the titles for the month and year selectors with the **date-year-tit
 </datepicker>
 ```
 
-####Highlight today day in  calendar
+#### Highlight today day in  calendar
 To highlight or style the today day in the calendar just use its own CSS class (`._720kb-datepicker-today`) like this:
 
 ```css
@@ -123,7 +123,7 @@ To highlight or style the today day in the calendar just use its own CSS class (
 }
 ```
 
-####Custom buttons
+#### Custom buttons
 You can customize the calendar navigation buttons content, let's make an example while using [FontAwesome](http://fontawesome.io)
 
 ```html
@@ -132,7 +132,7 @@ You can customize the calendar navigation buttons content, let's make an example
 </datepicker>
 ```
 
-####Custom buttons titles for arrows
+#### Custom buttons titles for arrows
 You can also set the titles for the left and right arrows with **button-next-title=""** for the right and **button-prev-title=""** for the left. By default they are labeled _"next"_ and _"prev"_.
 
 ```html
@@ -145,7 +145,7 @@ You can also set the titles for the left and right arrows with **button-next-tit
 </datepicker>
 ```
 
-####Input as grandchild
+#### Input as grandchild
 Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome
 
 ```html
@@ -158,7 +158,7 @@ Sometimes you cannot put date input as a first child of datepicker. In this case
     </div>
 </datepicker>
 ```
-####Manually show and hide datepicker
+#### Manually show and hide datepicker
 Sometimes you want to (manually/programmatically) show or hide the datepicker, this can be achieved using `datepicker-show` attribute, if `false`, datepicker is hidden, if `true`, datepicker is shown
 
 ```javascript
@@ -191,9 +191,9 @@ Sometimes you cannot put date input as a first child of datepicker. In this case
     </div>
 </datepicker>
 ```
-###Tips
+### Tips
 
-####Date validation
+#### Date validation
 If you want to validate the input, while user is typing for example, you just have to refer to the `ngModel`.
 As long as you use something like:
 ```html
