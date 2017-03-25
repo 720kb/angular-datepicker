@@ -5,15 +5,15 @@
 
   var A_DAY_IN_MILLISECONDS = 86400000
     , isMobile = (function isMobile() {
-
+      console.log($scope.displayDesktop, 'Display Desktop');
       if (navigator.userAgent &&
-        (navigator.userAgent.match(/Android/i) ||
-        navigator.userAgent.match(/webOS/i) ||
-        navigator.userAgent.match(/iPhone/i) ||
-        navigator.userAgent.match(/iPad/i) ||
-        navigator.userAgent.match(/iPod/i) ||
-        navigator.userAgent.match(/BlackBerry/i) ||
-        navigator.userAgent.match(/Windows Phone/i))) {
+          (navigator.userAgent.match(/Android/i) ||
+          navigator.userAgent.match(/webOS/i) ||
+          navigator.userAgent.match(/iPhone/i) ||
+          navigator.userAgent.match(/iPad/i) ||
+          navigator.userAgent.match(/iPod/i) ||
+          navigator.userAgent.match(/BlackBerry/i) ||
+          navigator.userAgent.match(/Windows Phone/i))) {
 
         return true;
       }
@@ -23,30 +23,6 @@
       if (preventMobile) {
 
         isMobile = false;
-      }
-
-      if (isMobile) {
-
-        return [
-          '<div class="_720kb-datepicker-calendar-header">',
-            '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-mobile-item _720kb-datepicker-calendar-month">',
-              '<select ng-model="month" title="{{ dateMonthTitle }}" ng-change="selectedMonthHandle(month)">',
-                '<option ng-repeat="item in months" ng-selected="item === month" ng-disabled=\'!isSelectableMaxDate(item + " " + day + ", " + year) || !isSelectableMinDate(item + " " + day + ", " + year)\' ng-value="$index + 1" value="$index + 1">',
-                  '{{ item }}',
-                '</option>',
-              '</select>',
-            '</div>',
-          '</div>',
-          '<div class="_720kb-datepicker-calendar-header">',
-            '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-mobile-item _720kb-datepicker-calendar-month">',
-              '<select ng-model="mobileYear" title="{{ dateYearTitle }}" ng-change="setNewYear(mobileYear)">',
-                '<option ng-repeat="item in paginationYears track by $index" ng-selected="year === item" ng-disabled="!isSelectableMinYear(item) || !isSelectableMaxYear(item)" ng-value="item" value="item">',
-                  '{{ item }}',
-                '</option>',
-              '</select>',
-            '</div>',
-          '</div>'
-        ];
       }
 
       return [
@@ -965,7 +941,8 @@
           'datepickerAppendTo': '@',
           'datepickerToggle': '@',
           'datepickerClass': '@',
-          'datepickerShow': '@'
+          'datepickerShow': '@',
+          'displayDesktop': '@'
         },
         'link': linkingFunction
       };
