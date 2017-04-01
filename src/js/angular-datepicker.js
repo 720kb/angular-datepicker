@@ -31,7 +31,7 @@
           '<div class="_720kb-datepicker-calendar-header">',
             '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-mobile-item _720kb-datepicker-calendar-month">',
               '<select ng-model="month" title="{{ dateMonthTitle }}" ng-change="selectedMonthHandle(month)">',
-                '<option ng-repeat="item in months" ng-selected="item === month" ng-disabled=\'!isSelectableMaxDate(item + " " + day + ", " + year) || !isSelectableMinDate(item + " " + day + ", " + year)\' ng-value="$index + 1" value="$index + 1">',
+                '<option ng-repeat="item in months" ng-selected="item === month" ng-disabled=\'!isSelectableMaxDate($index + 1 + " " + day + ", " + year) || !isSelectableMinDate($index + 1 + " " + day + ", " + year)\' ng-value="$index + 1" value="$index + 1">',
                   '{{ item }}',
                 '</option>',
               '</select>',
