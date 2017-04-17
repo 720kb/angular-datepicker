@@ -179,7 +179,7 @@ Sometimes you want to (manually/programmatically) show or hide the datepicker, t
 ```
 _tip: you should use this attribute together with `datepicker-toggle="false" , for a better stable behavior of the datepicker_
 
-####Input as grandchild
+#### Input as grandchild
 Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome
 
 ```html
@@ -235,7 +235,7 @@ Then your final html:
 
 [Live demo](https://720kb.github.io/angular-datepicker)
 
-##Themes :art:
+## Themes :art:
 You can edit the default Css file `angular-datepicker.css` if you want to make a new theme for the datepicker, then just add it to the ```themes``` dir and PR!
 
 More about it https://github.com/720kb/angular-datepicker/tree/master/themes.
@@ -244,7 +244,7 @@ Here is an example of a [Dark Theme](http://codepen.io/45kb/pen/bjslv) made usin
 
 ***_Please note that the example may not be uptodate with the latest angular and/or module version_
 
-##Contributing
+## Contributing
 
 We will be much grateful if you help us making this project to grow up.
 Feel free to contribute by forking, opening issues, pull requests etc.
