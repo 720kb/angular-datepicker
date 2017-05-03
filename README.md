@@ -86,6 +86,7 @@ date-min-limit="" | String | false | Set a minimum date limit - you can use all 
 date-max-limit="" | String | false | Set a maximum date limit - you can use all the accepted date formats by the javascript `new Date()`
 date-set-hidden="" | String(Boolean) | false | Set the default date to be shown only in calendar and not in the input field
 date-disabled-dates="" | String([Date(), Date(), ...]) | false | Disable specific dates using an _Array_ of dates
+date-disabled-weekdays="" | String(1, 5, ...]) | false | Disable specific weekdays using an _Array_ of weeks number
 date-refocus="" | String(Boolean) | false | Set the datepicker to re-focus the input after selecting a date
 date-typer="" | String(Boolean) | false | Set the datepicker to update calendar date when user is typing a date, see validation [tips](#date-validation)
 date-week-start-day="" | String(Number) | 0 | Set the first day of the week. Must be an integer between 0 (Sunday) and 6 (Saturday). (e.g. 1 for Monday)
