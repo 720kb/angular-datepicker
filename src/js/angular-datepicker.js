@@ -476,6 +476,17 @@
             if (newValue) {
               setInputValue();
             }
+          })
+          , unregisterDateDisabledDatesWatcher = $scope.$watch('dateDisabledDates', function dateDisabledDatesWatcher(newValue) {
+            if (newValue) {
+              dateDisabledDates = $scope.$eval(newValue);
+
+              if (!$scope.isSelectableDate($scope.monthNumber, $scope.year, $scope.day)) {
+                thisInput.val('');
+                thisInput.triggerHandler('input');
+                thisInput.triggerHandler('change');//just to be sure;
+              }
+            }
           });
 
         $scope.nextMonth = function nextMonth() {
@@ -697,8 +708,8 @@
                   if (date.getFullYear() &&
                    !isNaN(date.getDay()) &&
                    !isNaN(date.getMonth()) &&
-                   $scope.isSelectableDay(date) &&
-                   $scope.isSelectableDate(date) &&
+                   $scope.isSelectableDay(date.getMonth(), date.getFullYear(), date.getDay()) &&
+                   $scope.isSelectableDate(date.getMonth(), date.getFullYear(), date.getDay()) &&
                    $scope.isSelectableMaxDate(date) &&
                    $scope.isSelectableMinDate(date)) {
 
@@ -959,6 +970,7 @@
           unregisterDateMinLimitWatcher();
           unregisterDateMaxLimitWatcher();
           unregisterDateFormatWatcher();
+          unregisterDateDisabledDatesWatcher();
           thisInput.off('focus click focusout blur');
           angular.element(theCalendar).off('mouseenter mouseleave focusin');
           angular.element($window).off('click focus focusin', onClickOnWindow);
