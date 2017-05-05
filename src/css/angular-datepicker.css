@@ -207,3 +207,7 @@ datepicker, .datepicker, [datepicker],
   background: rgba(25,2,0,0.02);
   cursor: default;
 }
+
+._720kb-datepicker-calendar-day._720kb-datepicker-disabled._720kb-datepicker-disabled-active:hover {
+  cursor: pointer;
+}
