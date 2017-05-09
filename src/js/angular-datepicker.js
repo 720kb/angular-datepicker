@@ -926,6 +926,13 @@
         thisInput.on('focusout blur', function onBlurAndFocusOut() {
 
           isMouseOnInput = false;
+
+          //Also added calendar hiding when focusout
+          if (!isMouseOn &&
+            !isMouseOnInput && theCalendar) {
+
+            $scope.hideCalendar();
+          }
         });
         //some tricky dirty events to fire if click is outside of the calendar and show/hide calendar when needed
         angular.element(theCalendar).on('mouseenter', function onMouseEnter() {
