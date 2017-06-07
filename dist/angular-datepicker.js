@@ -313,15 +313,15 @@
 
               switch (true) {
                 case el.indexOf('d') !== -1: {
-                  d = dateSplit[index];
+                  d = dateSplit[index - (formatDate.length - dateSplit.length)];
                   break;
                 }
                 case el.indexOf('M') !== -1: {
-                  m = dateSplit[index];
+                  m = dateSplit[index - (formatDate.length - dateSplit.length)];
                   break;
                 }
                 case el.indexOf('y') !== -1: {
-                  y = dateSplit[index];
+                  y = dateSplit[index - (formatDate.length - dateSplit.length)];
                   break; 
                 }
                 default: {
