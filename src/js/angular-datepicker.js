@@ -157,6 +157,7 @@
           //, dateMinLimit
           //, dateMaxLimit
           , dateDisabledDates = $scope.$eval($scope.dateDisabledDates)
+          , dateEnabledDates = $scope.$eval($scope.dateEnabledDates)
           , dateDisabledWeekdays = $scope.$eval($scope.dateDisabledWeekdays)
           , date = new Date()
           , isMouseOn = false
@@ -489,6 +490,17 @@
                 thisInput.triggerHandler('change');//just to be sure;
               }
             }
+          })
+          , unregisterDateEnabledDatesWatcher = $scope.$watch('dateEnabledDates', function dateEnabledDatesWatcher(newValue) {
+            if (newValue) {
+              dateEnabledDates = $scope.$eval(newValue);
+
+              if (!$scope.isSelectableDate($scope.monthNumber, $scope.year, $scope.day)) {
+                thisInput.val('');
+                thisInput.triggerHandler('input');
+                thisInput.triggerHandler('change');//just to be sure;
+              }
+            }
           });
 
         $scope.nextMonth = function nextMonth() {
@@ -788,6 +800,21 @@
               }
             }
           }
+
+          if (dateEnabledDates &&
+            dateEnabledDates.length > 0) {
+
+            for (i; i <= dateEnabledDates.length; i += 1) {
+
+              if (new Date(dateEnabledDates[i]).getTime() === new Date(monthNumber + '/' + day + '/' + year).getTime()) {
+
+                return true;
+              }
+            }
+
+            return false;
+          }
+
           return true;
         };
 
@@ -973,6 +1000,7 @@
           unregisterDateMaxLimitWatcher();
           unregisterDateFormatWatcher();
           unregisterDateDisabledDatesWatcher();
+          unregisterDateEnabledDatesWatcher();
           thisInput.off('focus click focusout blur');
           angular.element(theCalendar).off('mouseenter mouseleave focusin');
           angular.element($window).off('click focus focusin', onClickOnWindow);
@@ -990,6 +1018,7 @@
           'buttonNextTitle': '@',
           'buttonPrevTitle': '@',
           'dateDisabledDates': '@',
+          'dateEnabledDates': '@',
           'dateDisabledWeekdays': '@',
           'dateSetHidden': '@',
           'dateTyper': '@',
