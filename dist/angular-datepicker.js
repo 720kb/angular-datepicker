@@ -444,6 +444,14 @@
 
               return false;
             }
+            if (dateFormat) {
+              date = localDateTimestamp(thisInput[0].value.toString(), dateFormat);
+            } else {
+              date = new Date(thisInput[0].value.toString());
+            }
+            $scope.selectedMonth = Number($filter('date')(date, 'MM'));
+            $scope.selectedDay = Number($filter('date')(date, 'dd'));
+            $scope.selectedYear = Number($filter('date')(date, 'yyyy'));
             return $scope.$eval($scope.datepickerShow);
           }
           , unregisterDataSetWatcher = $scope.$watch('dateSet', function dateSetWatcher(newValue) {
