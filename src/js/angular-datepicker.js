@@ -809,8 +809,7 @@
             }
           }
 
-          if (dateEnabledDates &&
-            dateEnabledDates.length > 0) {
+          if (dateEnabledDates) {
 
             for (i; i <= dateEnabledDates.length; i += 1) {
 
