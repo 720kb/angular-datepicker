@@ -51,6 +51,7 @@
 
       return [
         '<div class="_720kb-datepicker-calendar-header">',
+        '<div ng-if="clearText" class="_720kb-datepicker-calendar-header-clear"><a ng-click="clear()">{{clearText}}</a></div>',
           '<div class="_720kb-datepicker-calendar-header-left">',
             '<a class="_720kb-datepicker-calendar-month-button" href="javascript:void(0)" ng-class="{\'_720kb-datepicker-item-hidden\': !willPrevMonthBeSelectable()}" ng-click="prevMonth()" title="{{ buttonPrevTitle }}">',
               prevButton,
@@ -143,7 +144,7 @@
     }
     , datepickerDirective = function datepickerDirective($window, $compile, $locale, $filter, $interpolate, $timeout) {
 
-      var linkingFunction = function linkingFunction($scope, element, attr) {
+      var linkingFunction = function linkingFunction($scope, element, attr, ngModelCtrl) {
 
         //get child input
         var selector = attr.selector
@@ -340,13 +341,7 @@
 
               var modelDate = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
 
-              if (attr.dateFormat) {
-
-                thisInput.val($filter('date')(modelDate, dateFormat));
-              } else {
-
-                thisInput.val(modelDate);
-              }
+              ngModelCtrl.$setViewValue(modelDate);
 
               thisInput.triggerHandler('input');
               thisInput.triggerHandler('change');//just to be sure;
@@ -407,9 +402,9 @@
 
               theCalendar.classList.add('_720kb-datepicker-open');
               if (dateFormat) {
-                date = localDateTimestamp(thisInput[0].value.toString(), dateFormat);
+                date = localDateTimestamp(String(ngModelCtrl.$viewValue).toString(), dateFormat);
               } else {
-                date = new Date(thisInput[0].value.toString());
+                date = new Date(String(ngModelCtrl.$viewValue).toString());
               }
               $scope.selectedMonth = Number($filter('date')(date, 'MM'));
               $scope.selectedDay = Number($filter('date')(date, 'dd'));
@@ -445,9 +440,9 @@
               return false;
             }
             if (dateFormat) {
-              date = localDateTimestamp(thisInput[0].value.toString(), dateFormat);
+              date = localDateTimestamp(ngModelCtrl.$viewValue.toString(), dateFormat);
             } else {
-              date = new Date(thisInput[0].value.toString());
+              date = new Date(ngModelCtrl.$viewValue.toString());
             }
             $scope.selectedMonth = Number($filter('date')(date, 'MM'));
             $scope.selectedDay = Number($filter('date')(date, 'dd'));
@@ -493,7 +488,7 @@
               dateDisabledDates = $scope.$eval(newValue);
 
               if (!$scope.isSelectableDate($scope.monthNumber, $scope.year, $scope.day)) {
-                thisInput.val('');
+                ngModelCtrl.$setViewValue('');
                 thisInput.triggerHandler('input');
                 thisInput.triggerHandler('change');//just to be sure;
               }
@@ -504,7 +499,7 @@
               dateEnabledDates = $scope.$eval(newValue);
 
               if (!$scope.isSelectableDate($scope.monthNumber, $scope.year, $scope.day)) {
-                thisInput.val('');
+                ngModelCtrl.$setViewValue('');
                 thisInput.triggerHandler('input');
                 thisInput.triggerHandler('change');//just to be sure;
               }
@@ -716,15 +711,15 @@
 
             thisInput.on('keyup blur', function onTyping() {
 
-              if (thisInput[0].value &&
-                thisInput[0].value.length &&
-                thisInput[0].value.length > 0) {
+              if (ngModelCtrl.$viewValue &&
+                ngModelCtrl.$viewValue.length &&
+                ngModelCtrl.$viewValue.length > 0) {
 
                 try {
                   if (dateFormat) {
-                    date = localDateTimestamp(thisInput[0].value.toString(), dateFormat);
+                    date = localDateTimestamp(ngModelCtrl.$viewValue.toString(), dateFormat);
                   } else {
-                    date = new Date(thisInput[0].value.toString());
+                    date = new Date(ngModelCtrl.$viewValue.toString());
                   }
 
                   if (date.getFullYear() &&
@@ -879,6 +874,14 @@
           return validWeekDay;
         };
 
+        $scope.clear = function clear() {
+          ngModelCtrl.$setViewValue('');
+          thisInput.triggerHandler('input');
+          thisInput.triggerHandler('change');//just to be sure;
+
+          $scope.hideCalendar();
+        };
+
         // respect previously configured interpolation symbols.
         htmlTemplate = htmlTemplate.replace(/{{/g, $interpolate.startSymbol()).replace(/}}/g, $interpolate.endSymbol());
         $scope.dateMonthTitle = $scope.dateMonthTitle || 'Select month';
@@ -1015,6 +1018,7 @@
       };
 
       return {
+        'require': 'ngModel',
         'restrict': 'AEC',
         'scope': {
           'dateSet': '@',
@@ -1033,7 +1037,8 @@
           'datepickerAppendTo': '@',
           'datepickerToggle': '@',
           'datepickerClass': '@',
-          'datepickerShow': '@'
+          'datepickerShow': '@',
+          'clearText': '@'
         },
         'link': linkingFunction
       };

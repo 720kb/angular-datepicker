@@ -67,6 +67,9 @@ datepicker, .datepicker, [datepicker],
 ._720kb-datepicker-calendar-header:nth-child(even) {
   background: #7BC6FC;
 }
+._720kb-datepicker-calendar-header-clear {
+  background: #DDDDDD;
+}
 ._720kb-datepicker-calendar-header-left,
 ._720kb-datepicker-calendar-header-middle,
 ._720kb-datepicker-calendar-header-right {

@@ -340,6 +340,7 @@
                 $scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
               var modelDate = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
+
               ngModelCtrl.$setViewValue(modelDate);
 
               thisInput.triggerHandler('input');
@@ -873,7 +874,7 @@
           return validWeekDay;
         };
 
-        $scope.clear = function () {
+        $scope.clear = function clear() {
           ngModelCtrl.$setViewValue('');
           thisInput.triggerHandler('input');
           thisInput.triggerHandler('change');//just to be sure;
@@ -1017,7 +1018,7 @@
       };
 
       return {
-        require: 'ngModel',
+        'require': 'ngModel',
         'restrict': 'AEC',
         'scope': {
           'dateSet': '@',
@@ -1037,7 +1038,7 @@
           'datepickerToggle': '@',
           'datepickerClass': '@',
           'datepickerShow': '@',
-          'clearText': '@',
+          'clearText': '@'
         },
         'link': linkingFunction
       };
