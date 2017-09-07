@@ -51,6 +51,7 @@
 
       return [
         '<div class="_720kb-datepicker-calendar-header">',
+        '<div ng-if="clearText" class="_720kb-datepicker-calendar-header-clear"><a ng-click="clear()">{{clearText}}</a></div>',
           '<div class="_720kb-datepicker-calendar-header-left">',
             '<a class="_720kb-datepicker-calendar-month-button" href="javascript:void(0)" ng-class="{\'_720kb-datepicker-item-hidden\': !willPrevMonthBeSelectable()}" ng-click="prevMonth()" title="{{ buttonPrevTitle }}">',
               prevButton,
@@ -872,6 +873,14 @@
           return validWeekDay;
         };
 
+        $scope.clear = function () {
+          ngModelCtrl.$setViewValue('');
+          thisInput.triggerHandler('input');
+          thisInput.triggerHandler('change');//just to be sure;
+
+          $scope.hideCalendar();
+        };
+
         // respect previously configured interpolation symbols.
         htmlTemplate = htmlTemplate.replace(/{{/g, $interpolate.startSymbol()).replace(/}}/g, $interpolate.endSymbol());
         $scope.dateMonthTitle = $scope.dateMonthTitle || 'Select month';
@@ -1028,6 +1037,7 @@
           'datepickerToggle': '@',
           'datepickerClass': '@',
           'datepickerShow': '@',
+          'clearText': '@',
         },
         'link': linkingFunction
       };
