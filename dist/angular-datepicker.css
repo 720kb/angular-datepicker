@@ -23,7 +23,7 @@ datepicker, .datepicker, [datepicker],
 ._720kb-datepicker-calendar-days-header,
 ._720kb-datepicker-calendar-years-pagination-pages {
   font-family: Helvetica Neue, Arial, sans-serif;
-  font-size: 13.5px;
+  font-size: inherit;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
