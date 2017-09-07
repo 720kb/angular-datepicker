@@ -30,7 +30,6 @@ datepicker, .datepicker, [datepicker],
   box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
-  float: left;
   clear: right;
   position: relative;
 }
@@ -60,8 +59,6 @@ datepicker, .datepicker, [datepicker],
   text-align: center;
   font-size: 15px;
   line-height: 40px;
-}
-._720kb-datepicker-calendar-header:nth-child(odd) {
   background: #138EFA;
 }
 ._720kb-datepicker-calendar-header:nth-child(even) {
@@ -69,6 +66,9 @@ datepicker, .datepicker, [datepicker],
 }
 ._720kb-datepicker-calendar-header-clear {
   background: #DDDDDD;
+}
+._720kb-datepicker-calendar-header-container {
+   height:40px;
 }
 ._720kb-datepicker-calendar-header-left,
 ._720kb-datepicker-calendar-header-middle,
@@ -147,7 +147,6 @@ datepicker, .datepicker, [datepicker],
 }
 ._720kb-datepicker-calendar-years-pagination{
   padding:2% 0 0 0;
-  float:left;
   clear: right;
   width: 100%;
 }
