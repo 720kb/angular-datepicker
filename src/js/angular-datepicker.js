@@ -144,7 +144,7 @@
 
       return toReturn.join('');
     }
-    , datepickerDirective = function datepickerDirective($window, $compile, $locale, $filter, $interpolate, $timeout) {
+    , datepickerDirective = function datepickerDirective($document, $compile, $locale, $filter, $interpolate, $timeout) {
 
       var linkingFunction = function linkingFunction($scope, element, attr, ngModelCtrl) {
 
@@ -388,7 +388,7 @@
           }
           , showCalendar = function showCalendar() {
             //lets hide all the latest instances of datepicker
-            pageDatepickers = $window.document.getElementsByClassName('_720kb-datepicker-calendar');
+            pageDatepickers = document.getElementsByClassName('_720kb-datepicker-calendar');
 
             angular.forEach(pageDatepickers, function forEachDatepickerPages(value, key) {
               if (pageDatepickers[key].classList) {
@@ -982,7 +982,7 @@
           isMouseOn = true;
         });
 
-        angular.element($window).on('click focus focusin', onClickOnWindow);
+        $document.on('click focus focusin', onClickOnWindow);
 
         //check always if given range of dates is ok
         if ($scope.dateMinLimit &&
@@ -1015,7 +1015,7 @@
           unregisterDateEnabledDatesWatcher();
           thisInput.off('focus click focusout blur');
           angular.element(theCalendar).off('mouseenter mouseleave focusin');
-          angular.element($window).off('click focus focusin', onClickOnWindow);
+          $document.off('click focus focusin', onClickOnWindow);
         });
       };
 
@@ -1047,5 +1047,5 @@
     };
 
   angular.module('720kb.datepicker', [])
-               .directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', '$timeout', datepickerDirective]);
+               .directive('datepicker', ['$document', '$compile', '$locale', '$filter', '$interpolate', '$timeout', datepickerDirective]);
 }(angular, navigator));
