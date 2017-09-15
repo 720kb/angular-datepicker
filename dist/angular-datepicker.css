@@ -52,9 +52,11 @@ datepicker, .datepicker, [datepicker],
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  height: 0;
 }
 ._720kb-datepicker-calendar._720kb-datepicker-open,._720kb-datepicker-calendar._720kb-datepicker-forced-to-open {
   visibility: visible;
+  height: auto;
 }
 ._720kb-datepicker-calendar-header {
   text-align: center;
