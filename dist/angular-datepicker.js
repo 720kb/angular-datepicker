@@ -30,7 +30,7 @@
         return [
           '<div class="_720kb-datepicker-calendar-header">',
             '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-mobile-item _720kb-datepicker-calendar-month">',
-              '<select ng-model="month" title="{{ dateMonthTitle }}" ng-change="selectedMonthHandle(month)">',
+              '<select class="_720kb-datepicker-calendar-select" ng-model="month" title="{{ dateMonthTitle }}" ng-change="selectedMonthHandle(month)">',
                 '<option ng-repeat="item in months" ng-selected="item === month" ng-disabled=\'!isSelectableMaxDate(item + " " + day + ", " + year) || !isSelectableMinDate(item + " " + day + ", " + year)\' ng-value="$index + 1" value="$index + 1">',
                   '{{ item }}',
                 '</option>',
@@ -39,7 +39,7 @@
           '</div>',
           '<div class="_720kb-datepicker-calendar-header">',
             '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-mobile-item _720kb-datepicker-calendar-month">',
-              '<select ng-model="mobileYear" title="{{ dateYearTitle }}" ng-change="setNewYear(mobileYear)">',
+              '<select class="_720kb-datepicker-calendar-select" ng-model="mobileYear" title="{{ dateYearTitle }}" ng-change="setNewYear(mobileYear)">',
                 '<option ng-repeat="item in paginationYears track by $index" ng-selected="year === item" ng-disabled="!isSelectableMinYear(item) || !isSelectableMaxYear(item)" ng-value="item" value="item">',
                   '{{ item }}',
                 '</option>',
@@ -341,8 +341,22 @@
             if ($scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day) &&
                 $scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
-              var modelDate = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
-
+              // 年月日以外の値を保持して更新する
+              // $scope.watchにひっかかるように、Dateオブジェクトを作り直す(オブジェクトのアドレスを更新)
+              var modelDate = ngModelCtrl.$viewValue;
+              if (modelDate instanceof Date){
+                modelDate = new Date(modelDate.getTime());
+                modelDate.setYear($scope.year);
+                modelDate.setMonth($scope.monthNumber - 1);
+                modelDate.setDate($scope.day);
+              } else if ('string' === typeof modelDate) {
+                modelDate = new Date(modelDate);
+                modelDate.setYear($scope.year);
+                modelDate.setMonth($scope.monthNumber - 1);
+                modelDate.setDate($scope.day);
+              }else {
+                modelDate = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
+              }
               ngModelCtrl.$setViewValue(modelDate);
 
               thisInput.triggerHandler('input');
@@ -947,8 +961,11 @@
         //if datepicker-toggle="" is not present or true by default
         if (checkToggle()) {
 
-          thisInput.on('focus click focusin', function onFocusAndClick() {
-
+          thisInput.on('focus click focusin', function onFocusAndClick(event) {
+            if ('SELECT' === event.target.nodeName) {
+              // selectの場合は無視する
+              return;
+            }
             isMouseOnInput = true;
 
             if (!isMouseOn &&
