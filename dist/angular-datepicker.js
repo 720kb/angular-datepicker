@@ -152,8 +152,8 @@
         var selector = attr.selector
           , thisInput = angular.element(selector ? element[0].querySelector('.' + selector) : element[0].children[0])
           , theCalendar
-          , defaultPrevButton = '<b class="_720kb-datepicker-default-button">&lang;</b>'
-          , defaultNextButton = '<b class="_720kb-datepicker-default-button">&rang;</b>'
+          , defaultPrevButton = '<i class="fa fa-arrow-left"></i>'
+          , defaultNextButton = '<i class="fa fa-arrow-right"></i>'
           , prevButton = attr.buttonPrev || defaultPrevButton
           , nextButton = attr.buttonNext || defaultNextButton
           , dateFormat = attr.dateFormat
