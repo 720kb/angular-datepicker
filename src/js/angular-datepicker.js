@@ -278,7 +278,7 @@
             $scope.year = Number($scope.year) + 1;
           }
           , localDateTimestamp = function localDateTimestamp(rawDate, dateFormatDefinition) {
-            
+
             var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|MMMM|MMM|MM|M|dd?d?|yy?yy?y?|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g
             ,formatDate,dateSplit, m, d, y, index, el, longName, shortName;
 
@@ -294,7 +294,7 @@
               if (rawDate.indexOf(shortName) !== -1) {
                 rawDate = rawDate.replace(shortName, index + 1);
                 break;
-              }              
+              }
             }
 
             dateSplit = rawDate
@@ -323,11 +323,11 @@
                 }
                 case el.indexOf('y') !== -1: {
                   y = dateSplit[index - (formatDate.length - dateSplit.length)];
-                  break; 
+                  break;
                 }
                 default: {
-                  break;  
-                }                                 
+                  break;
+                }
               }
             }
 
@@ -410,6 +410,9 @@
                 date = localDateTimestamp(thisInput[0].value.toString(), dateFormat);
               } else {
                 date = new Date(thisInput[0].value.toString());
+              }
+              if(isNaN(date) && $scope.dateSet) {
+                date = new Date($scope.dateSet)
               }
               $scope.selectedMonth = Number($filter('date')(date, 'MM'));
               $scope.selectedDay = Number($filter('date')(date, 'dd'));
