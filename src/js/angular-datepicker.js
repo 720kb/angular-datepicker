@@ -411,7 +411,7 @@
               } else {
                 date = new Date(thisInput[0].value.toString());
               }
-              if(isNaN(date) && $scope.dateSet) {
+              if(isNaN(Date.parse(date)) && $scope.dateSet) {
                 date = new Date($scope.dateSet)
               }
               $scope.selectedMonth = Number($filter('date')(date, 'MM'));
@@ -451,6 +451,9 @@
               date = localDateTimestamp(thisInput[0].value.toString(), dateFormat);
             } else {
               date = new Date(thisInput[0].value.toString());
+            }
+            if(isNaN(Date.parse(date)) && $scope.dateSet) {
+              date = new Date($scope.dateSet)
             }
             $scope.selectedMonth = Number($filter('date')(date, 'MM'));
             $scope.selectedDay = Number($filter('date')(date, 'dd'));
