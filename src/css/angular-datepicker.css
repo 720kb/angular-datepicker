@@ -5,9 +5,9 @@ datepicker a, [datepicker] a, .datepicker a{
 datepicker a:hover, [datepicker] a:hover, .datepicker a:hover{
   text-decoration:none;
 }
-datepicker select, datepicker select:focus, datepicker select:hover,
-.datepicker select, .datepicker select:focus, .datepicker select:hover,
-[datepicker] select, [datepicker] select:focus, [datepicker] select:hover{
+datepicker select._720kb-datepicker-calendar-select,
+.datepicker select._720kb-datepicker-calendar-select,
+[datepicker] select._720kb-datepicker-calendar-select {
   width:100%;
    overflow: hidden;
    background:none;
