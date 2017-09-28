@@ -341,20 +341,21 @@
             if ($scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day) &&
                 $scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
-              // 年月日以外の値を保持して更新する
               // $scope.watchにひっかかるように、Dateオブジェクトを作り直す(オブジェクトのアドレスを更新)
+              // and 年月日以外の値を保持して更新する
               var modelDate = ngModelCtrl.$viewValue;
+
               if (modelDate instanceof Date){
                 modelDate = new Date(modelDate.getTime());
                 modelDate.setYear($scope.year);
                 modelDate.setMonth($scope.monthNumber - 1);
                 modelDate.setDate($scope.day);
-              } else if ('string' === typeof modelDate) {
+              } else if (typeof modelDate === 'string') {
                 modelDate = new Date(modelDate);
                 modelDate.setYear($scope.year);
                 modelDate.setMonth($scope.monthNumber - 1);
                 modelDate.setDate($scope.day);
-              }else {
+              } else {
                 modelDate = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
               }
               ngModelCtrl.$setViewValue(modelDate);
@@ -962,7 +963,7 @@
         if (checkToggle()) {
 
           thisInput.on('focus click focusin', function onFocusAndClick(event) {
-            if ('SELECT' === event.target.nodeName) {
+            if (event.target.nodeName === 'SELECT') {
               // selectの場合は無視する
               return;
             }
