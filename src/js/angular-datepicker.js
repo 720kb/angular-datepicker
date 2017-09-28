@@ -963,8 +963,8 @@
         if (checkToggle()) {
 
           thisInput.on('focus click focusin', function onFocusAndClick(event) {
-            if (event.target.nodeName === 'SELECT') {
-              // selectの場合は無視する
+            if (event.target.nodeName !== 'INPUT') {
+              // input以外の場合は無視する
               return;
             }
             isMouseOnInput = true;
