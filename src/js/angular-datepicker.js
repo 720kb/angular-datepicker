@@ -58,7 +58,7 @@
           '</div>',
           '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-calendar-month">',
             '{{month}}&nbsp;',
-            '<a href="javascript:void(0)" ng-click="paginateYears(year); showYearsPagination = !showYearsPagination;">',
+            '<a href="javascript:void(0)" ng-click="paginateYears(year); showYearsPagination = !showYearsPagination;showDaysPagination = !showDaysPagination;">',
               '<span>',
                 '{{year}}',
                 '<i ng-class="{\'_720kb-datepicker-calendar-header-closed-pagination\': !showYearsPagination, \'_720kb-datepicker-calendar-header-opened-pagination\': showYearsPagination}"></i>',
@@ -96,7 +96,7 @@
     , generateDaysColumns = function generateDaysColumns() {
 
       return [
-      '<div class="_720kb-datepicker-calendar-days-header">',
+      '<div class="_720kb-datepicker-calendar-days-header" ng-show="showDaysPagination">',
         '<div ng-repeat="d in daysInString">',
           '{{d}}',
         '</div>',
@@ -106,7 +106,7 @@
     , generateDays = function generateDays() {
 
       return [
-        '<div class="_720kb-datepicker-calendar-body">',
+        '<div class="_720kb-datepicker-calendar-body" ng-show="showDaysPagination">',
           '<a href="javascript:void(0)" ng-repeat="px in prevMonthDays" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">',
             '{{px}}',
           '</a>',
@@ -145,6 +145,7 @@
 
       var linkingFunction = function linkingFunction($scope, element, attr) {
 
+        $scope.showDaysPagination = true;
         //get child input
         var selector = attr.selector
           , thisInput = angular.element(selector ? element[0].querySelector('.' + selector) : element[0].children[0])
@@ -646,6 +647,7 @@
 
           $scope.paginateYears(year);
           $scope.showYearsPagination = false;
+          $scope.showDaysPagination = true;
           $timeout(function timeoutForYears() {
             $scope.year = Number(year);
             setDaysInMonth($scope.monthNumber, $scope.year);
