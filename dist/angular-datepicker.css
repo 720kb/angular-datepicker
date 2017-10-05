@@ -109,6 +109,9 @@ datepicker, .datepicker, [datepicker],
   -moz-border-radius: 1px;
   border-radius: 1px;
 }
+._720kb-datepicker-today {
+    color: #138EFA;
+}
 ._720kb-datepicker-calendar-day:hover,
 ._720kb-datepicker-calendar-day._720kb-datepicker-active {
   background: rgba(0, 0, 0, 0.03);
