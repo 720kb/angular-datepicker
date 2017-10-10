@@ -278,7 +278,7 @@
             $scope.year = Number($scope.year) + 1;
           }
           , localDateTimestamp = function localDateTimestamp(rawDate, dateFormatDefinition) {
-            
+
             var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|MMMM|MMM|MM|M|dd?d?|yy?yy?y?|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g
             ,formatDate,dateSplit, m, d, y, index, el, longName, shortName;
 
@@ -294,7 +294,7 @@
               if (rawDate.indexOf(shortName) !== -1) {
                 rawDate = rawDate.replace(shortName, index + 1);
                 break;
-              }              
+              }
             }
 
             dateSplit = rawDate
@@ -323,11 +323,11 @@
                 }
                 case el.indexOf('y') !== -1: {
                   y = dateSplit[index - (formatDate.length - dateSplit.length)];
-                  break; 
+                  break;
                 }
                 default: {
-                  break;  
-                }                                 
+                  break;
+                }
               }
             }
 
@@ -615,7 +615,9 @@
         };
 
         $scope.selectedMonthHandle = function manageSelectedMonthHandle(selectedMonthNumber) {
-
+          if (!selectedMonthNumber) {
+            return;
+          }
           $scope.monthNumber = Number($filter('date')(new Date(selectedMonthNumber + '/01/2000'), 'MM'));
           setDaysInMonth($scope.monthNumber, $scope.year);
           setInputValue();
