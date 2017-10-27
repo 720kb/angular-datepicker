@@ -180,7 +180,7 @@ datepicker, .datepicker, [datepicker],
   text-align: center;
   color:rgba(0,0,0,0.7);
 }
-._720kb-datepicker-calendar-days
+._720kb-datepicker-calendar-days,
 ._720kb-datepicker-default-button{
   font-size: 18.5px;
   position: relative;
