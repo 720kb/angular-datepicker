@@ -454,25 +454,6 @@
             $scope.selectedYear = Number($filter('date')(date, 'yyyy'));
             return $scope.$eval($scope.datepickerShow);
           }
-          , unregisterDataSetWatcher = $scope.$watch('dateSet', function dateSetWatcher(newValue) {
-
-            if (newValue && !isNaN(Date.parse(newValue))) {
-
-              date = new Date(newValue);
-
-              $scope.month = $filter('date')(date, 'MMMM');//december-November like
-              $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
-              $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
-              $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
-
-              setDaysInMonth($scope.monthNumber, $scope.year);
-
-              if ($scope.dateSetHidden !== 'true') {
-
-                setInputValue();
-              }
-            }
-          })
           , unregisterDateMinLimitWatcher = $scope.$watch('dateMinLimit', function dateMinLimitWatcher(newValue) {
             if (newValue) {
               resetToMinDate();
@@ -507,6 +488,25 @@
                 thisInput.val('');
                 thisInput.triggerHandler('input');
                 thisInput.triggerHandler('change');//just to be sure;
+              }
+            }
+          })
+          , unregisterDataSetWatcher = $scope.$watch('dateSet', function dateSetWatcher(newValue) {
+
+            if (newValue && !isNaN(Date.parse(newValue))) {
+
+              date = new Date(newValue);
+
+              $scope.month = $filter('date')(date, 'MMMM');//december-November like
+              $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
+              $scope.day = Number($filter('date')(date, 'dd')); //01-31 like
+              $scope.year = Number($filter('date')(date, 'yyyy'));//2014 like
+
+              setDaysInMonth($scope.monthNumber, $scope.year);
+
+              if ($scope.dateSetHidden !== 'true') {
+
+                setInputValue();
               }
             }
           });
