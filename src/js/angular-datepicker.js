@@ -662,10 +662,6 @@
         };
 
         $scope.setDatepickerDay = function setDatepickerDay(day, type) {
-          if (type && $scope.anyDay !== 'true') {
-              return;
-          }
-
           if ($scope.isSelectableDay($scope.monthNumber, $scope.year, day) &&
               $scope.isSelectableDate($scope.monthNumber, $scope.year, day) &&
               $scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + day) &&
