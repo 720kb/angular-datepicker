@@ -673,13 +673,13 @@
 
             if (type === 'previous') {
               if ($scope.monthNumber !== 1) {
-                $scope.monthNumber--;
+                $scope.monthNumber -= 1;
               } else {
                 $scope.monthNumber = 12;
               }
               } else if (type === 'next') {
                 if ($scope.monthNumber !== 12) {
-                  $scope.monthNumber++;
+                  $scope.monthNumber += 1;
               } else {
                   $scope.monthNumber = 1;
               }

@@ -107,13 +107,13 @@
 
       return [
         '<div class="_720kb-datepicker-calendar-body">',
-          '<a href="javascript:void(0)" ng-repeat="px in prevMonthDays" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">',
+          '<a href="javascript:void(0)" ng-repeat="px in prevMonthDays" ng-click="setDatepickerDay(px, \'previous\')" ng-class="{\'_720kb-datepicker-disabled-active\': anyDay === \'true\'}" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">',
             '{{px}}',
           '</a>',
           '<a href="javascript:void(0)" ng-repeat="item in days" ng-click="setDatepickerDay(item)" ng-class="{\'_720kb-datepicker-active\': selectedDay === item && selectedMonth === monthNumber && selectedYear === year, \'_720kb-datepicker-disabled\': !isSelectableMinDate(year + \'/\' + monthNumber + \'/\' + item ) || !isSelectableMaxDate(year + \'/\' + monthNumber + \'/\' + item) || !isSelectableDate(monthNumber, year, item) || !isSelectableDay(monthNumber, year, item),\'_720kb-datepicker-today\': item === today.getDate() && monthNumber === (today.getMonth() + 1) && year === today.getFullYear() && !selectedDay}" class="_720kb-datepicker-calendar-day">',
             '{{item}}',
           '</a>',
-          '<a href="javascript:void(0)" ng-repeat="nx in nextMonthDays" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">',
+          '<a href="javascript:void(0)" ng-repeat="nx in nextMonthDays" ng-click="setDatepickerDay(nx, \'next\')" ng-class="{\'_720kb-datepicker-disabled-active\': anyDay === \'true\'}" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">',
             '{{nx}}',
           '</a>',
         '</div>'
@@ -661,12 +661,29 @@
           }
         };
 
-        $scope.setDatepickerDay = function setDatepickerDay(day) {
+        $scope.setDatepickerDay = function setDatepickerDay(day, type) {
+          if (type && $scope.anyDay !== 'true') {
+              return;
+          }
 
           if ($scope.isSelectableDay($scope.monthNumber, $scope.year, day) &&
               $scope.isSelectableDate($scope.monthNumber, $scope.year, day) &&
               $scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + day) &&
               $scope.isSelectableMinDate($scope.year + '/' + $scope.monthNumber + '/' + day)) {
+
+            if (type === 'previous') {
+              if ($scope.monthNumber !== 1) {
+                $scope.monthNumber -= 1;
+              } else {
+                $scope.monthNumber = 12;
+              }
+              } else if (type === 'next') {
+                if ($scope.monthNumber !== 12) {
+                  $scope.monthNumber += 1;
+              } else {
+                  $scope.monthNumber = 1;
+              }
+            }
 
             $scope.day = Number(day);
             $scope.selectedDay = $scope.day;
@@ -1033,7 +1050,8 @@
           'datepickerAppendTo': '@',
           'datepickerToggle': '@',
           'datepickerClass': '@',
-          'datepickerShow': '@'
+          'datepickerShow': '@',
+          'anyDay': '@'
         },
         'link': linkingFunction
       };
