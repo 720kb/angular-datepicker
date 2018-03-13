@@ -100,13 +100,13 @@
     , generateDays = function generateDays() {
     return [
       '<div class="_720kb-datepicker-calendar-body">',
-      '<a href="javascript:void(0)" ng-repeat="px in prevMonthDays" ng-click="setDatepickerDay(px, \'previous\')" ng-class="{\'_720kb-datepicker-disabled-active\': anyDay === \'true\'}" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">',
+      '<a href="javascript:void(0)" ng-repeat="px in prevMonthDays" ng-click="setDatepickerDay(px, \'previous\')" ng-class="{\'_720kb-datepicker-disabled-active\': anyDay === \'true\'}" class="_720kb-datepicker-calendar-day">',
       '{{px}}',
       '</a>',
       '<a href="javascript:void(0)" ng-repeat="item in days" ng-click="setDatepickerDay(item)" ng-class="{\'_720kb-datepicker-active\': selectedDay === item && selectedMonth === monthNumber && selectedYear === year, \'_720kb-datepicker-disabled\': !isSelectableMinDate(year + \'/\' + monthNumber + \'/\' + item ) || !isSelectableMaxDate(year + \'/\' + monthNumber + \'/\' + item) || !isSelectableDate(monthNumber, year, item) || !isSelectableDay(monthNumber, year, item),\'_720kb-datepicker-today\': item === today.getDate() && monthNumber === (today.getMonth() + 1) && year === today.getFullYear() && !selectedDay}" class="_720kb-datepicker-calendar-day">',
       '{{item}}',
       '</a>',
-      '<a href="javascript:void(0)" ng-repeat="nx in nextMonthDays" ng-click="setDatepickerDay(nx, \'next\')" ng-class="{\'_720kb-datepicker-disabled-active\': anyDay === \'true\'}" class="_720kb-datepicker-calendar-day _720kb-datepicker-disabled">',
+      '<a href="javascript:void(0)" ng-repeat="nx in nextMonthDays" ng-click="setDatepickerDay(nx, \'next\')" ng-class="{\'_720kb-datepicker-disabled-active\': anyDay === \'true\'}" class="_720kb-datepicker-calendar-day">',
       '{{nx}}',
       '</a>',
       '</div>'
