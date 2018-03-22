@@ -505,7 +505,7 @@
               dateDisabledDates = $scope.$eval(newValue);
 
               if (!$scope.isSelectableDate($scope.monthNumber, $scope.year, $scope.day)) {
-                ngModelCtrl.$setViewValue('');
+                ngModelCtrl.$setViewValue(null);
                 thisInput.triggerHandler('input');
                 thisInput.triggerHandler('change');//just to be sure;
               }
@@ -516,7 +516,7 @@
               dateEnabledDates = $scope.$eval(newValue);
 
               if (!$scope.isSelectableDate($scope.monthNumber, $scope.year, $scope.day)) {
-                ngModelCtrl.$setViewValue('');
+                ngModelCtrl.$setViewValue(null);
                 thisInput.triggerHandler('input');
                 thisInput.triggerHandler('change');//just to be sure;
               }
@@ -895,7 +895,7 @@
         };
 
         $scope.clear = function clear() {
-          ngModelCtrl.$setViewValue('');
+          ngModelCtrl.$setViewValue(null);
           thisInput.triggerHandler('input');
           thisInput.triggerHandler('change');//just to be sure;
 
