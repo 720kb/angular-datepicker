@@ -358,10 +358,12 @@
               } else {
                 modelDate = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
               }
+
+              if (attr.dateFormat) {
+                modelDate = $filter('date')(modelDate, dateFormat);
+              }
               ngModelCtrl.$setViewValue(modelDate);
 
-              thisInput.triggerHandler('input');
-              thisInput.triggerHandler('change');//just to be sure;
             } else {
 
               return false;
