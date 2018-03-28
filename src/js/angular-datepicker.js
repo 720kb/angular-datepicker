@@ -508,8 +508,6 @@
 
               if (!$scope.isSelectableDate($scope.monthNumber, $scope.year, $scope.day)) {
                 ngModelCtrl.$setViewValue(null);
-                thisInput.triggerHandler('input');
-                thisInput.triggerHandler('change');//just to be sure;
               }
             }
           })
@@ -519,8 +517,6 @@
 
               if (!$scope.isSelectableDate($scope.monthNumber, $scope.year, $scope.day)) {
                 ngModelCtrl.$setViewValue(null);
-                thisInput.triggerHandler('input');
-                thisInput.triggerHandler('change');//just to be sure;
               }
             }
           });
@@ -898,9 +894,6 @@
 
         $scope.clear = function clear() {
           ngModelCtrl.$setViewValue(null);
-          thisInput.triggerHandler('input');
-          thisInput.triggerHandler('change');//just to be sure;
-
           $scope.hideCalendar();
         };
 
