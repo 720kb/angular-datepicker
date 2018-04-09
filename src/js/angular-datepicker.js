@@ -54,20 +54,14 @@
       "</div>",
       '<div class="_720kb-datepicker-calendar-header">',
       '<div class="_720kb-datepicker-calendar-header-left">',
-      '<a class="_720kb-datepicker-calendar-month-button" href="javascript:void(0)" ng-class="{\'_720kb-datepicker-item-hidden\': !willPrevMonthBeSelectable()}" ng-click="prevMonth()" title="{{ buttonPrevTitle }}">', prevButton,
+      '<a class="_720kb-datepicker-calendar-month-button" href="javascript:void(0)" ng-class="{\'_720kb-datepicker-item-hidden\': !willPrevMonthBeSelectable()}" ng-click="prevMonth()" title="{{ buttonPrevTitle }}">',
+      prevButton,
       "</a>",
       "</div>",
       '<div class="_720kb-datepicker-calendar-header-middle _720kb-datepicker-calendar-month">',
-      '<a href="javascript:void(0)" ng-click="showMPagination()">', "<span>", "{{month}}",
-      "<i ng-class=\"{'_720kb-datepicker-calendar-header-closed-pagination': !showMonthPagination, '_720kb-datepicker-calendar-header-opened-pagination': showMonthPagination}\"></i>",
+      "<span>",
+      "{{month}} {{year}}",
       "</span>",
-      "</a>",
-      '<a href="javascript:void(0)" ng-click="paginateYears(year); showYPagination()">',
-      '<span>',
-      '{{year}}',
-      '<i ng-class="{\'_720kb-datepicker-calendar-header-closed-pagination\': !showYearsPagination, \'_720kb-datepicker-calendar-header-opened-pagination\': showYearsPagination}"></i>',
-      '</span>',
-      '</a>',
       '</div>',
       '<div class="_720kb-datepicker-calendar-header-right">',
       '<a class="_720kb-datepicker-calendar-month-button" ng-class="{\'_720kb-datepicker-item-hidden\': !willNextMonthBeSelectable()}" href="javascript:void(0)" ng-click="nextMonth()" title="{{ buttonNextTitle }}">',
@@ -79,13 +73,15 @@
   }
     , generateYearsPaginationHeader = function generateYearsPaginationHeader(prevButton, nextButton) {
 
-    return ['<div class="_720kb-datepicker-calendar-header" ng-show="showYearsPagination">', '<div class="_720kb-datepicker-calendar-years-pagination">', '<a ng-class="{\'_720kb-datepicker-active\': y === year, \'_720kb-datepicker-disabled\': !isSelectableMaxYear(y) || !isSelectableMinYear(y)}" href="javascript:void(0)" ng-click="setNewYear(y)" ng-repeat="y in paginationYears track by $index">', "{{y}}", "</a>", "</div>", '<div class="_720kb-datepicker-calendar-years-pagination-pages">', '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[0])" ng-class="{\'_720kb-datepicker-item-hidden\': paginationYearsPrevDisabled}">', prevButton, "</a>", '<a href="javascript:void(0)" ng-click="paginateYears(paginationYears[paginationYears.length -1 ])" ng-class="{\'_720kb-datepicker-item-hidden\': paginationYearsNextDisabled}">', nextButton, "</a>", "</div>", "</div>"];
-  }
-
-    , generateMonthsPaginationHeader = function generateMonthsPaginationHeader() {
-
-    return ['<div class="_720kb-datepicker-calendar-header" ng-show="showMonthPagination">', '<div class="_720kb-datepicker-calendar-years-pagination">', '<a ng-repeat="item in months" href="javascript:void(0)" ng-click="setMonth(item)" ng-disabled=\'!isSelectableMaxDate(item + " " + day + ", " + year) || !isSelectableMinDate(item + " " + day + ", " + year)\'>', "{{ item }}", "</a>", "</div>", "</div>"];
-
+    return [
+        '<div class="_720kb-datepicker-calendar-header">',
+        '<div class="_720kb-datepicker-calendar-years-pagination">',
+        '<a ng-class="{\'_720kb-datepicker-active\': y === year, \'_720kb-datepicker-disabled\': !isSelectableMaxYear(y) || !isSelectableMinYear(y)}" href="javascript:void(0)" ng-click="setNewYear(y)" ng-repeat="y in paginationYears track by $index" ng-if="$index < 4">',
+        "{{y}}",
+        "</a>",
+        "</div>",
+        "</div>"
+    ];
   }
     , generateDaysColumns = function generateDaysColumns() {
 
@@ -118,19 +114,16 @@
       '<div class="_720kb-datepicker-calendar {{datepickerClass}} {{datepickerID}}" ng-class="{\'_720kb-datepicker-forced-to-open\': checkVisibility()}" ng-blur="hideCalendar()">',
       '</div>'
     ]
-      , monthAndYearHeader = generateMonthAndYearHeader(prevButton, nextButton, preventMobile)
       , yearsPaginationHeader = generateYearsPaginationHeader(prevButton, nextButton)
-      , monthsPaginationHeader = generateMonthsPaginationHeader()
+      , monthAndYearHeader = generateMonthAndYearHeader(prevButton, nextButton, preventMobile)
       , daysColumns = generateDaysColumns()
       , days = generateDays()
       , iterator = function iterator(aRow) {
 
       toReturn.splice(toReturn.length - 1, 0, aRow);
     };
-
-    monthAndYearHeader.forEach(iterator);
     yearsPaginationHeader.forEach(iterator);
-    monthsPaginationHeader.forEach(iterator);
+    monthAndYearHeader.forEach(iterator);
     daysColumns.forEach(iterator);
     days.forEach(iterator);
 
@@ -266,11 +259,11 @@
         }
         , prevYear = function prevYear() {
 
-          $scope.year = Number($scope.year) - 1;
+          $scope.year = $scope.setNewYear(Number($scope.year) - 1);
         }
         , nextYear = function nextYear() {
 
-          $scope.year = Number($scope.year) + 1;
+          $scope.year = $scope.setNewYear(Number($scope.year) + 1);
         }
         , localDateTimestamp = function localDateTimestamp(rawDate, dateFormatDefinition) {
 
@@ -713,8 +706,8 @@
       $scope.paginateYears = function paginateYears(startingYear) {
         var i
           , theNewYears = []
-          , daysToPrepend = 10
-          , daysToAppend = 10;
+          , daysToPrepend = 2
+          , daysToAppend = 2;
 
         $scope.paginationYears = [];
         if (isMobile) {
