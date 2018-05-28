@@ -1,11 +1,14 @@
 /*global angular document navigator*/
-(function withAngular(angular, navigator) {
+(function withAngular(angular /*, navigator*/) {
 
   'use strict';
 
   var A_DAY_IN_MILLISECONDS = 86400000
     , isMobile = (function isMobile() {
+      // mobile off 動作確認後戻す
+      return false;
 
+      /*
       if (navigator.userAgent &&
         (navigator.userAgent.match(/Android/i) ||
         navigator.userAgent.match(/webOS/i) ||
@@ -17,6 +20,7 @@
 
         return true;
       }
+      */
     }())
     , generateMonthAndYearHeader = function generateMonthAndYearHeader(prevButton, nextButton, preventMobile) {
 

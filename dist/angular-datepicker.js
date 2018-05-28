@@ -1,11 +1,14 @@
 /*global angular document navigator*/
-(function withAngular(angular, navigator) {
+(function withAngular(angular /*, navigator*/) {
 
   'use strict';
 
   var A_DAY_IN_MILLISECONDS = 86400000
     , isMobile = (function isMobile() {
+      // mobile off 動作確認後戻す
+      return false;
 
+      /*
       if (navigator.userAgent &&
         (navigator.userAgent.match(/Android/i) ||
         navigator.userAgent.match(/webOS/i) ||
@@ -17,6 +20,7 @@
 
         return true;
       }
+      */
     }())
     , generateMonthAndYearHeader = function generateMonthAndYearHeader(prevButton, nextButton, preventMobile) {
 
@@ -508,8 +512,6 @@
 
               if (!$scope.isSelectableDate($scope.monthNumber, $scope.year, $scope.day)) {
                 ngModelCtrl.$setViewValue(null);
-                thisInput.triggerHandler('input');
-                thisInput.triggerHandler('change');//just to be sure;
               }
             }
           })
@@ -519,8 +521,6 @@
 
               if (!$scope.isSelectableDate($scope.monthNumber, $scope.year, $scope.day)) {
                 ngModelCtrl.$setViewValue(null);
-                thisInput.triggerHandler('input');
-                thisInput.triggerHandler('change');//just to be sure;
               }
             }
           });
@@ -898,9 +898,6 @@
 
         $scope.clear = function clear() {
           ngModelCtrl.$setViewValue(null);
-          thisInput.triggerHandler('input');
-          thisInput.triggerHandler('change');//just to be sure;
-
           $scope.hideCalendar();
         };
 
