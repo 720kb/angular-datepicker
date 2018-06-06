@@ -78,7 +78,7 @@ Option | Type | Default | Description
 ------------- | ------------- | ------------- | -------------
 date-set="" | String | false | Set a default date to show and init datepicker
  |  | | **tip:** _Do not use same scope for ng-model="date" and date-set="{{date}}", this example is wrong._
- |  | | **tip:** _If you want to pass a Date Object inside do like this date-set="{{newDateObject.toString()}}"_
+ |  | | **tip:** _If you want to pass a Date Object inside do like this date-set="{{newDateObject.toISOString()}}"_
  |  | | **tip:** _Consider that `date-set="{{myDate}}"` equals to `new Date(attr.dateSet)`, be sure the date you pass inside date-set="" is always in a correct ISO format, or adjust it based on the browser locale to avoid problems with that."._
 date-format="" | String | String(new Date()) | Set the date format you want to use, see the list [here](https://docs.angularjs.org/api/ng/filter/date)
  |  | | **tip:** _Be always sure to use a recognized format, maybe try first of all to pass it through new Date('...') and see if it's recognized_
