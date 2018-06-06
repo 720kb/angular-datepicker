@@ -615,7 +615,7 @@
         };
 
         $scope.selectedMonthHandle = function manageSelectedMonthHandle(selectedMonthNumber) {
-          // In iOS Safari selectedMonthNumber is null at the start up 
+          // in iOS Safari selectedMonthNumber is null at the start up 
           if (selectedMonthNumber) {
             $scope.monthNumber = Number($filter('date')(new Date(selectedMonthNumber + '/01/2000'), 'MM'));
           }
