@@ -408,6 +408,7 @@
             }
           }
           , showCalendar = function showCalendar() {
+            $scope.isShowed = true;
             //lets hide all the latest instances of datepicker
             pageDatepickers = document.getElementsByClassName('_720kb-datepicker-calendar');
 
@@ -670,6 +671,7 @@
         };
 
         $scope.hideCalendar = function hideCalendar() {
+          $scope.isShowed = false;
           if (theCalendar.classList) {
             theCalendar.classList.remove('_720kb-datepicker-open');
           } else {
@@ -969,10 +971,11 @@
               // input以外の場合は無視する
               return;
             }
+            event.stopPropagation();
             isMouseOnInput = true;
 
             if (!isMouseOn &&
-            !isMouseOnInput && theCalendar) {
+            !isMouseOnInput && theCalendar || $scope.isShowed) {
 
               $scope.hideCalendar();
             } else {
