@@ -966,7 +966,7 @@
         //if datepicker-toggle="" is not present or true by default
         if (checkToggle()) {
 
-          thisInput.on('focus click focusin', function onFocusAndClick(event) {
+          thisInput.on('click', function onFocusAndClick(event) {
             if (event.target.nodeName !== 'INPUT') {
               // input以外の場合は無視する
               return;
