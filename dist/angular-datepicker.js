@@ -1011,16 +1011,8 @@
           });
         }
 
-        thisInput.on('focusout blur', function onBlurAndFocusOut(event) {
-          if (event.target.nodeName !== 'INPUT') {
-            // input以外の場合は無視する
-            return;
-          }
-          if (event.target.type === 'button') {
-            // buttonは除く
-            return;
-          }
-
+        thisInput.on('focusout blur', function onBlurAndFocusOut() {
+          // focusout/blurの場合、フォーカス外れた時のevent.targetはINPUT以外の要素
           isMouseOnInput = false;
 
           if (!isMouseOn &&
