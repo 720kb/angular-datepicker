@@ -971,6 +971,11 @@
               // input以外の場合は無視する
               return;
             }
+            if (event.target.type !== 'button') {
+              // button以外は除く
+              return;
+            }
+
             event.stopPropagation();
             isMouseOnInput = true;
 
@@ -983,9 +988,38 @@
               showCalendar();
             }
           });
+
+          thisInput.on('focusin focus', function onFocusAndClick(event) {
+            if (event.target.nodeName !== 'INPUT') {
+              // input以外の場合は無視する
+              return;
+            }
+            if (event.target.type === 'button') {
+              // buttonは除く
+              return;
+            }
+            isMouseOnInput = true;
+
+            if (!isMouseOn &&
+            !isMouseOnInput && theCalendar) {
+
+              $scope.hideCalendar();
+            } else {
+
+              showCalendar();
+            }
+          });
         }
 
-        thisInput.on('focusout blur', function onBlurAndFocusOut() {
+        thisInput.on('focusout blur', function onBlurAndFocusOut(event) {
+          if (event.target.nodeName !== 'INPUT') {
+            // input以外の場合は無視する
+            return;
+          }
+          if (event.target.type === 'button') {
+            // buttonは除く
+            return;
+          }
 
           isMouseOnInput = false;
 
