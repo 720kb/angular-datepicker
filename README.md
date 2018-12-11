@@ -9,6 +9,10 @@ Angular datepicker is an angularjs directive that generates a datepicker calenda
 
 The Angularjs Datepicker is developed by [720kb](http://720kb.net).
 
+## Update 2018/12/11
+Removed all javascript: void to support Angular 1.7 and above.
+ Added functionality to auto change month when next or previous month's date is clicked.
+
 ## Requirements
 
 AngularJS v1.3+
