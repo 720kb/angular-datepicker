@@ -303,6 +303,33 @@
                 return item.length > 0;
               });
 
+            switch(dateFormatDefinition){
+              case 'medium':
+                dateFormatDefinition = 'MMM d, y h:mm:ss a';
+                break;
+              case 'short':
+                dateFormatDefinition = 'M/d/yy h:mm a';
+                break;
+              case 'fullDate':
+                dateFormatDefinition = 'EEEE, MMMM d, y';
+                break;
+              case 'longDate':
+                dateFormatDefinition = 'MMMM d, y';
+                break;
+              case 'mediumDate':
+                dateFormatDefinition = 'MMM d, y';
+                break;
+              case 'shortDate':
+                dateFormatDefinition = 'M/d/yy';
+                break;
+              case 'mediumTime':
+                dateFormatDefinition = 'h:mm:ss a';
+                break;
+              case 'shortTime':
+                dateFormatDefinition = 'h:mm a';
+                break;
+            }
+
             formatDate = dateFormatDefinition
               .match(formattingTokens)
               .filter(function fromatDateFilter(item) {
