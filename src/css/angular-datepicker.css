@@ -112,9 +112,16 @@ datepicker, .datepicker, [datepicker],
   -moz-border-radius: 1px;
   border-radius: 1px;
 }
-._720kb-datepicker-calendar-day:hover,
+._720kb-datepicker-calendar-day:hover {
+  background: #d0e9ff;
+}
+._720kb-datepicker-today {
+  background: #777;
+  color: #fff;
+}
 ._720kb-datepicker-calendar-day._720kb-datepicker-active {
-  background: rgba(0, 0, 0, 0.03);
+  background: #138efa;
+  color: #fff;
 }
 ._720kb-datepicker-calendar-header a, ._720kb-datepicker-calendar-header a:hover {
   text-decoration:none;
