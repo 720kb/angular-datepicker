@@ -115,7 +115,7 @@ datepicker, .datepicker, [datepicker],
 ._720kb-datepicker-calendar-day:hover {
   background: #d0e9ff;
 }
-._720kb-datepicker-today {
+._720kb-datepicker-calendar-day._720kb-datepicker-today {
   background: #777;
   color: #fff;
 }
