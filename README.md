@@ -1,3 +1,14 @@
+本家からの変更点
+=============
+- datepicker要素に ng-modelを設定して、日付選択時にこの値が更新される
+- 内部にinputを置くのは変わらないが、日付選択時にinputのvalueは変更されない
+- clear-text指定で上部にクリアボタンを表示
+```
+                  <datepicker datepicker-class="align-right" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" ng-change="vm.getList(true)" clear-text="取消" ng-model="vm.search_todo.expect_time">
+                    <input type="button" ng-value="vm.search_todo.expect_time ? (vm.search_todo.expect_time | jpdateFilter:'year_month_day') : '予定日'">
+                  </datepicker>
+```
+
 Angular Datepicker
 ==================
 ![Angular datepicker calendar](http://i.imgur.com/jKfADtA.png)

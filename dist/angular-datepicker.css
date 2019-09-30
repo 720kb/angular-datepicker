@@ -5,9 +5,9 @@ datepicker a, [datepicker] a, .datepicker a{
 datepicker a:hover, [datepicker] a:hover, .datepicker a:hover{
   text-decoration:none;
 }
-datepicker select, datepicker select:focus, datepicker select:hover,
-.datepicker select, .datepicker select:focus, .datepicker select:hover,
-[datepicker] select, [datepicker] select:focus, [datepicker] select:hover{
+datepicker select._720kb-datepicker-calendar-select,
+.datepicker select._720kb-datepicker-calendar-select,
+[datepicker] select._720kb-datepicker-calendar-select {
   width:100%;
    overflow: hidden;
    background:none;
@@ -23,14 +23,13 @@ datepicker, .datepicker, [datepicker],
 ._720kb-datepicker-calendar-days-header,
 ._720kb-datepicker-calendar-years-pagination-pages {
   font-family: Helvetica Neue, Arial, sans-serif;
-  font-size: 13.5px;
+  font-size: inherit;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
-  float: left;
   clear: right;
   position: relative;
 }
@@ -60,12 +59,16 @@ datepicker, .datepicker, [datepicker],
   text-align: center;
   font-size: 15px;
   line-height: 40px;
-}
-._720kb-datepicker-calendar-header:nth-child(odd) {
   background: #138EFA;
 }
 ._720kb-datepicker-calendar-header:nth-child(even) {
   background: #7BC6FC;
+}
+._720kb-datepicker-calendar-header-clear {
+  background: #DDDDDD;
+}
+._720kb-datepicker-calendar-header-container {
+   height:40px;
 }
 ._720kb-datepicker-calendar-header-left,
 ._720kb-datepicker-calendar-header-middle,
@@ -109,9 +112,16 @@ datepicker, .datepicker, [datepicker],
   -moz-border-radius: 1px;
   border-radius: 1px;
 }
-._720kb-datepicker-calendar-day:hover,
+._720kb-datepicker-calendar-day:hover {
+  background: #d0e9ff;
+}
+._720kb-datepicker-calendar-day._720kb-datepicker-today {
+  background: #777;
+  color: #fff;
+}
 ._720kb-datepicker-calendar-day._720kb-datepicker-active {
-  background: rgba(0, 0, 0, 0.03);
+  background: #138efa;
+  color: #fff;
 }
 ._720kb-datepicker-calendar-header a, ._720kb-datepicker-calendar-header a:hover {
   text-decoration:none;
@@ -144,7 +154,6 @@ datepicker, .datepicker, [datepicker],
 }
 ._720kb-datepicker-calendar-years-pagination{
   padding:2% 0 0 0;
-  float:left;
   clear: right;
   width: 100%;
 }
