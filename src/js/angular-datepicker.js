@@ -76,8 +76,9 @@
     return [
         '<div class="_720kb-datepicker-calendar-header">',
         '<div class="_720kb-datepicker-calendar-years-pagination">',
-        '<a ng-class="{\'_720kb-datepicker-active\': y === year, \'_720kb-datepicker-disabled\': !isSelectableMaxYear(y) || !isSelectableMinYear(y)}" href="javascript:void(0)" ng-click="setNewYear(y)" ng-repeat="y in paginationYears track by $index" ng-if="$index < 4">',
-        "{{y}}",
+        '<a ng-class="{\'_720kb-datepicker-active\': y === year, \'_720kb-datepicker-disabled\': !isSelectableMaxYear(y) || !isSelectableMinYear(y)}" href="javascript:void(0)" ng-click="setNewYear(y)" ng-repeat="y in paginationYears track by $index" ng-if="$index < 5">',
+        '<i class="fal fa-chevron-left" ng-if="$index == 0"></i>',
+        '<span ng-if="$index != 0">{{y}}</span>',
         "</a>",
         "</div>",
         "</div>"
@@ -706,8 +707,8 @@
       $scope.paginateYears = function paginateYears(startingYear) {
         var i
           , theNewYears = []
-          , daysToPrepend = 2
-          , daysToAppend = 2;
+          , daysToPrepend = 1
+          , daysToAppend = 4;
 
         $scope.paginationYears = [];
         if (isMobile) {
